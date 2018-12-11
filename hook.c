@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/11 16:06:30 by maxisimo          #+#    #+#             */
-/*   Updated: 2018/12/11 16:26:35 by maxisimo         ###   ########.fr       */
+/*   Updated: 2018/12/11 16:41:39 by maxisimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ int			expose_hook(t_e *e)
 
 int			ft_key_press(int key, t_e *e)
 {
-	++e->startscreen;
+    ++e->startscreen;
+	e->startscreen = (e->startscreen > 0) ? 1 : e->startscreen;
 	if (key == 13)
 		e->move.up = 1;
 	else if (key == 1)
