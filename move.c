@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lchappon <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/11 16:40:55 by lchappon          #+#    #+#             */
-/*   Updated: 2018/12/11 17:06:24 by lchappon         ###   ########.fr       */
+/*   Updated: 2018/12/11 18:39:46 by maxisimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,4 +109,5 @@ void	ft_move(t_e *e)
 	ft_strafe(e);
 	ft_jump_and_crouch(e);
 	ft_rotate(e);
+	ft_draw(e);
 }

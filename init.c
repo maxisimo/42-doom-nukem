@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/11 15:40:56 by maxisimo          #+#    #+#             */
-/*   Updated: 2018/12/11 17:07:58 by lchappon         ###   ########.fr       */
+/*   Updated: 2018/12/11 19:11:05 by maxisimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,12 @@ int		ft_close(t_e *e)
 	return (0);
 }
 
-static void	ft_start_screen(t_e *e)
+void	ft_start_screen(t_e *e)
 {
 	t_color	c1;
 	t_coord tmp;
-	int		n[3];
 	double	sin_factor;
 
-	e->img = mlx_new_image(e->win, WIN_W, WIN_H);
-	e->data = mlx_get_data_addr(e->img, &e->bpp, &e->s_l, &e->endian);
 	e->loop = e->loop + 0.02;
 	sin_factor = fabs(sin(e->loop));
 	c1.r = sin_factor * 255;
@@ -39,8 +36,6 @@ static void	ft_start_screen(t_e *e)
 	ft_put_bmp_to_img(e, e->logo, tmp.x, tmp.y);
 	mlx_put_image_to_window(e->mlx, e->win, e->img, 0, 0);
 	mlx_string_put(e->mlx, e->win, WIN_WS, WIN_HS, ft_rgb_to_hex(c1), START);
-	mlx_destroy_image(e->mlx, e->img);
-	mlx_do_sync(e->mlx);
 }
 
 void    ft_mlx(t_e *e)
