@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/11 16:06:30 by maxisimo          #+#    #+#             */
-/*   Updated: 2018/12/11 16:41:39 by maxisimo         ###   ########.fr       */
+/*   Updated: 2018/12/11 17:38:05 by maxisimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,19 @@ int			expose_hook(t_e *e)
 	else
 		ft_move(e);
 	return (0);
+}
+
+int			ft_mouse_motion(int x, int y, t_e *e)
+{
+	mlx_mouse_hide();
+	e->rot.speed = 0.002 * (x - WIN_W / 2);
+	mlx_mouse_move(e->win, WIN_W / 2, y);
+	if (y >= 0 && y <= WIN_H)
+		e->rot.v = -(y - WIN_H / 2);
+	if (y < 0)
+		mlx_mouse_move(e->win, x, 0);
+	if (y > WIN_H)
+		mlx_mouse_move(e->win, x, WIN_H);
 }
 
 int			ft_key_press(int key, t_e *e)

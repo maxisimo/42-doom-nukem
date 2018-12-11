@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/11 15:40:56 by maxisimo          #+#    #+#             */
-/*   Updated: 2018/12/11 16:29:28 by maxisimo         ###   ########.fr       */
+/*   Updated: 2018/12/11 17:07:58 by lchappon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ void    ft_mlx(t_e *e)
 	mlx_hook(e->win, 3, (1L << 1), ft_key_release, e);
     mlx_mouse_hide();
 	mlx_mouse_move(e->win, WIN_W / 2, WIN_H / 2);
+	mlx_hook(e->win, 6, 0, ft_mouse_motion,e);
 	mlx_hook(e->win, 17, (1L << 17), ft_close, e);
 	mlx_loop_hook(e->mlx, expose_hook, e);
 	mlx_loop(e->mlx);

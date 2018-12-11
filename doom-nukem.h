@@ -6,12 +6,15 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/11 15:01:05 by maxisimo          #+#    #+#             */
-/*   Updated: 2018/12/11 16:27:44 by maxisimo         ###   ########.fr       */
+/*   Updated: 2018/12/11 17:08:46 by lchappon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef DOOM_NUKEM_H
 # define DOOM_NUKEM_H
+
+# include <stdlib.h>
+# include <math.h>
 
 # define WIN_W 1280
 # define WIN_H 720
@@ -107,5 +110,8 @@ int		expose_hook(t_e *e);
 int		ft_key_press(int key, t_e *e);
 int		ft_key_press2(int key, t_e *e);
 int		ft_key_release(int key, t_e *e);
+int		ft_mouse_motion(int x, int y, t_e *e);
 
-#endif DOOM_NUKEM_H
+void	ft_move(t_e *e);
+
+#endif
