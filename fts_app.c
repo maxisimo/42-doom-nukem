@@ -1,0 +1,124 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fts_app.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/03/11 18:43:12 by thbernar          #+#    #+#             */
+/*   Updated: 2018/12/12 05:53:44 by maxisimo         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "doom-nukem.h"
+
+static void	ft_app_countmap(t_app *a)
+{
+	int		count[4];
+	char	*s;
+	char	**array;
+
+	count[2] = 0;
+	count[0] = 0;
+	if (((count[3] = open(a->fname, O_RDONLY)) < 0))
+		ft_error("Fatal error : invalid file.");
+	while ((get_next_line(count[3], &s)) > 0)
+	{
+		array = ft_strsplit(s, ' ');
+		free(s);
+		count[1] = 0;
+		while (array[count[1]])
+			count[1]++;
+		if (count[1] > count[2])
+			count[2] = count[1];
+		ft_free_strsplit(array);
+		count[0]++;
+		if (count[0] > 100 || count[2] > 100)
+			ft_error("Fatal error : invalid file.");
+	}
+	free(s);
+	a->map_size.x = count[2] + 2;
+	a->map_size.y = count[0] + 2;
+}
+
+void		ft_app_allocmap(t_app *a)
+{
+	int		i;
+
+	i = 0;
+	if (!(a->map = (int**)malloc(sizeof(int*) * a->map_size.x)))
+		exit(-1);
+	while (i < a->map_size.x)
+	{
+		if (!(a->map[i] = (int*)malloc(sizeof(int) * a->map_size.y)))
+			exit(-1);
+		i++;
+	}
+	a->p.y = 0;
+	while (a->p.y < a->map_size.y)
+	{
+		a->p.x = -1;
+		while (++a->p.x < a->map_size.x)
+			a->map[a->p.x][a->p.y] = 1;
+		a->p.y++;
+	}
+}
+
+void		ft_app_writemap(t_app *a)
+{
+	int		fd;
+	char	**arr;
+	char	*s;
+	t_coord p;
+
+	p.y = 1;
+	if (((fd = open(a->fname, O_RDONLY)) < 0))
+		ft_error("Fatal error : invalid file.");
+	while ((get_next_line(fd, &s)) > 0 && p.y < a->map_size.y - 1)
+	{
+		p.x = 0;
+		arr = ft_strsplit(s, ' ');
+		free(s);
+		while (p.x < a->map_size.x - 2 && arr[p.x] != NULL)
+		{
+			if (arr[p.x] && -1 <= ft_atoi(arr[p.x]) && ft_atoi(arr[p.x]) < 64)
+				a->map[p.x + 1][p.y] = ft_atoi(arr[p.x]);
+			p.x++;
+		}
+		ft_free_strsplit(arr);
+		p.y++;
+	}
+	free(s);
+}
+
+static void	ft_app_calcplayerpos(t_app *a)
+{
+	t_coord p;
+
+	p.y = 0;
+	while (p.y < a->map_size.y)
+	{
+		p.x = 0;
+		while (p.x < a->map_size.x)
+		{
+			if (a->map[p.x][p.y] == -1)
+			{
+				a->pos.y = (double)p.y + 0.5;
+				a->pos.x = (double)p.x + 0.5;
+				a->map[p.x][p.y] = 0;
+				a->p_count++;
+			}
+			p.x++;
+		}
+		p.y++;
+	}
+}
+
+void		ft_app_init(t_app *a)
+{
+	ft_app_countmap(a);
+	ft_app_allocmap(a);
+	ft_app_writemap(a);
+	ft_app_calcplayerpos(a);
+	textures_load(a);
+}
