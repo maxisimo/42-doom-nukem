@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/26 17:11:44 by thbernar          #+#    #+#             */
-/*   Updated: 2018/12/13 17:08:18 by maxisimo         ###   ########.fr       */
+/*   Updated: 2018/12/13 18:15:34 by maxisimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ typedef struct	s_ray
 {
 	t_coord_d	dir;
 	t_coord_d	pos;
+	t_coord		step;
 }				t_ray;
 
 typedef struct	s_color
@@ -76,7 +77,8 @@ typedef struct	s_bmp
 
 typedef struct	s_weapon
 {
-	t_bmp		sprite;
+	t_bmp		img;
+	t_bmp		scope;
 	int			is_fired;
 	int			fire_count;
 }				t_weapon;
@@ -98,6 +100,7 @@ typedef struct	s_spr
 	double		invdet;
 	double		change_x;
 	double		change_y;
+	double		dist;
 	int			screenx;
 	int			height;
 	int			start_x;
@@ -109,10 +112,19 @@ typedef struct	s_spr
 	int			texx;
 	int			texy;
 	int			y;
-	int			d;
 	int			x;
 	int			clr;
+	t_coord_d	pos;
+	t_bmp		*img;
 }				t_spr;
+
+typedef struct	s_enemy
+{
+	t_spr		sprite;
+	t_coord_d	pos;
+	int			life;
+	int			state;
+}				t_enemy;
 
 typedef struct	s_move
 {
@@ -143,8 +155,6 @@ typedef struct	s_app
 	int			start;
 	int			end;
 	int			lineheight;
-	int			stepx;
-	int			stepy;
 	int			side;
 	int			hit;
 	int			speed;
@@ -161,6 +171,7 @@ typedef struct	s_app
 	int			is_weapon;
 	int			mapx;
 	int			mapy;
+	int			enemies_count;
 	struct s_app *main_a;
 	double		wallx;
 	double		weight;
@@ -183,6 +194,7 @@ typedef struct	s_app
 	double		dist_wall;
 	double		clr_intensity;
 	double		zbuffer[WIN_W];
+	t_bmp		startscreentxt;
 	t_bmp		logo;
 	t_bmp		textures[10];
 	t_bmp		sprites[10];
@@ -194,6 +206,7 @@ typedef struct	s_app
 	t_ray		ray;
 	t_player	cam;
 	t_weapon	weapon;
+	t_enemy		*enemies;
 }				t_app;
 
 void			ft_app_allocmap(t_app *app);
@@ -240,10 +253,13 @@ t_color			get_pixel_color(t_bmp *img, int x, int y);
 void			weapons_draw_weapon(t_app *a);
 
 void    		sprites_load(t_app *a);
-void    		sprites_draw(t_app *a);
+void    		sprites_draw(t_app *a, t_spr s, t_coord_d pos);
+void			sprites_get_pos(t_app *a);
 
 void    		textures_load(t_app *a);
 
 void			startscreen_draw(t_app *a);
+
+void			enemies_draw(t_app *a);
 
 #endif

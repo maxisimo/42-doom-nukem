@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/11 17:30:54 by thbernar          #+#    #+#             */
-/*   Updated: 2018/12/13 17:06:22 by maxisimo         ###   ########.fr       */
+/*   Updated: 2018/12/13 18:11:54 by maxisimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ int				ft_draw(t_app *a)
 	if (a->startscreen == 0)
 	{
 		ft_pthread(a);
-		sprites_draw(a);
+		enemies_draw(a);
 		draw_minimap(a);
 		draw_player(a);
 		weapons_draw_weapon(a);

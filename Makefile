@@ -6,7 +6,7 @@
 #    By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/01 00:25:16 by thbernar          #+#    #+#              #
-#    Updated: 2018/12/13 16:49:34 by maxisimo         ###   ########.fr        #
+#    Updated: 2018/12/13 18:15:07 by maxisimo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,7 @@ SRC = main.c \
 	  textures.c \
 	  shades.c \
 	  startscreen.c \
+	  enemies.c \
 	  bmp_parser.c
 
 OBJ = $(SRC:.c=.o)

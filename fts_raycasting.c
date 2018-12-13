@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/12 19:20:06 by maxisimo          #+#    #+#             */
-/*   Updated: 2018/12/13 17:06:22 by maxisimo         ###   ########.fr       */
+/*   Updated: 2018/12/13 17:50:21 by maxisimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,22 +18,22 @@ static void	dda_init(t_app *app)
 	app->deltadisty = fabs(1 / app->ray.dir.y);
 	if (app->ray.dir.x < 0)
 	{
-		app->stepx = -1;
+		app->ray.step.x = -1;
 		app->sidedistx = (app->ray.pos.x - app->mapx) * app->deltadistx;
 	}
 	else
 	{
-		app->stepx = 1;
+		app->ray.step.x = 1;
 		app->sidedistx = (app->mapx + 1. - app->ray.pos.x) * app->deltadistx;
 	}
 	if (app->ray.dir.y < 0)
 	{
-		app->stepy = -1;
+		app->ray.step.y = -1;
 		app->sidedisty = (app->ray.pos.y - app->mapy) * app->deltadisty;
 	}
 	else
 	{
-		app->stepy = 1;
+		app->ray.step.y = 1;
 		app->sidedisty = (app->mapy + 1. - app->ray.pos.y) * app->deltadisty;
 	}
 }
@@ -46,13 +46,13 @@ static void	dda(t_app *app)
 		if (app->sidedistx < app->sidedisty)
 		{
 			app->sidedistx += app->deltadistx;
-			app->mapx += app->stepx;
+			app->mapx += app->ray.step.x;
 			app->side = 0;
 		}
 		else
 		{
 			app->sidedisty += app->deltadisty;
-			app->mapy += app->stepy;
+			app->mapy += app->ray.step.y;
 			app->side = 1;
 		}
 		if (app->map[app->mapy][app->mapx] > 0 && app->map[app->mapy][app->mapx] != 9)
@@ -72,10 +72,10 @@ static void	raycasting_init(t_app *app, int x)
 	dda_init(app);
 	dda(app);
 	if (app->side == 0)
-		app->dist_wall = (app->mapx - app->ray.pos.x + (1 - app->stepx) / 2) /
+		app->dist_wall = (app->mapx - app->ray.pos.x + (1 - app->ray.step.x) / 2) /
 			app->ray.dir.x;
 	else
-		app->dist_wall = (app->mapy - app->ray.pos.y + (1 - app->stepy) / 2) /
+		app->dist_wall = (app->mapy - app->ray.pos.y + (1 - app->ray.step.y) / 2) /
 			app->ray.dir.y;
 }
 
