@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/26 17:11:44 by thbernar          #+#    #+#             */
-/*   Updated: 2018/12/13 18:15:34 by maxisimo         ###   ########.fr       */
+/*   Updated: 2018/12/13 18:29:20 by maxisimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,8 +136,11 @@ typedef struct	s_move
 
 typedef struct	s_rot
 {
+	int			up;
+	int			down;
 	int			right;
 	int			left;
+	int			v;
 }				t_rot;
 
 typedef struct	s_app
@@ -207,6 +210,7 @@ typedef struct	s_app
 	t_player	cam;
 	t_weapon	weapon;
 	t_enemy		*enemies;
+	double		rs;
 }				t_app;
 
 void			ft_app_allocmap(t_app *app);
