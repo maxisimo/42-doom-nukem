@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/26 17:11:44 by thbernar          #+#    #+#             */
-/*   Updated: 2018/12/13 18:53:33 by maxisimo         ###   ########.fr       */
+/*   Updated: 2018/12/13 19:22:06 by maxisimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,12 +95,6 @@ typedef struct	s_circle
 
 typedef struct	s_spr
 {
-	double		spr_x;
-	double		spr_y;
-	double		invdet;
-	double		change_x;
-	double		change_y;
-	double		dist;
 	int			screenx;
 	int			height;
 	int			start_x;
@@ -114,6 +108,12 @@ typedef struct	s_spr
 	int			y;
 	int			x;
 	int			clr;
+	double		spr_x;
+	double		spr_y;
+	double		invdet;
+	double		change_x;
+	double		change_y;
+	double		dist;
 	t_coord_d	pos;
 	t_bmp		*img;
 }				t_spr;
@@ -154,10 +154,19 @@ typedef struct	s_floor
 {
 	double		x;
 	double		y;
+	double		curdist;
 	double		weight;
 	t_coord		tex;
 	t_coord_d	curfloor;
 }				t_floor;
+
+typedef struct	s_wall
+{
+	double		dist;
+	double		clr_intensity;
+	t_coord_d	side_dist;
+	t_coord_d	deltadist;
+}				t_wall;
 
 typedef struct	s_app
 {
@@ -167,8 +176,6 @@ typedef struct	s_app
 	char		*fname;
 	char		*img_data;
 	int			**map;
-	int			bpp;
-	int			num;
 	int			spr_num;
 	int			p_count;
 	int			start;
@@ -190,18 +197,11 @@ typedef struct	s_app
 	struct s_app *main_a;
 	double		wallx;
 	double		distplayer;
-	double		curdist;
 	double		loop;
 	double		ms;
 	double		old_dir_x;
 	double		oldplane_x;
-	double		deltadistx;
-	double		deltadisty;
-	double		sidedistx;
-	double		sidedisty;
 	double		camx;
-	double		dist_wall;
-	double		clr_intensity;
 	double		zbuffer[WIN_W];
 	t_bmp		startscreentxt;
 	t_bmp		logo;
@@ -218,6 +218,7 @@ typedef struct	s_app
 	t_floor		floor;
 	t_weapon	weapon;
 	t_enemy		*enemies;
+	t_wall		wall;
 	double		rs;
 }				t_app;
 

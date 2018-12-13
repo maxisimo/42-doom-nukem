@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/11 17:30:54 by thbernar          #+#    #+#             */
-/*   Updated: 2018/12/13 19:01:43 by maxisimo         ###   ########.fr       */
+/*   Updated: 2018/12/13 19:22:17 by maxisimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ static void		ft_ceiling(int x, int y, t_app *a)
 	ft_init_tex_fc(a);
 	while (y < a->start)
 	{
-		a->curdist = WIN_H / (2.0 * y - WIN_H - 2 * a->rot.v);
-		a->floor.weight = a->curdist / -a->dist_wall;
+		a->floor.curdist = WIN_H / (2.0 * y - WIN_H - 2 * a->rot.v);
+		a->floor.weight = a->floor.curdist / -a->wall.dist;
 		a->floor.curfloor.x = a->floor.weight * a->floor.x + (1.0 - a->floor.weight) * a->pos.y;
 		a->floor.curfloor.y = a->floor.weight * a->floor.y + (1.0 - a->floor.weight) * a->pos.x;
 		a->floor.tex.x = (int)(a->floor.curfloor.x * TEXSIZE) % TEXSIZE;
@@ -69,8 +69,8 @@ static void		ft_floor(int x, int y, t_app *a)
 	ft_init_tex_fc(a);
 	while (y < WIN_H)
 	{
-		a->curdist = WIN_H / (2.0 * y - WIN_H - 2 * a->rot.v);
-		a->floor.weight = a->curdist / a->dist_wall;
+		a->floor.curdist = WIN_H / (2.0 * y - WIN_H - 2 * a->rot.v);
+		a->floor.weight = a->floor.curdist / a->wall.dist;
 		a->floor.curfloor.x = a->floor.weight * a->floor.x + (1.0 - a->floor.weight) * a->pos.y;
 		a->floor.curfloor.y = a->floor.weight * a->floor.y + (1.0 - a->floor.weight) * a->pos.x;
 		a->floor.tex.x = (int)(a->floor.curfloor.x * TEXSIZE) % TEXSIZE;
@@ -89,7 +89,7 @@ void			ft_choose_color(int x, int start, t_app *a)
 
 	a->texnum = a->map[a->mapy][a->mapx] - 1;
 	c1 = get_pixel_color(&a->textures[a->texnum], a->texx, a->texy);
-	ft_apply_shadow_to_color(&c1, a->clr_intensity);
+	ft_apply_shadow_to_color(&c1, a->wall.clr_intensity);
 	ft_put_pxl_to_img(a, c1, x, start);
 }
 
@@ -99,9 +99,9 @@ void			draw_wall(int x, int start, int end, t_app *a)
 
 	y = start;
 	if (a->side == 0)
-		a->wallx = a->pos.x + a->dist_wall * a->ray.dir.y;
+		a->wallx = a->pos.x + a->wall.dist * a->ray.dir.y;
 	else
-		a->wallx = a->pos.y + a->dist_wall * a->ray.dir.x;
+		a->wallx = a->pos.y + a->wall.dist * a->ray.dir.x;
 	a->wallx -= floor(a->wallx);
 	a->texx = (int)(a->wallx * TEXSIZE);
 	if (a->side == 0 && a->ray.dir.x > 0)
