@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/26 17:11:44 by thbernar          #+#    #+#             */
-/*   Updated: 2018/12/13 18:29:20 by maxisimo         ###   ########.fr       */
+/*   Updated: 2018/12/13 18:53:33 by maxisimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,6 +143,22 @@ typedef struct	s_rot
 	int			v;
 }				t_rot;
 
+typedef struct	s_sky
+{
+	int			x;
+	int			y;
+	double		alpha;
+}				t_sky;
+
+typedef struct	s_floor
+{
+	double		x;
+	double		y;
+	double		weight;
+	t_coord		tex;
+	t_coord_d	curfloor;
+}				t_floor;
+
 typedef struct	s_app
 {
 	void		*mlx;
@@ -164,12 +180,8 @@ typedef struct	s_app
 	int			c;
 	int			texx;
 	int			texy;
-	int			skyx;
-	int			skyy;
 	int			startscreen;
 	int			texnum;
-	int			floortex_x;
-	int			floortex_y;
 	int			current_thread;
 	int			is_weapon;
 	int			mapx;
@@ -177,14 +189,8 @@ typedef struct	s_app
 	int			enemies_count;
 	struct s_app *main_a;
 	double		wallx;
-	double		weight;
-	double		curfloor_x;
-	double		curfloor_y;
 	double		distplayer;
 	double		curdist;
-	double		floor_x;
-	double		floor_y;
-	double		alpha;
 	double		loop;
 	double		ms;
 	double		old_dir_x;
@@ -208,6 +214,8 @@ typedef struct	s_app
 	t_rot		rot;
 	t_ray		ray;
 	t_player	cam;
+	t_sky		sky;
+	t_floor		floor;
 	t_weapon	weapon;
 	t_enemy		*enemies;
 	double		rs;

@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/11 17:30:54 by thbernar          #+#    #+#             */
-/*   Updated: 2018/12/13 18:29:36 by maxisimo         ###   ########.fr       */
+/*   Updated: 2018/12/13 18:58:15 by maxisimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,20 +19,20 @@ static void		ft_draw_sky(int x, int start, t_app *a)
 	t_color	c1;
 
 	i = 0;
-	a->alpha = asin(a->cam.dir.x);
-	if (a->alpha != a->alpha)
-		a->alpha = M_PI;
+	a->sky.alpha = asin(a->cam.dir.x);
+	if (a->sky.alpha != a->sky.alpha)
+		a->sky.alpha = M_PI;
 	if (a->cam.dir.y < 0)
-		a->alpha *= -1;
-	a->alpha += M_PI;
-	a->alpha += x * FOV_RAD / WIN_W - HFOV_RAD;
-	a->alpha += (a->alpha < 0) ? 2 * M_PI : 0;
-	a->alpha -= (a->alpha > 2 * M_PI) ? 2 * M_PI : 0;
-	a->skyx = a->alpha * a->textures[8].width / (2 * M_PI);
+		a->sky.alpha *= -1;
+	a->sky.alpha += M_PI;
+	a->sky.alpha += x * FOV_RAD / WIN_W - HFOV_RAD;
+	a->sky.alpha += (a->sky.alpha < 0) ? 2 * M_PI : 0;
+	a->sky.alpha -= (a->sky.alpha > 2 * M_PI) ? 2 * M_PI : 0;
+	a->sky.x = a->sky.alpha * a->textures[8].width / (2 * M_PI);
 	while (i <= start)
 	{
-		a->skyy = a->textures[8].height - i * a->textures[8].height / (WIN_H);
-		c1 = get_pixel_color(&a->textures[8], (int)a->skyx, (int)a->skyy);
+		a->sky.y = a->textures[8].height - i * a->textures[8].height / (WIN_H);
+		c1 = get_pixel_color(&a->textures[8], (int)a->sky.x, (int)a->sky.y);
 		clr = ft_rgb_to_hex(c1);
 		ft_memcpy(a->img_data + 4 * WIN_W * i + x * 4,
 				&clr, sizeof(int));
@@ -49,12 +49,12 @@ static void		ft_ceiling(int x, int y, t_app *a)
 	while (y < a->start)
 	{
 		a->curdist = WIN_H / (2.0 * y - WIN_H - 2 * a->rot.v);
-		a->weight = a->curdist / -a->dist_wall;
-		a->curfloor_x = a->weight * a->floor_x + (1.0 - a->weight) * a->pos.y;
-		a->curfloor_y = a->weight * a->floor_y + (1.0 - a->weight) * a->pos.x;
-		a->floortex_x = (int)(a->curfloor_x * TEXSIZE) % TEXSIZE;
-		a->floortex_y = (int)(a->curfloor_y * TEXSIZE) % TEXSIZE;
-		c1 = get_pixel_color(&a->textures[3], a->floortex_x, a->floortex_y);
+		a->floor.weight = a->curdist / -a->dist_wall;
+		a->floor.curfloor.x = a->floor.weight * a->floor.x + (1.0 - a->floor.weight) * a->pos.y;
+		a->floor.curfloor.y = a->floor.weight * a->floor.y + (1.0 - a->floor.weight) * a->pos.x;
+		a->floor.tex.x = (int)(a->floor.curfloor.x * TEXSIZE) % TEXSIZE;
+		a->floor.tex.y = (int)(a->floor.curfloor.y * TEXSIZE) % TEXSIZE;
+		c1 = get_pixel_color(&a->textures[3], a->floor.tex.x, a->floor.tex.y);
 		ft_apply_shadow_to_cf(&c1, y - WIN_H - a->rot.v);
 		ft_put_pxl_to_img(a, c1, x, y);
 		y++;
@@ -70,13 +70,13 @@ static void		ft_floor(int x, int y, t_app *a)
 	while (y < WIN_H)
 	{
 		a->curdist = WIN_H / (2.0 * y - WIN_H - 2 * a->rot.v);
-		a->weight = a->curdist / a->dist_wall;
-		a->curfloor_x = a->weight * a->floor_x + (1.0 - a->weight) * a->pos.y;
-		a->curfloor_y = a->weight * a->floor_y + (1.0 - a->weight) * a->pos.x;
-		a->floortex_x = (int)(a->curfloor_x * TEXSIZE) % TEXSIZE;
-		a->floortex_y = (int)(a->curfloor_y * TEXSIZE) % TEXSIZE;
-		a->floortex_y = abs(a->floortex_y);
-		c1 = get_pixel_color(&a->textures[6], a->floortex_x, a->floortex_y);
+		a->floor.weight = a->curdist / a->dist_wall;
+		a->floor.curfloor.x = a->floor.weight * a->floor.x + (1.0 - a->floor.weight) * a->pos.y;
+		a->floor.curfloor.y = a->floor.weight * a->floor.y + (1.0 - a->floor.weight) * a->pos.x;
+		a->floor.tex.x = (int)(a->floor.curfloor.x * TEXSIZE) % TEXSIZE;
+		a->floor.tex.y = (int)(a->floor.curfloor.y * TEXSIZE) % TEXSIZE;
+		a->floor.tex.y = abs(a->floor.tex.y);
+		c1 = get_pixel_color(&a->textures[6], a->floor.tex.x, a->floor.tex.y);
 		ft_apply_shadow_to_cf(&c1, y - a->rot.v);
 		ft_put_pxl_to_img(a, c1, x, y);
 		y++;
@@ -109,12 +109,10 @@ void			draw_wall(int x, int start, int end, t_app *a)
 	if (a->side == 1 && a->ray.dir.y < 0)
 		a->texx = TEXSIZE - a->texx - 1;
 	if (a->c == 0)
-	{
-		ft_floor(x, start, a);
 		ft_ceiling(x, start, a);
-	}
 	else if (a->c == 1)
 		ft_draw_sky(x, start, a);
+	ft_floor(x, start, a);
 	while (++start <= end - 1)
 	{
 		a->texy = ((start - WIN_H / 2 + a->lineheight / 2) - a->rot.v)

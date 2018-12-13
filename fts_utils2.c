@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/19 20:14:32 by maxisimo          #+#    #+#             */
-/*   Updated: 2018/12/13 17:03:14 by maxisimo         ###   ########.fr       */
+/*   Updated: 2018/12/13 18:56:03 by maxisimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,23 +42,23 @@ void	ft_init_tex_fc(t_app *a)
 {
 	if (a->side == 0 && a->ray.dir.x > 0)
 	{
-		a->floor_x = a->mapx;
-		a->floor_y = a->mapy + a->wallx;
+		a->floor.x = a->mapx;
+		a->floor.y = a->mapy + a->wallx;
 	}
 	else if (a->side == 0 && a->ray.dir.x < 0)
 	{
-		a->floor_x = a->mapx + 1.0;
-		a->floor_y = a->mapy + a->wallx;
+		a->floor.x = a->mapx + 1.0;
+		a->floor.y = a->mapy + a->wallx;
 	}
 	else if (a->side == 1 && a->ray.dir.y > 0)
 	{
-		a->floor_x = a->mapx + a->wallx;
-		a->floor_y = a->mapy;
+		a->floor.x = a->mapx + a->wallx;
+		a->floor.y = a->mapy;
 	}
 	else
 	{
-		a->floor_x = a->mapx + a->wallx;
-		a->floor_y = a->mapy + 1.0;
+		a->floor.x = a->mapx + a->wallx;
+		a->floor.y = a->mapy + 1.0;
 	}
 	if (a->end < 0)
 		a->end = WIN_H;
