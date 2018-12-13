@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 11:54:23 by thbernar          #+#    #+#             */
-/*   Updated: 2018/12/12 05:40:23 by maxisimo         ###   ########.fr       */
+/*   Updated: 2018/12/13 12:55:21 by lchappon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,9 +86,9 @@ void	sprites_init(t_app *a, t_spr *s, int i)
 	rel.y = p1.y - p2.y;
 	s->spr_x = a->sprites[i].p.y - a->pos.y;
 	s->spr_y = a->sprites[i].p.x - a->pos.x;
-	s->invdet = 1.0 / (a->plane_x * a->dir_y - a->dir_x * a->plane_y);
-	s->change_x = s->invdet * (a->dir_y * s->spr_x - a->dir_x * s->spr_y);
-	s->change_y = s->invdet * (-a->plane_y * s->spr_x + a->plane_x * s->spr_y);
+	s->invdet = 1.0 / (a->cam.plane.x * a->cam.dir.y - a->cam.dir.x * a->cam.plane.y);
+	s->change_x = s->invdet * (a->cam.dir.y * s->spr_x - a->cam.dir.x * s->spr_y);
+	s->change_y = s->invdet * (-a->cam.plane.y * s->spr_x + a->cam.plane.x * s->spr_y);
 	s->screenx = (int)((WIN_W / 2) * (1 + s->change_x / s->change_y));
 	s->height = abs((int)(WIN_H / (s->change_y)));
 	s->start_y = -s->height / 2 + WIN_H / 2;

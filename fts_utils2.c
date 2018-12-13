@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/19 20:14:32 by maxisimo          #+#    #+#             */
-/*   Updated: 2018/12/12 05:40:46 by maxisimo         ###   ########.fr       */
+/*   Updated: 2018/12/13 12:54:34 by lchappon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,17 +40,17 @@ void	ft_free_strsplit(char **array)
 
 void	ft_init_tex_fc(t_app *a)
 {
-	if (a->side == 0 && a->raydir_x > 0)
+	if (a->side == 0 && a->ray.dir.x > 0)
 	{
 		a->floor_x = a->mapx;
 		a->floor_y = a->mapy + a->wallx;
 	}
-	else if (a->side == 0 && a->raydir_x < 0)
+	else if (a->side == 0 && a->ray.dir.x < 0)
 	{
 		a->floor_x = a->mapx + 1.0;
 		a->floor_y = a->mapy + a->wallx;
 	}
-	else if (a->side == 1 && a->raydir_y > 0)
+	else if (a->side == 1 && a->ray.dir.y > 0)
 	{
 		a->floor_x = a->mapx + a->wallx;
 		a->floor_y = a->mapy;
