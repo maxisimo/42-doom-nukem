@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/12 18:41:09 by maxisimo          #+#    #+#             */
-/*   Updated: 2018/12/12 05:41:25 by maxisimo         ###   ########.fr       */
+/*   Updated: 2018/12/13 12:46:09 by maxisimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,6 @@ static int	check_map(t_app *a, int x, int y)
 	c1.r = 25;
 	c1.g = 45;
 	c1.b = 145;
-	if (a->t == 0)
-	{
-		c1.r = 225;
-		c1.g = 130;
-		c1.b = 0;
-	}
 	if (a->map[x][y] >= 1)
 		return (ft_rgb_to_hex(c1));
 	return (0xFFFFFF);

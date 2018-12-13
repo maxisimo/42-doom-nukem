@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 11:54:23 by thbernar          #+#    #+#             */
-/*   Updated: 2018/12/12 05:47:23 by maxisimo         ###   ########.fr       */
+/*   Updated: 2018/12/13 12:24:19 by maxisimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ int			main(int ac, char **av)
 	if (ac == 2 && is_extension_valid(ft_strdup(av[1])) == 1)
 	{
 		a.fname = av[1];
-		a.dir_x = -1;
-		a.plane_y = 0.66;
+		a.cam.dir.x = -1;
+		a.cam.plane.y = 0.66;
 		a.ms = 0.07;
 		ft_app_init(&a);
 		sprites_load(&a);

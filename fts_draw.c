@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/11 17:30:54 by thbernar          #+#    #+#             */
-/*   Updated: 2018/12/12 05:41:57 by maxisimo         ###   ########.fr       */
+/*   Updated: 2018/12/13 12:48:38 by maxisimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@ static void		ft_draw_sky(int x, int start, t_app *a)
 	t_color	c1;
 
 	i = 0;
-	a->alpha = asin(a->dir_x);
+	a->alpha = asin(a->cam.dir.x);
 	if (a->alpha != a->alpha)
 		a->alpha = M_PI;
-	if (a->dir_y < 0)
+	if (a->cam.dir.y < 0)
 		a->alpha *= -1;
 	a->alpha += M_PI;
 	a->alpha += x * FOV_RAD / WIN_W - HFOV_RAD;
@@ -82,14 +82,14 @@ void			draw_wall(int x, int start, int end, t_app *a)
 
 	y = start;
 	if (a->side == 0)
-		a->wallx = a->pos.x + a->dist_wall * a->raydir_y;
+		a->wallx = a->pos.x + a->dist_wall * a->ray.dir.y;
 	else
-		a->wallx = a->pos.y + a->dist_wall * a->raydir_x;
+		a->wallx = a->pos.y + a->dist_wall * a->ray.dir.x;
 	a->wallx -= floor(a->wallx);
 	a->texx = (int)(a->wallx * TEXSIZE);
-	if (a->side == 0 && a->raydir_x > 0)
+	if (a->side == 0 && a->ray.dir.x > 0)
 		a->texx = TEXSIZE - a->texx - 1;
-	if (a->side == 1 && a->raydir_y < 0)
+	if (a->side == 1 && a->ray.dir.y < 0)
 		a->texx = TEXSIZE - a->texx - 1;
 	if (a->c == 0)
 		ft_floor_and_ceilling(x, start, a);

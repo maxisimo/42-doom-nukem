@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/26 17:11:44 by thbernar          #+#    #+#             */
-/*   Updated: 2018/12/12 06:01:59 by maxisimo         ###   ########.fr       */
+/*   Updated: 2018/12/13 12:36:39 by maxisimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,24 @@ typedef struct	s_color
 	int			b;
 }				t_color;
 
+typedef struct	s_player
+{
+	int			x;
+	t_coord_d	old_dir;
+	t_coord_d	dir;
+	t_coord_d	old_plane;
+	t_coord_d	plane;
+}				t_player;
+
+typedef struct	s_ray
+{
+	t_coord_d	dir;
+	t_coord		pos;
+	t_coord		move;
+	t_coord_d	cast;
+	t_coord_d	casting;
+}				t_ray;
+
 typedef struct	s_bmp
 {
 	int			width;
@@ -80,11 +98,6 @@ typedef struct	s_circle
 
 typedef struct	s_spr
 {
-	double		spr_x;
-	double		spr_y;
-	double		invdet;
-	double		change_x;
-	double		change_y;
 	int			screenx;
 	int			height;
 	int			start_x;
@@ -99,6 +112,11 @@ typedef struct	s_spr
 	int			d;
 	int			x;
 	int			clr;
+	double		spr_x;
+	double		spr_y;
+	double		invdet;
+	double		change_x;
+	double		change_y;
 }				t_spr;
 
 typedef struct	s_move
@@ -146,6 +164,8 @@ typedef struct	s_app
 	int			floortex_y;
 	int			current_thread;
 	int			is_weapon;
+	int			mapx;
+	int			mapy;
 	struct s_app *main_a;
 	double		wallx;
 	double		weight;
@@ -158,33 +178,23 @@ typedef struct	s_app
 	double		alpha;
 	double		loop;
 	double		ms;
-	double		old_dir_x;
 	double		deltadistx;
 	double		deltadisty;
-	double		raydir_x;
-	double		raydir_y;
 	double		sidedistx;
 	double		sidedisty;
-	double		rayposx;
-	double		rayposy;
-	double		camx;
-	double		dir_x;
-	double		dir_y;
-	double		plane_x;
-	double		plane_y;
 	double		dist_wall;
-	double		oldplane_x;
 	double		clr_intensity;
 	double		zbuffer[WIN_W];
 	t_bmp		logo;
 	t_bmp		textures[10];
 	t_bmp		sprites[10];
-	t_coord		map;
 	t_coord		map_size;
 	t_coord		p;
 	t_coord_d	pos;
 	t_move		move;
 	t_rot		rot;
+	t_player	cam;
+	t_ray		ray;
 	t_weapon	weapon;
 }				t_app;
 
