@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/11 17:30:54 by thbernar          #+#    #+#             */
-/*   Updated: 2018/12/13 18:29:36 by maxisimo         ###   ########.fr       */
+/*   Updated: 2018/12/13 18:56:06 by lchappon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static void		ft_draw_sky(int x, int start, t_app *a)
 	a->skyx = a->alpha * a->textures[8].width / (2 * M_PI);
 	while (i <= start)
 	{
-		a->skyy = a->textures[8].height - i * a->textures[8].height / (WIN_H);
+		a->skyy = (WIN_H / 2 + i - a->rot.v) * a->textures[8].height / WIN_H;
 		c1 = get_pixel_color(&a->textures[8], (int)a->skyx, (int)a->skyy);
 		clr = ft_rgb_to_hex(c1);
 		ft_memcpy(a->img_data + 4 * WIN_W * i + x * 4,
