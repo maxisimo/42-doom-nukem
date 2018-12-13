@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/30 11:31:02 by maxisimo          #+#    #+#             */
-/*   Updated: 2018/12/13 12:10:09 by maxisimo         ###   ########.fr       */
+/*   Updated: 2018/12/13 17:07:50 by maxisimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,21 +17,21 @@ static void	ft_rotate(t_app *a)
 	a->ms = (a->speed == 1) ? 0.1 : 0.07;
 	if (a->rot.right == 1)
 	{
-		a->cam.old_dir.x = a->cam.dir.x;
+		a->old_dir_x = a->cam.dir.x;
 		a->cam.dir.x = a->cam.dir.x * cos(-0.05) - a->cam.dir.y * sin(-0.05);
-		a->cam.dir.y = a->cam.old_dir.x * sin(-0.05) + a->cam.dir.y * cos(-0.05);
-		a->cam.old_plane.x = a->cam.plane.x;
+		a->cam.dir.y = a->old_dir_x * sin(-0.05) + a->cam.dir.y * cos(-0.05);
+		a->oldplane_x = a->cam.plane.x;
 		a->cam.plane.x = a->cam.plane.x * cos(-0.05) - a->cam.plane.y * sin(-0.05);
-		a->cam.plane.y = a->cam.old_plane.x * sin(-0.05) + a->cam.plane.y * cos(-0.05);
+		a->cam.plane.y = a->oldplane_x * sin(-0.05) + a->cam.plane.y * cos(-0.05);
 	}
 	if (a->rot.left == 1)
 	{
-		a->cam.old_dir.x = a->cam.dir.x;
+		a->old_dir_x = a->cam.dir.x;
 		a->cam.dir.x = a->cam.dir.x * cos(0.05) - a->cam.dir.y * sin(0.05);
-		a->cam.dir.y = a->cam.old_dir.x * sin(0.05) + a->cam.dir.y * cos(0.05);
-		a->cam.old_plane.x = a->cam.plane.x;
+		a->cam.dir.y = a->old_dir_x * sin(0.05) + a->cam.dir.y * cos(0.05);
+		a->oldplane_x = a->cam.plane.x;
 		a->cam.plane.x = a->cam.plane.x * cos(0.05) - a->cam.plane.y * sin(0.05);
-		a->cam.plane.y = a->cam.old_plane.x * sin(0.05) + a->cam.plane.y * cos(0.05);
+		a->cam.plane.y = a->oldplane_x * sin(0.05) + a->cam.plane.y * cos(0.05);
 	}
 }
 

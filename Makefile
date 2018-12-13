@@ -6,11 +6,11 @@
 #    By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/01 00:25:16 by thbernar          #+#    #+#              #
-#    Updated: 2018/12/10 22:55:27 by maxisimo         ###   ########.fr        #
+#    Updated: 2018/12/13 16:49:34 by maxisimo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = wolf3d
+NAME = doom-nukem
 
 SRC = main.c \
 	  fts_utils.c \

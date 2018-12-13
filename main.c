@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 11:54:23 by thbernar          #+#    #+#             */
-/*   Updated: 2018/12/13 12:24:19 by maxisimo         ###   ########.fr       */
+/*   Updated: 2018/12/13 17:06:22 by maxisimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,26 +22,27 @@ static int	is_extension_valid(char *fname)
 
 int			main(int ac, char **av)
 {
-	t_app	a;
+	t_app	app;
 
 	if (ac == 2 && is_extension_valid(ft_strdup(av[1])) == 1)
 	{
-		a.fname = av[1];
-		a.cam.dir.x = -1;
-		a.cam.plane.y = 0.66;
-		a.ms = 0.07;
-		ft_app_init(&a);
-		sprites_load(&a);
-		a.mlx = mlx_init();
-		a.win = mlx_new_window(a.mlx, WIN_W, WIN_H, "Wolf3D");
-		bmp_loadfile(&a.logo, "textures/logo.bmp");
-		mlx_hook(a.win, 2, (1L << 0), ft_key_press, &a);
-		mlx_hook(a.win, 3, (1L << 1), ft_key_release, &a);
-		mlx_hook(a.win, 17, (1L << 17), ft_close, &a);
-		mlx_loop_hook(a.mlx, ft_draw, &a);
-		mlx_loop(a.mlx);
+		ft_bzero(&app, sizeof(t_app));
+		app.fname = av[1];
+		app.cam.dir.x = -1;
+		app.cam.plane.y = 0.66;
+		app.ms = 0.07;
+		ft_app_init(&app);
+		sprites_load(&app);
+		app.mlx = mlx_init();
+		app.win = mlx_new_window(app.mlx, WIN_W, WIN_H, "doom-nukem");
+		bmp_loadfile(&app.logo, "textures/logo.bmp");
+		mlx_hook(app.win, 2, (1L << 0), ft_key_press, &app);
+		mlx_hook(app.win, 3, (1L << 1), ft_key_release, &app);
+		mlx_hook(app.win, 17, (1L << 17), ft_close, &app);
+		mlx_loop_hook(app.mlx, ft_draw, &app);
+		mlx_loop(app.mlx);
 	}
 	else
-		ft_putstr("usage: ./wolf3d maps/*.w3d\n");
+		ft_putstr("usage: ./doom-nukem maps/*.w3d\n");
 	return (0);
 }

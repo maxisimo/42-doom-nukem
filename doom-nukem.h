@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/26 17:11:44 by thbernar          #+#    #+#             */
-/*   Updated: 2018/12/13 12:36:39 by maxisimo         ###   ########.fr       */
+/*   Updated: 2018/12/13 17:08:18 by maxisimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,30 +42,25 @@ typedef struct	s_coord_d
 	double		y;
 }				t_coord_d;
 
-typedef struct	s_color
-{
-	int			r;
-	int			g;
-	int			b;
-}				t_color;
-
 typedef struct	s_player
 {
-	int			x;
-	t_coord_d	old_dir;
+	t_coord_d	pos;
 	t_coord_d	dir;
-	t_coord_d	old_plane;
 	t_coord_d	plane;
 }				t_player;
 
 typedef struct	s_ray
 {
 	t_coord_d	dir;
-	t_coord		pos;
-	t_coord		move;
-	t_coord_d	cast;
-	t_coord_d	casting;
+	t_coord_d	pos;
 }				t_ray;
+
+typedef struct	s_color
+{
+	int			r;
+	int			g;
+	int			b;
+}				t_color;
 
 typedef struct	s_bmp
 {
@@ -98,6 +93,11 @@ typedef struct	s_circle
 
 typedef struct	s_spr
 {
+	double		spr_x;
+	double		spr_y;
+	double		invdet;
+	double		change_x;
+	double		change_y;
 	int			screenx;
 	int			height;
 	int			start_x;
@@ -112,11 +112,6 @@ typedef struct	s_spr
 	int			d;
 	int			x;
 	int			clr;
-	double		spr_x;
-	double		spr_y;
-	double		invdet;
-	double		change_x;
-	double		change_y;
 }				t_spr;
 
 typedef struct	s_move
@@ -178,10 +173,13 @@ typedef struct	s_app
 	double		alpha;
 	double		loop;
 	double		ms;
+	double		old_dir_x;
+	double		oldplane_x;
 	double		deltadistx;
 	double		deltadisty;
 	double		sidedistx;
 	double		sidedisty;
+	double		camx;
 	double		dist_wall;
 	double		clr_intensity;
 	double		zbuffer[WIN_W];
@@ -193,8 +191,8 @@ typedef struct	s_app
 	t_coord_d	pos;
 	t_move		move;
 	t_rot		rot;
-	t_player	cam;
 	t_ray		ray;
+	t_player	cam;
 	t_weapon	weapon;
 }				t_app;
 

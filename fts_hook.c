@@ -6,70 +6,70 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/23 11:15:41 by maxisimo          #+#    #+#             */
-/*   Updated: 2018/12/12 06:00:39 by maxisimo         ###   ########.fr       */
+/*   Updated: 2018/12/13 16:57:05 by maxisimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "doom-nukem.h"
 
-int			ft_key_press(int key, t_app *a)
+int			ft_key_press(int key, t_app *app)
 {
-	a->startscreen = 0;
+	app->startscreen = 0;
 	if (key == 13)
-		a->move.up = 1;
+		app->move.up = 1;
 	else if (key == 1)
-		a->move.down = 1;
+		app->move.down = 1;
 	else if (key == 2)
-		a->move.right = 1;
+		app->move.right = 1;
 	else if (key == 0)
-		a->move.left = 1;
+		app->move.left = 1;
 	else if (key == 123)
-		a->rot.left = 1;
+		app->rot.left = 1;
 	else if (key == 124)
-		a->rot.right = 1;
+		app->rot.right = 1;
 	else if (key == 126)
 	{
-		a->weapon.fire_count = 0;
-		a->weapon.is_fired = 1;
+		app->weapon.fire_count = 0;
+		app->weapon.is_fired = 1;
 	}
-	ft_key_press2(key, a);
+	ft_key_press2(key, app);
 	return (0);
 }
 
-int			ft_key_press2(int key, t_app *a)
+int			ft_key_press2(int key, t_app *app)
 {
 	if (key == 126)
-		a->weapon.is_fired = 1;
+		app->weapon.is_fired = 1;
 	else if (key == 8)
-		a->c = (a->c == 1) ? 0 : 1;
+		app->c = (app->c == 1) ? 0 : 1;
 	else if (key == 18)
-		a->is_weapon = 1;
+		app->is_weapon = 1;
 	else if (key == 19)
-		a->is_weapon = 0;
+		app->is_weapon = 0;
 	else if (key == 257)
-		a->speed = 1;
+		app->speed = 1;
 	else if (key == 53)
 		exit(0);
 	return (0);
 }
 
-int			ft_key_release(int key, t_app *a)
+int			ft_key_release(int key, t_app *app)
 {
 	if (key == 13)
-		a->move.up = 0;
+		app->move.up = 0;
 	else if (key == 1)
-		a->move.down = 0;
+		app->move.down = 0;
 	else if (key == 2)
-		a->move.right = 0;
+		app->move.right = 0;
 	else if (key == 0)
-		a->move.left = 0;
+		app->move.left = 0;
 	else if (key == 123)
-		a->rot.left = 0;
+		app->rot.left = 0;
 	else if (key == 124)
-		a->rot.right = 0;
+		app->rot.right = 0;
 	else if (key == 126)
-		a->weapon.is_fired = 0;
+		app->weapon.is_fired = 0;
 	else if (key == 257)
-		a->speed = 0;
+		app->speed = 0;
 	return (0);
 }
