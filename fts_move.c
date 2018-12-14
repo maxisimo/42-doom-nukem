@@ -6,11 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/30 11:31:02 by maxisimo          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2018/12/14 14:10:22 by maxisimo         ###   ########.fr       */
-=======
-/*   Updated: 2018/12/14 15:45:47 by lchappon         ###   ########.fr       */
->>>>>>> 2986bd685915fe10185eaa48f526cc86112b2057
+/*   Updated: 2018/12/14 15:57:40 by lchappon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,12 +78,8 @@ static void	ft_move2(t_app *a)
 
 int			ft_move(t_app *a)
 {
-<<<<<<< HEAD
-	a->ms = (a->speed == 1) ? 0.12 : 0.09;
-=======
-	a->move.s = (a->speed == 1) ? 0.1 : 0.07;
+	a->move.s = (a->speed == 1) ? 0.12 : 0.09;
 	a->move.s = (a->crouch == 1) ? 0.03 : a->move.s;
->>>>>>> 2986bd685915fe10185eaa48f526cc86112b2057
 	if (a->move.up == 1)
 	{
 		if (a->map[(int)(a->pos.x + a->cam.dir.y * a->move.s)][(int)(a->pos.y)] == 0)
