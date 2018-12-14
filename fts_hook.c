@@ -6,11 +6,25 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/23 11:15:41 by maxisimo          #+#    #+#             */
-/*   Updated: 2018/12/13 17:50:55 by lchappon         ###   ########.fr       */
+/*   Updated: 2018/12/14 14:24:35 by lchappon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "doom-nukem.h"
+
+int			ft_mouse_motion(int x, int y, t_app *app)
+{
+	mlx_mouse_hide();
+	app->rot.s = -0.002 * (x - WIN_W / 2);
+	mlx_mouse_move(app->win, WIN_W / 2, y);
+	if (y >= 0 && y <= WIN_H)
+		app->rot.v = -(y - WIN_H / 2);
+	if (y < 0)
+		mlx_mouse_move(app->win, x, 0);
+	if (y > WIN_H)
+		mlx_mouse_move(app->win, x, WIN_H);
+	return (0);
+}
 
 int			ft_key_press(int key, t_app *app)
 {
