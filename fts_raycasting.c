@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/12 19:20:06 by maxisimo          #+#    #+#             */
-/*   Updated: 2018/12/13 19:24:02 by maxisimo         ###   ########.fr       */
+/*   Updated: 2018/12/14 14:06:13 by lchappon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static void	dda(t_app *app)
 			app->mapy += app->ray.step.y;
 			app->side = 1;
 		}
-		if (app->map[app->mapy][app->mapx] > 0 && app->map[app->mapy][app->mapx] != 9)
+		if (app->map[app->mapy][app->mapx] > 0)
 			app->hit = 1;
 	}
 }
