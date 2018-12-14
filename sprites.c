@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 11:54:23 by thbernar          #+#    #+#             */
-/*   Updated: 2018/12/14 16:50:03 by lchappon         ###   ########.fr       */
+/*   Updated: 2018/12/14 16:54:37 by lchappon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,13 @@ void	sprites_init(t_app *a, t_spr *s, t_coord_d pos)
 	s->change_y = s->invdet * (-a->cam.plane.y * s->spr_x + a->cam.plane.x * s->spr_y);
 	s->screenx = (int)((WIN_W / 2) * (1 + s->change_x / s->change_y));
 	s->height = abs((int)(WIN_H / (s->change_y)));
-	s->start_y = -s->height / 2 + WIN_H / 2 + a->rot.v;
+	s->start_y = -s->height / 2;
+	s->start_y -= s->start_y * a->move.v;
+	s->start_y += WIN_H / 2 + a->rot.v;
 	s->start_y = (s->start_y < 0) ? 0 : s->start_y;
-	s->end_y = s->height / 2 + WIN_H / 2 + a->rot.v;
+	s->end_y = s->height / 2;
+	s->end_y += s->end_y * a->move.v;
+	s->end_y += WIN_H / 2 + a->rot.v;
 	s->end_y = (s->end_y > WIN_H) ? WIN_H - 1 : s->end_y;
 	s->width = abs((int)(WIN_H / (s->change_y)));
 	s->start_x = -s->width / 2 + s->screenx;
@@ -83,8 +87,9 @@ void	put_sprite(t_app *a, t_spr *s)
 			s->y = s->start_y - 1;
 			while (s->y < s->end_y)
 			{
-				s->texy = (((s->y * 2 - WIN_H + s->height - a->rot.v * 2)
-							* s->img->height) / s->height) / 2;
+				s->texy = ((s->y - WIN_H / 2 + (s->height / 2)
+							* (-a->move.v + 1) - a->rot.v)
+							* s->img->height) / s->height;
 				c = get_pixel_color(s->img, s->texx, s->texy);
 				if (s->dist < 20 && c.r != 0 && c.g != 0 && c.b != 0)
 					ft_put_pxl_to_img(a, c, s->stripe, s->y);
