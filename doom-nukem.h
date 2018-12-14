@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/26 17:11:44 by thbernar          #+#    #+#             */
-/*   Updated: 2018/12/13 19:22:06 by maxisimo         ###   ########.fr       */
+/*   Updated: 2018/12/14 14:01:25 by lchappon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,22 +126,15 @@ typedef struct	s_enemy
 	int			state;
 }				t_enemy;
 
-typedef struct	s_move
-{
-	int			up;
-	int			down;
-	int			left;
-	int			right;
-}				t_move;
-
-typedef struct	s_rot
+typedef struct	s_dir
 {
 	int			up;
 	int			down;
 	int			right;
 	int			left;
+	double		s;
 	int			v;
-}				t_rot;
+}				t_dir;
 
 typedef struct	s_sky
 {
@@ -198,7 +191,6 @@ typedef struct	s_app
 	double		wallx;
 	double		distplayer;
 	double		loop;
-	double		ms;
 	double		old_dir_x;
 	double		oldplane_x;
 	double		camx;
@@ -210,8 +202,8 @@ typedef struct	s_app
 	t_coord		map_size;
 	t_coord		p;
 	t_coord_d	pos;
-	t_move		move;
-	t_rot		rot;
+	t_dir		move;
+	t_dir		rot;
 	t_ray		ray;
 	t_player	cam;
 	t_sky		sky;
@@ -219,7 +211,6 @@ typedef struct	s_app
 	t_weapon	weapon;
 	t_enemy		*enemies;
 	t_wall		wall;
-	double		rs;
 }				t_app;
 
 void			ft_app_allocmap(t_app *app);
