@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/26 17:11:44 by thbernar          #+#    #+#             */
-/*   Updated: 2018/12/14 15:16:38 by maxisimo         ###   ########.fr       */
+/*   Updated: 2018/12/14 15:48:07 by maxisimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,22 +126,15 @@ typedef struct	s_enemy
 	int			state;
 }				t_enemy;
 
-typedef struct	s_move
-{
-	int			up;
-	int			down;
-	int			left;
-	int			right;
-}				t_move;
-
-typedef struct	s_rot
+typedef struct	s_dir
 {
 	int			up;
 	int			down;
 	int			right;
 	int			left;
-	int			v;
-}				t_rot;
+	double		s;
+	float		v;
+}				t_dir;
 
 typedef struct	s_sky
 {
@@ -194,11 +187,14 @@ typedef struct	s_app
 	int			mapx;
 	int			mapy;
 	int			enemies_count;
+	int			jump;
+	int			jumping;
+	int			fly;
+	int			crouch;
 	struct s_app *main_a;
 	double		wallx;
 	double		distplayer;
 	double		loop;
-	double		ms;
 	double		old_dir_x;
 	double		oldplane_x;
 	double		camx;
@@ -210,8 +206,8 @@ typedef struct	s_app
 	t_coord		map_size;
 	t_coord		p;
 	t_coord_d	pos;
-	t_move		move;
-	t_rot		rot;
+	t_dir		move;
+	t_dir		rot;
 	t_ray		ray;
 	t_player	cam;
 	t_sky		sky;
@@ -219,7 +215,6 @@ typedef struct	s_app
 	t_weapon	weapon;
 	t_enemy		*enemies;
 	t_wall		wall;
-	double		rs;
 }				t_app;
 
 void			ft_app_allocmap(t_app *app);
@@ -230,6 +225,7 @@ int				expose_hook(t_app *a);
 int				ft_key_press(int key, t_app *app);
 int				ft_key_press2(int key, t_app *app);
 int				ft_key_release(int key, t_app *app);
+int				ft_mouse_motion(int x, int y, t_app *app);
 
 int				ft_move(t_app *a);
 

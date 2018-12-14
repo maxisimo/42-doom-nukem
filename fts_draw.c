@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/11 17:30:54 by thbernar          #+#    #+#             */
-/*   Updated: 2018/12/14 14:14:41 by maxisimo         ###   ########.fr       */
+/*   Updated: 2018/12/14 15:47:59 by maxisimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static void		ft_ceiling(int x, int y, t_app *a)
 	while (y < a->start)
 	{
 		a->floor.curdist = WIN_H / (2.0 * y - WIN_H - 2 * a->rot.v);
-		a->floor.weight = a->floor.curdist / -a->wall.dist;
+		a->floor.weight = a->floor.curdist / a->wall.dist * (a->move.v - 1);
 		a->floor.curfloor.x = a->floor.weight * a->floor.x + (1.0 - a->floor.weight) * a->pos.y;
 		a->floor.curfloor.y = a->floor.weight * a->floor.y + (1.0 - a->floor.weight) * a->pos.x;
 		a->floor.tex.x = (int)(a->floor.curfloor.x * TEXSIZE) % TEXSIZE;
@@ -70,7 +70,7 @@ static void		ft_floor(int x, int y, t_app *a)
 	while (y < WIN_H)
 	{
 		a->floor.curdist = WIN_H / (2.0 * y - WIN_H - 2 * a->rot.v);
-		a->floor.weight = a->floor.curdist / a->wall.dist;
+		a->floor.weight = a->floor.curdist / a->wall.dist * (a->move.v + 1);
 		a->floor.curfloor.x = a->floor.weight * a->floor.x + (1.0 - a->floor.weight) * a->pos.y;
 		a->floor.curfloor.y = a->floor.weight * a->floor.y + (1.0 - a->floor.weight) * a->pos.x;
 		a->floor.tex.x = (int)(a->floor.curfloor.x * TEXSIZE) % TEXSIZE;
@@ -115,9 +115,9 @@ void			draw_wall(int x, int start, int end, t_app *a)
 	ft_floor(x, start, a);
 	while (++start <= end - 1)
 	{
-		a->texy = ((start - WIN_H / 2 + a->lineheight / 2) - a->rot.v)
-			* TEXSIZE / a->lineheight;
-		a->texy = abs(a->texy);
+		a->texy = (start - WIN_H / 2 + (a->lineheight / 2)
+				* (-a->move.v + 1) - a->rot.v) * TEXSIZE / a->lineheight;
+		a->texy = abs(a->texy) % TEXSIZE;
 		ft_choose_color(x, start, a);
 	}
 }
