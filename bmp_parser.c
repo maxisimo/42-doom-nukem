@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/26 15:11:51 by thbernar          #+#    #+#             */
-/*   Updated: 2018/12/13 16:49:34 by maxisimo         ###   ########.fr       */
+/*   Updated: 2018/12/14 13:49:01 by maxisimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,15 +99,8 @@ t_color		get_pixel_color(t_bmp *img, int x, int y)
 
 	os = (x + (img->height - (y + 1)) * img->width);
 	os = os * 3;
-	if (x == img->width || y == img->height)
-	{
-		color.b = 255;
-		color.g = 255;
-		color.r = 255;
-		return (color);
-	}
-	color.b = img->data[0 + os];
-	color.g = img->data[1 + os];
-	color.r = img->data[2 + os];
+	color.b = img->data[os];
+	color.g = img->data[os + 1];
+	color.r = img->data[os + 2];
 	return (color);
 }

@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/19 20:14:32 by maxisimo          #+#    #+#             */
-/*   Updated: 2018/12/13 18:56:03 by maxisimo         ###   ########.fr       */
+/*   Updated: 2018/12/14 14:30:28 by maxisimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	ft_free_strsplit(char **array)
 	int i;
 
 	i = 0;
-	while (array	[i])
+	while (array[i])
 	{
 		free(array[i]);
 		i++;

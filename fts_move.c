@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/30 11:31:02 by maxisimo          #+#    #+#             */
-/*   Updated: 2018/12/13 18:03:57 by lchappon         ###   ########.fr       */
+/*   Updated: 2018/12/14 14:10:22 by maxisimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static void	ft_move2(t_app *a)
 
 int			ft_move(t_app *a)
 {
-	a->ms = (a->speed == 1) ? 0.1 : 0.07;
+	a->ms = (a->speed == 1) ? 0.12 : 0.09;
 	if (a->move.up == 1)
 	{
 		if ((a->map[(int)(a->pos.x + a->cam.dir.y * a->ms)][(int)(a->pos.y)] == 0) ||

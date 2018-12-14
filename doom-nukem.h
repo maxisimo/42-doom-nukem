@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/26 17:11:44 by thbernar          #+#    #+#             */
-/*   Updated: 2018/12/13 19:22:06 by maxisimo         ###   ########.fr       */
+/*   Updated: 2018/12/14 15:16:38 by maxisimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -266,6 +266,7 @@ t_color			get_pixel_color(t_bmp *img, int x, int y);
 void			weapons_draw_weapon(t_app *a);
 
 void    		sprites_load(t_app *a);
+void			sort_sprites(t_app *a);
 void    		sprites_draw(t_app *a, t_spr s, t_coord_d pos);
 void			sprites_get_pos(t_app *a);
 
@@ -273,6 +274,7 @@ void    		textures_load(t_app *a);
 
 void			startscreen_draw(t_app *a);
 
+void			enemies_init(t_app *a);
 void			enemies_draw(t_app *a);
 
 #endif

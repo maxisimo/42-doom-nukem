@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 11:54:23 by thbernar          #+#    #+#             */
-/*   Updated: 2018/12/13 18:06:42 by maxisimo         ###   ########.fr       */
+/*   Updated: 2018/12/14 15:18:09 by maxisimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ void	put_sprite(t_app *a, t_spr *s)
 			{
 				s->texy = (((s->y * 2 - WIN_H + s->height) * s->img->height) / s->height) / 2;
 				c = get_pixel_color(s->img, s->texx, s->texy);
-				if (s->dist < 5 && c.r != 0 && c.g != 0 && c.b != 0)
+				if (s->dist < 20 && c.r != 0 && c.g != 0 && c.b != 0)
 					ft_put_pxl_to_img(a, c, s->stripe, s->y);
 				s->y++;
 			}

@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 18:12:53 by maxisimo          #+#    #+#             */
-/*   Updated: 2018/12/13 18:14:29 by maxisimo         ###   ########.fr       */
+/*   Updated: 2018/12/14 15:16:18 by maxisimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ void	enemies_init(t_app *a)
 void	enemies_draw(t_app *a)
 {
 	// SORT ENEMIES HERE
+	sort_sprites(a);
 	int i;
 
 	i = 0;

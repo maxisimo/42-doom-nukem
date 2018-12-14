@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/29 15:04:48 by thbernar          #+#    #+#             */
-/*   Updated: 2018/12/13 16:49:34 by maxisimo         ###   ########.fr       */
+/*   Updated: 2018/12/14 13:38:04 by maxisimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,12 @@ int		ft_rgb_to_hex(t_color c)
 
 void	ft_put_pxl_to_img(t_app *a, t_color c, int x, int y)
 {
-	int hex_clr;
+	int i;
 
-	hex_clr = ft_rgb_to_hex(c);
-	if (x < WIN_W && y < WIN_H && x >= 0 && y >= 0)
-		ft_memcpy(a->img_data + 4 * WIN_W * y + x * 4, &hex_clr, sizeof(int));
+	i = (x + (y * WIN_W)) * 4;
+	a->img_data[i] = (char)c.b;
+	a->img_data[i + 1] = (char)c.g;
+	a->img_data[i + 2] = (char)c.r;
 }
 
 void	ft_put_circle_to_img(t_app *a, t_circle *c)

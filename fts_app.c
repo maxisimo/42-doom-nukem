@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/11 18:43:12 by thbernar          #+#    #+#             */
-/*   Updated: 2018/12/13 16:52:15 by maxisimo         ###   ########.fr       */
+/*   Updated: 2018/12/14 15:13:51 by maxisimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ void		ft_app_allocmap(t_app *app)
 			app->map[p.x][p.y] = 1;
 		p.y++;
 	}
-	printf("%d %d\n", app->map_size.x, app->map_size.y);
 }
 
 void		ft_app_writemap(t_app *app)
@@ -118,9 +117,28 @@ static void	ft_app_calcplayerpos(t_app *app)
 
 void		ft_app_init(t_app *app)
 {
+	/*app->cam.dir.x = -1;
+	app->cam.dir.y = 0;
+	app->cam.plane.x = 0;
+	app->cam.plane.y = 0.66;
+	app->ms = 0.07;
+	app->move.up = 0;
+	app->move.down = 0;
+	app->move.right = 0;
+	app->move.left = 0;
+	app->rot.right = 0;
+	app->rot.left = 0;
+	app->rot.up = 0;
+	app->rot.down = 0;
+	app->p_count = 0;
+	app->c = 0;
+	app->is_weapon = 0;
+	app->startscreen = 1;
+	app->loop = 0;*/
 	ft_app_countmap(app);
 	ft_app_allocmap(app);
 	ft_app_writemap(app);
 	ft_app_calcplayerpos(app);
+	enemies_init(app);
 	textures_load(app);
 }
