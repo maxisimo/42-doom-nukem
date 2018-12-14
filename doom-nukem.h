@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/26 17:11:44 by thbernar          #+#    #+#             */
-/*   Updated: 2018/12/14 14:19:10 by lchappon         ###   ########.fr       */
+/*   Updated: 2018/12/14 15:21:08 by lchappon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,7 +133,7 @@ typedef struct	s_dir
 	int			right;
 	int			left;
 	double		s;
-	int			v;
+	float		v;
 }				t_dir;
 
 typedef struct	s_sky
@@ -187,6 +187,10 @@ typedef struct	s_app
 	int			mapx;
 	int			mapy;
 	int			enemies_count;
+	int			jump;
+	int			jumping;
+	int			fly;
+	int			crouch;
 	struct s_app *main_a;
 	double		wallx;
 	double		distplayer;

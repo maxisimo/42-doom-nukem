@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/23 11:15:41 by maxisimo          #+#    #+#             */
-/*   Updated: 2018/12/14 14:24:35 by lchappon         ###   ########.fr       */
+/*   Updated: 2018/12/14 15:43:44 by lchappon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,14 +58,24 @@ int			ft_key_press2(int key, t_app *app)
 {
 	if (key == 12)
 		app->weapon.is_fired = 1;
-	else if (key == 8)
+	else if (key == 7)
 		app->c = (app->c == 1) ? 0 : 1;
 	else if (key == 18)
 		app->is_weapon = 1;
 	else if (key == 19)
 		app->is_weapon = 0;
-	else if (key == 257)
+	else if (key == 257 && app->crouch == 0)
 		app->speed = 1;
+	else if (key == 49 && app->jump == 0 && app->crouch == 0
+			&& (app->move.v <= 0 || app->fly == 1))
+	{
+		app->jump = 1;
+		app->jumping = 1;
+	}
+	else if (key == 3)
+		app->fly = app->fly == 0 ? 1 : 0;
+	else if (key == 8 && app->jump == 0)
+		app->crouch = 1;
 	else if (key == 53)
 		exit(0);
 	return (0);
@@ -93,5 +103,9 @@ int			ft_key_release(int key, t_app *app)
 		app->weapon.is_fired = 0;
 	else if (key == 257)
 		app->speed = 0;
+	else if (key == 49)
+		app->jump = 0;
+	else if (key == 8)
+		app->crouch = 0;
 	return (0);
 }

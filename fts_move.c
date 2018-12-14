@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/30 11:31:02 by maxisimo          #+#    #+#             */
-/*   Updated: 2018/12/14 14:05:47 by lchappon         ###   ########.fr       */
+/*   Updated: 2018/12/14 15:45:47 by lchappon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,33 @@ static void	ft_rotate(t_app *a)
 		a->rot.v -= 20;
 }
 
+static void	ft_move3(t_app *a)
+{
+	if (a->fly == 0)
+	{
+		if (a->jumping == 1 && a->move.v < 0.8)
+			a->move.v += 0.1;
+		if (a->jump == 0 || a->move.v >= 0.8)
+			a->jumping = 0;
+		if (a->jumping == 0 && a->move.v > 0)
+			a->move.v -= 0.1;
+	}
+	else
+	{
+		if (a->jump == 1 && a->move.v < 0.9)
+			a->move.v += 0.05;
+		if (a->jump == 0 && a->move.v > 0)
+			a->move.v -= 0.05;
+	}
+	if (a->crouch == 1 && a->move.v > -0.5)
+		a->move.v -= 0.1;
+	if (a->crouch == 0 && a->move.v < 0)
+	{
+		a->move.v += 0.1;
+		a->move.v = a->move.v > 0 ? 0 : a->move.v;
+	}
+}
+
 static void	ft_move2(t_app *a)
 {
 	if (a->move.left == 1)
@@ -52,6 +79,7 @@ static void	ft_move2(t_app *a)
 int			ft_move(t_app *a)
 {
 	a->move.s = (a->speed == 1) ? 0.1 : 0.07;
+	a->move.s = (a->crouch == 1) ? 0.03 : a->move.s;
 	if (a->move.up == 1)
 	{
 		if (a->map[(int)(a->pos.x + a->cam.dir.y * a->move.s)][(int)(a->pos.y)] == 0)
@@ -67,6 +95,7 @@ int			ft_move(t_app *a)
 			a->pos.y -= a->cam.dir.x * a->move.s;
 	}
 	ft_move2(a);
+	ft_move3(a);
 	ft_rotate(a);
 	return (0);
 }
