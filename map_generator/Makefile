@@ -6,14 +6,14 @@
 #    By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/29 22:26:16 by maxisimo          #+#    #+#              #
-#    Updated: 2018/12/05 12:24:38 by maxisimo         ###   ########.fr        #
+#    Updated: 2018/12/16 15:58:34 by lchappon         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = generator_maping
+NAME = map_generator
 
 SRC = main.c \
-	  generator_maping.c \
+	  map_generator.c \
 	  utils.c \
 	  draw.c \
 	  hook.c \

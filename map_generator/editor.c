@@ -6,11 +6,11 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/02 11:41:56 by maxisimo          #+#    #+#             */
-/*   Updated: 2018/12/05 11:44:24 by maxisimo         ###   ########.fr       */
+/*   Updated: 2018/12/16 15:57:26 by lchappon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "generator_maping.h"
+#include "map_generator.h"
 
 static void	ft_free_strsplit(char **array)
 {

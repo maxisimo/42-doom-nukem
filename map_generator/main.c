@@ -6,11 +6,11 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/29 19:39:00 by maxisimo          #+#    #+#             */
-/*   Updated: 2018/12/05 12:05:41 by maxisimo         ###   ########.fr       */
+/*   Updated: 2018/12/16 15:57:01 by lchappon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "generator_maping.h"
+#include "map_generator.h"
 
 int		main(int ac, char **av)
 {

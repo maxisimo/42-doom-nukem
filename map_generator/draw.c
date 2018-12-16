@@ -6,11 +6,11 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/05 12:16:44 by maxisimo          #+#    #+#             */
-/*   Updated: 2018/12/05 13:51:54 by maxisimo         ###   ########.fr       */
+/*   Updated: 2018/12/16 15:57:44 by lchappon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "generator_maping.h"
+#include "map_generator.h"
 
 static void	put_pxl_to_img(t_map *map, int x, int y, int color)
 {

@@ -6,11 +6,11 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/05 12:14:38 by maxisimo          #+#    #+#             */
-/*   Updated: 2018/12/05 12:15:10 by maxisimo         ###   ########.fr       */
+/*   Updated: 2018/12/16 15:57:14 by lchappon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "generator_maping.h"
+#include "map_generator.h"
 
 int			key_hook(int keycode, t_map *map)
 {

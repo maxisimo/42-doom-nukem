@@ -6,11 +6,11 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/29 20:27:34 by maxisimo          #+#    #+#             */
-/*   Updated: 2018/12/05 12:26:53 by maxisimo         ###   ########.fr       */
+/*   Updated: 2018/12/16 15:58:52 by lchappon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "generator_maping.h"
+#include "map_generator.h"
 
 void		init_tab(t_map *map)
 {
