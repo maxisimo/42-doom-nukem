@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/11 17:30:54 by thbernar          #+#    #+#             */
-/*   Updated: 2018/12/16 15:41:49 by lchappon         ###   ########.fr       */
+/*   Updated: 2018/12/16 16:31:00 by lchappon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ static void	weapons_fire(t_app *a)
 	tmp.x = WIN_W - a->weapon.img.width;
 	tmp.y = WIN_H - a->weapon.img.height;
 	if (a->weapon.fire_count % 2 == 0)
-		ft_put_bmp_to_img(a, a->weapon.img, tmp.x, tmp.y);
+		ft_put_bmp_to_img(a, a->weapon.img, tmp.x, tmp.y + 10);
 	else
-		ft_put_bmp_to_img(a, a->weapon.img, tmp.x - 10, tmp.y);
+		ft_put_bmp_to_img(a, a->weapon.img, tmp.x, tmp.y);
 	a->weapon.fire_count++;
 }
 
@@ -39,7 +39,7 @@ void		weapons_draw_weapon(t_app *a)
 		if (a->weapon.is_fired)
 			weapons_fire(a);
 		else
-			ft_put_bmp_to_img(a, a->weapon.img, tmp.x, tmp.y);
+			ft_put_bmp_to_img(a, a->weapon.img, tmp.x, tmp.y + 10);
 		ft_put_bmp_to_img(a, a->weapon.scope, tmp2.x, tmp2.y);
 	}
 }
