@@ -6,7 +6,7 @@
 /*   By: lchappon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/16 16:07:10 by lchappon          #+#    #+#             */
-/*   Updated: 2018/12/16 16:07:11 by lchappon         ###   ########.fr       */
+/*   Updated: 2018/12/16 16:17:47 by lchappon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,22 @@
 
 static void		ft_draw_sky(int x, int start, t_app *a)
 {
+	double	alpha;
 	int		i;
 	int		clr;
 	t_color	c1;
 
 	i = 0;
-	a->sky.alpha = asin(a->cam.dir.x);
-	if (a->sky.alpha != a->sky.alpha)
-		a->sky.alpha = M_PI;
+	alpha = asin(a->cam.dir.x);
+	if (alpha != alpha)
+		alpha = M_PI;
 	if (a->cam.dir.y < 0)
-		a->sky.alpha *= -1;
-	a->sky.alpha += M_PI;
-	a->sky.alpha += x * FOV_RAD / WIN_W - HFOV_RAD;
-	a->sky.alpha += (a->sky.alpha < 0) ? 2 * M_PI : 0;
-	a->sky.alpha -= (a->sky.alpha > 2 * M_PI) ? 2 * M_PI : 0;
-	a->sky.x = a->sky.alpha * a->textures[8].width / (2 * M_PI);
+		alpha *= -1;
+	alpha += M_PI;
+	alpha += x * FOV_RAD / WIN_W - HFOV_RAD;
+	alpha += (alpha < 0) ? 2 * M_PI : 0;
+	alpha -= (alpha > 2 * M_PI) ? 2 * M_PI : 0;
+	a->sky.x = alpha * a->textures[8].width / (2 * M_PI);
 	while (i <= start)
 	{
 		a->sky.y = (WIN_H / 2 + i - a->rot.v) * a->textures[8].height / WIN_H;

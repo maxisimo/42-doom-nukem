@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/26 17:11:44 by thbernar          #+#    #+#             */
-/*   Updated: 2018/12/16 16:02:04 by lchappon         ###   ########.fr       */
+/*   Updated: 2018/12/16 16:17:23 by lchappon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,13 +135,6 @@ typedef struct		s_dir
 	float			v;
 }					t_dir;
 
-typedef struct		s_sky
-{
-	int				x;
-	int				y;
-	double			alpha;
-}					t_sky;
-
 typedef struct		s_floor
 {
 	double			x;
@@ -209,7 +202,7 @@ typedef struct		s_app
 	t_dir			rot;
 	t_ray			ray;
 	t_player		cam;
-	t_sky			sky;
+	t_coord			sky;
 	t_floor			floor;
 	t_weapon		weapon;
 	t_enemy			*enemies;
