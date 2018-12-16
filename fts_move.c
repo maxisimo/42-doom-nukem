@@ -6,11 +6,11 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/30 11:31:02 by maxisimo          #+#    #+#             */
-/*   Updated: 2018/12/16 14:55:05 by lchappon         ###   ########.fr       */
+/*   Updated: 2018/12/16 15:40:07 by lchappon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "doom-nukem.h"
+#include "doom_nukem.h"
 
 static void	ft_rotate(t_app *a)
 {
@@ -22,8 +22,10 @@ static void	ft_rotate(t_app *a)
 	a->cam.dir.x = a->cam.dir.x * cos(a->rot.s) - a->cam.dir.y * sin(a->rot.s);
 	a->cam.dir.y = a->old_dir_x * sin(a->rot.s) + a->cam.dir.y * cos(a->rot.s);
 	a->oldplane_x = a->cam.plane.x;
-	a->cam.plane.x = a->cam.plane.x * cos(a->rot.s) - a->cam.plane.y * sin(a->rot.s);
-	a->cam.plane.y = a->oldplane_x * sin(a->rot.s) + a->cam.plane.y * cos(a->rot.s);
+	a->cam.plane.x = a->cam.plane.x * cos(a->rot.s) -
+		a->cam.plane.y * sin(a->rot.s);
+	a->cam.plane.y = a->oldplane_x * sin(a->rot.s) +
+		a->cam.plane.y * cos(a->rot.s);
 	a->rot.s = 0;
 	if (a->rot.up == 1 && a->rot.v < WIN_H / 2)
 		a->rot.v += 20;
@@ -62,16 +64,20 @@ static void	ft_move2(t_app *a)
 {
 	if (a->move.left == 1)
 	{
-		if (a->map[(int)(a->pos.x + a->cam.dir.x * a->move.s)][(int)(a->pos.y)] == 0)
+		if (a->map[(int)(a->pos.x + a->cam.dir.x * a->move.s)][(int)(a->pos.y)]
+				== 0)
 			a->pos.x += a->cam.dir.x * a->move.s;
-		if (a->map[(int)(a->pos.x)][(int)(a->pos.y - a->cam.dir.y * a->move.s)] == 0)
+		if (a->map[(int)(a->pos.x)][(int)(a->pos.y - a->cam.dir.y * a->move.s)]
+				== 0)
 			a->pos.y -= a->cam.dir.y * a->move.s;
 	}
 	if (a->move.right == 1)
 	{
-		if (a->map[(int)(a->pos.x - a->cam.dir.x * a->move.s)][(int)(a->pos.y)] == 0)
+		if (a->map[(int)(a->pos.x - a->cam.dir.x * a->move.s)][(int)(a->pos.y)]
+				== 0)
 			a->pos.x -= a->cam.dir.x * a->move.s;
-		if (a->map[(int)(a->pos.x)][(int)(a->pos.y + a->cam.dir.y * a->move.s)] == 0)
+		if (a->map[(int)(a->pos.x)][(int)(a->pos.y + a->cam.dir.y * a->move.s)]
+				== 0)
 			a->pos.y += a->cam.dir.y * a->move.s;
 	}
 }
@@ -82,16 +88,20 @@ int			ft_move(t_app *a)
 	a->move.s = (a->crouch == 1) ? 0.03 : a->move.s;
 	if (a->move.up == 1)
 	{
-		if (a->map[(int)(a->pos.x + a->cam.dir.y * a->move.s)][(int)(a->pos.y)] == 0)
+		if (a->map[(int)(a->pos.x + a->cam.dir.y * a->move.s)][(int)(a->pos.y)]
+				== 0)
 			a->pos.x += a->cam.dir.y * a->move.s;
-		if (a->map[(int)(a->pos.x)][(int)(a->pos.y + a->cam.dir.x * a->move.s)] == 0)
+		if (a->map[(int)(a->pos.x)][(int)(a->pos.y + a->cam.dir.x * a->move.s)]
+				== 0)
 			a->pos.y += a->cam.dir.x * a->move.s;
 	}
 	if (a->move.down == 1)
 	{
-		if (a->map[(int)(a->pos.x - a->cam.dir.y * a->move.s)][(int)(a->pos.y)] == 0)
+		if (a->map[(int)(a->pos.x - a->cam.dir.y * a->move.s)][(int)(a->pos.y)]
+				== 0)
 			a->pos.x -= a->cam.dir.y * a->move.s;
-		if (a->map[(int)(a->pos.x)][(int)(a->pos.y - a->cam.dir.x * a->move.s)] == 0)
+		if (a->map[(int)(a->pos.x)][(int)(a->pos.y - a->cam.dir.x * a->move.s)]
+				== 0)
 			a->pos.y -= a->cam.dir.x * a->move.s;
 	}
 	ft_move2(a);

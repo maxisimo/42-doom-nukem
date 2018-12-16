@@ -6,11 +6,11 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/11 17:30:54 by thbernar          #+#    #+#             */
-/*   Updated: 2018/12/16 14:58:08 by lchappon         ###   ########.fr       */
+/*   Updated: 2018/12/16 15:39:40 by lchappon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "doom-nukem.h"
+#include "doom_nukem.h"
 
 static void		ft_draw_sky(int x, int start, t_app *a)
 {
@@ -51,8 +51,10 @@ static void		ft_ceiling(int x, int y, t_app *a)
 		a->floor.curdist = WIN_H / (2.0 * y - WIN_H - 2 * a->rot.v);
 		a->floor.weight = a->floor.curdist * (2 * a->size + 1) /
 			a->wall.dist * (a->move.v / (2 * a->size + 1) - 1);
-		a->floor.curfloor.x = a->floor.weight * a->floor.x + (1.0 - a->floor.weight) * a->pos.y;
-		a->floor.curfloor.y = a->floor.weight * a->floor.y + (1.0 - a->floor.weight) * a->pos.x;
+		a->floor.curfloor.x = a->floor.weight * a->floor.x +
+			(1.0 - a->floor.weight) * a->pos.y;
+		a->floor.curfloor.y = a->floor.weight * a->floor.y +
+			(1.0 - a->floor.weight) * a->pos.x;
 		a->floor.tex.x = (int)(a->floor.curfloor.x * TEXSIZE) % TEXSIZE;
 		a->floor.tex.y = (int)(a->floor.curfloor.y * TEXSIZE) % TEXSIZE;
 		c1 = get_pixel_color(&a->textures[3], a->floor.tex.x, a->floor.tex.y);
@@ -72,8 +74,10 @@ static void		ft_floor(int x, int y, t_app *a)
 	{
 		a->floor.curdist = WIN_H / (2.0 * y - WIN_H - 2 * a->rot.v);
 		a->floor.weight = a->floor.curdist / a->wall.dist * (a->move.v + 1);
-		a->floor.curfloor.x = a->floor.weight * a->floor.x + (1.0 - a->floor.weight) * a->pos.y;
-		a->floor.curfloor.y = a->floor.weight * a->floor.y + (1.0 - a->floor.weight) * a->pos.x;
+		a->floor.curfloor.x = a->floor.weight * a->floor.x +
+			(1.0 - a->floor.weight) * a->pos.y;
+		a->floor.curfloor.y = a->floor.weight * a->floor.y +
+			(1.0 - a->floor.weight) * a->pos.x;
 		a->floor.tex.x = (int)(a->floor.curfloor.x * TEXSIZE) % TEXSIZE;
 		a->floor.tex.y = (int)(a->floor.curfloor.y * TEXSIZE) % TEXSIZE;
 		a->floor.tex.y = abs(a->floor.tex.y);

@@ -6,11 +6,11 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/26 15:11:51 by thbernar          #+#    #+#             */
-/*   Updated: 2018/12/14 13:49:01 by maxisimo         ###   ########.fr       */
+/*   Updated: 2018/12/16 15:39:14 by lchappon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "doom-nukem.h"
+#include "doom_nukem.h"
 
 static void	bmp_getfile_size(t_bmp *bmp, int fd)
 {

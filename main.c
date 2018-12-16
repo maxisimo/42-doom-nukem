@@ -6,11 +6,11 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 11:54:23 by thbernar          #+#    #+#             */
-/*   Updated: 2018/12/14 15:48:17 by maxisimo         ###   ########.fr       */
+/*   Updated: 2018/12/16 15:41:03 by lchappon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "doom-nukem.h"
+#include "doom_nukem.h"
 
 static int	is_extension_valid(char *fname)
 {
@@ -38,7 +38,6 @@ int			main(int ac, char **av)
 		bmp_loadfile(&app.logo, "sprites/dukenukemlogo.bmp");
 		mlx_hook(app.win, 2, (1L << 0), ft_key_press, &app);
 		mlx_hook(app.win, 3, (1L << 1), ft_key_release, &app);
-		mlx_mouse_hide();
 		mlx_mouse_move(app.win, WIN_W / 2, WIN_H / 2);
 		mlx_hook(app.win, 6, 0, ft_mouse_motion, &app);
 		mlx_hook(app.win, 17, (1L << 17), ft_close, &app);

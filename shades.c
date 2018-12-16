@@ -6,11 +6,11 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/10 17:31:37 by maxisimo          #+#    #+#             */
-/*   Updated: 2018/12/13 16:49:34 by maxisimo         ###   ########.fr       */
+/*   Updated: 2018/12/16 15:41:15 by lchappon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "doom-nukem.h"
+#include "doom_nukem.h"
 
 void			ft_apply_shadow_to_cf(t_color *c, int y)
 {
@@ -30,7 +30,7 @@ void	ft_apply_shadow_to_spr(t_color *c, int y)
 	c->r = (c->r < 0) ? 0 : c->r;
 	c->g = (c->g < 0) ? 0 : c->g;
 	c->b = (c->b < 0) ? 0 : c->b;
-    c->r = (c->r >= 255) ? 255 : c->r;
+	c->r = (c->r >= 255) ? 255 : c->r;
 	c->g = (c->g >= 255) ? 255 : c->g;
 	c->b = (c->b >= 255) ? 255 : c->b;
 }

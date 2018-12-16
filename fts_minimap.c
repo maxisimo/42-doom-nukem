@@ -6,11 +6,11 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/12 18:41:09 by maxisimo          #+#    #+#             */
-/*   Updated: 2018/12/13 16:54:24 by maxisimo         ###   ########.fr       */
+/*   Updated: 2018/12/16 15:39:59 by lchappon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "doom-nukem.h"
+#include "doom_nukem.h"
 #include <stdio.h>
 
 void		put_pxl_to_img(t_app *a, int x, int y, int color)

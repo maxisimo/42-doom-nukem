@@ -6,10 +6,10 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/10 15:10:37 by maxisimo          #+#    #+#             */
-/*   Updated: 2018/12/13 16:49:34 by maxisimo         ###   ########.fr       */
+/*   Updated: 2018/12/16 15:40:48 by lchappon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "doom-nukem.h"
+#include "doom_nukem.h"
 
 void    inventory(t_app *a)

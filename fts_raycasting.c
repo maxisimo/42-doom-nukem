@@ -6,35 +6,37 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/12 19:20:06 by maxisimo          #+#    #+#             */
-/*   Updated: 2018/12/16 14:47:33 by lchappon         ###   ########.fr       */
+/*   Updated: 2018/12/16 15:40:16 by lchappon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "doom-nukem.h"
+#include "doom_nukem.h"
 
 static void	dda_init(t_app *app)
 {
-	app->wall.deltadist.x = fabs(1 / app->ray.dir.x);
-	app->wall.deltadist.y = fabs(1 / app->ray.dir.y);
 	if (app->ray.dir.x < 0)
 	{
 		app->ray.step.x = -1;
-		app->wall.side_dist.x = (app->ray.pos.x - app->mapx) * app->wall.deltadist.x;
+		app->wall.side_dist.x = (app->ray.pos.x - app->mapx) *
+			app->wall.deltadist.x;
 	}
 	else
 	{
 		app->ray.step.x = 1;
-		app->wall.side_dist.x = (app->mapx + 1. - app->ray.pos.x) * app->wall.deltadist.x;
+		app->wall.side_dist.x = (app->mapx + 1. - app->ray.pos.x) *
+			app->wall.deltadist.x;
 	}
 	if (app->ray.dir.y < 0)
 	{
 		app->ray.step.y = -1;
-		app->wall.side_dist.y = (app->ray.pos.y - app->mapy) * app->wall.deltadist.y;
+		app->wall.side_dist.y = (app->ray.pos.y - app->mapy) *
+			app->wall.deltadist.y;
 	}
 	else
 	{
 		app->ray.step.y = 1;
-		app->wall.side_dist.y = (app->mapy + 1. - app->ray.pos.y) * app->wall.deltadist.y;
+		app->wall.side_dist.y = (app->mapy + 1. - app->ray.pos.y) *
+			app->wall.deltadist.y;
 	}
 }
 
@@ -69,14 +71,24 @@ static void	raycasting_init(t_app *app, int x)
 	app->ray.dir.y = app->cam.dir.y + app->cam.plane.y * app->camx;
 	app->mapx = (int)app->ray.pos.x;
 	app->mapy = (int)app->ray.pos.y;
+	app->wall.deltadist.x = fabs(1 / app->ray.dir.x);
+	app->wall.deltadist.y = fabs(1 / app->ray.dir.y);
 	dda_init(app);
 	dda(app);
 	if (app->side == 0)
-		app->wall.dist = (app->mapx - app->ray.pos.x + (1 - app->ray.step.x) / 2) /
-			app->ray.dir.x;
+		app->wall.dist = (app->mapx - app->ray.pos.x +
+				(1 - app->ray.step.x) / 2) / app->ray.dir.x;
 	else
-		app->wall.dist = (app->mapy - app->ray.pos.y + (1 - app->ray.step.y) / 2) /
-			app->ray.dir.y;
+		app->wall.dist = (app->mapy - app->ray.pos.y +
+				(1 - app->ray.step.y) / 2) / app->ray.dir.y;
+	app->lineheight = (int)(WIN_H / app->wall.dist);
+	app->start = -app->lineheight / 2;
+	app->start -= app->start * app->move.v;
+	app->start += WIN_H / 2 + app->rot.v;
+	app->start -= app->lineheight * app->size;
+	app->end = app->lineheight / 2;
+	app->end += app->end * app->move.v;
+	app->end += WIN_H / 2 + app->rot.v;
 }
 
 void		ft_pthread(t_app *a)
@@ -117,14 +129,6 @@ void		*raycasting(void *tab)
 	while (a.p.x < a.p.xx)
 	{
 		raycasting_init(&a, a.p.x);
-		a.lineheight = (int)(WIN_H / a.wall.dist);
-		a.start = -a.lineheight / 2;
-		a.start -= a.start * a.move.v;
-		a.start += WIN_H / 2 + a.rot.v;
-		a.start -= a.lineheight * a.size;
-		a.end = a.lineheight / 2;
-		a.end += a.end * a.move.v;
-		a.end += WIN_H / 2 + a.rot.v;
 		if (a.start < 0)
 			a.start = 0;
 		if (a.end > WIN_H)

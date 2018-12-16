@@ -6,11 +6,11 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/29 15:04:48 by thbernar          #+#    #+#             */
-/*   Updated: 2018/12/14 13:38:04 by maxisimo         ###   ########.fr       */
+/*   Updated: 2018/12/16 15:40:26 by lchappon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "doom-nukem.h"
+#include "doom_nukem.h"
 
 int		ft_rgb_to_hex(t_color c)
 {

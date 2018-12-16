@@ -6,11 +6,11 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 11:54:23 by thbernar          #+#    #+#             */
-/*   Updated: 2018/12/14 16:54:37 by lchappon         ###   ########.fr       */
+/*   Updated: 2018/12/16 15:41:23 by lchappon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "doom-nukem.h"
+#include "doom_nukem.h"
 
 void	sprites_load(t_app *a)
 {
@@ -25,10 +25,10 @@ void	sprites_load(t_app *a)
 
 void	sort_sprites(t_app *a)
 {
-	int i;
-	int n;
-	int new;
-	t_bmp tmp;
+	int		i;
+	int		n;
+	int		new;
+	t_bmp	tmp;
 
 	n = a->spr_num;
 	new = 1;
@@ -53,9 +53,12 @@ void	sprites_init(t_app *a, t_spr *s, t_coord_d pos)
 {
 	s->spr_x = pos.y - a->pos.y;
 	s->spr_y = pos.x - a->pos.x;
-	s->invdet = 1.0 / (a->cam.plane.x * a->cam.dir.y - a->cam.dir.x * a->cam.plane.y);
-	s->change_x = s->invdet * (a->cam.dir.y * s->spr_x - a->cam.dir.x * s->spr_y);
-	s->change_y = s->invdet * (-a->cam.plane.y * s->spr_x + a->cam.plane.x * s->spr_y);
+	s->invdet = 1.0 / (a->cam.plane.x * a->cam.dir.y -
+			a->cam.dir.x * a->cam.plane.y);
+	s->change_x = s->invdet * (a->cam.dir.y * s->spr_x -
+			a->cam.dir.x * s->spr_y);
+	s->change_y = s->invdet * (-a->cam.plane.y * s->spr_x +
+			a->cam.plane.x * s->spr_y);
 	s->screenx = (int)((WIN_W / 2) * (1 + s->change_x / s->change_y));
 	s->height = abs((int)(WIN_H / (s->change_y)));
 	s->start_y = -s->height / 2;
@@ -82,7 +85,8 @@ void	put_sprite(t_app *a, t_spr *s)
 	{
 		s->texx = (int)((s->stripe - (-s->width / 2 + s->screenx))
 				* s->img->width / s->width);
-		if (s->change_y > 0 && s->stripe > 0 && s->stripe < WIN_W && s->change_y < a->zbuffer[s->stripe])
+		if (s->change_y > 0 && s->stripe > 0 && s->stripe < WIN_W &&
+				s->change_y < a->zbuffer[s->stripe])
 		{
 			s->y = s->start_y - 1;
 			while (s->y < s->end_y)

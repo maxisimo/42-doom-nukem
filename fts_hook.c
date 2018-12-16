@@ -6,11 +6,11 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/23 11:15:41 by maxisimo          #+#    #+#             */
-/*   Updated: 2018/12/16 14:56:40 by lchappon         ###   ########.fr       */
+/*   Updated: 2018/12/16 15:39:50 by lchappon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "doom-nukem.h"
+#include "doom_nukem.h"
 
 int			ft_mouse_motion(int x, int y, t_app *app)
 {
@@ -26,47 +26,44 @@ int			ft_mouse_motion(int x, int y, t_app *app)
 	return (0);
 }
 
-int			ft_key_press(int key, t_app *app)
+int			ft_motion(int key, t_app *app, int value)
 {
-	app->startscreen = 0;
 	if (key == 13)
-		app->move.up = 1;
+		app->move.up = value;
 	else if (key == 1)
-		app->move.down = 1;
+		app->move.down = value;
 	else if (key == 2)
-		app->move.right = 1;
+		app->move.right = value;
 	else if (key == 0)
-		app->move.left = 1;
-	else if (key == 123)
-		app->rot.left = 1;
-	else if (key == 124)
-		app->rot.right = 1;
-	else if (key == 125)
-		app->rot.down = 1;
+		app->move.left = value;
 	else if (key == 126)
-		app->rot.up = 1;
-	else if (key == 12)
-	{
-		app->weapon.fire_count = 0;
-		app->weapon.is_fired = 1;
-	}
-	ft_key_press2(key, app);
+		app->rot.up = value;
+	else if (key == 125)
+		app->rot.down = value;
+	else if (key == 124)
+		app->rot.right = value;
+	else if (key == 123)
+		app->rot.left = value;
+	return (0);
+}
+
+int			ft_key_release(int key, t_app *app)
+{
+	ft_motion(key, app, 0);
+	if (key == 12)
+		app->weapon.is_fired = 0;
+	else if (key == 257)
+		app->speed = 0;
+	else if (key == 49)
+		app->jump = 0;
+	else if (key == 8)
+		app->crouch = 0;
 	return (0);
 }
 
 int			ft_key_press2(int key, t_app *app)
 {
-	if (key == 12)
-		app->weapon.is_fired = 1;
-	else if (key == 7)
-		app->c = (app->c == 1) ? 0 : 1;
-	else if (key == 18)
-		app->is_weapon = 1;
-	else if (key == 19)
-		app->is_weapon = 0;
-	else if (key == 257 && app->crouch == 0)
-		app->speed = 1;
-	else if (key == 49 && app->jump == 0 && app->crouch == 0
+	if (key == 49 && app->jump == 0 && app->crouch == 0
 			&& (app->move.v <= 0 || app->fly == 1))
 	{
 		app->jump = 1;
@@ -85,31 +82,25 @@ int			ft_key_press2(int key, t_app *app)
 	return (0);
 }
 
-int			ft_key_release(int key, t_app *app)
+int			ft_key_press(int key, t_app *app)
 {
-	if (key == 13)
-		app->move.up = 0;
-	else if (key == 1)
-		app->move.down = 0;
-	else if (key == 2)
-		app->move.right = 0;
-	else if (key == 0)
-		app->move.left = 0;
-	else if (key == 123)
-		app->rot.left = 0;
-	else if (key == 124)
-		app->rot.right = 0;
-	else if (key == 125)
-		app->rot.down = 0;
-	else if (key == 126)
-		app->rot.up = 0;
+	app->startscreen = 0;
+	ft_motion(key, app, 1);
+	if (key == 12)
+	{
+		app->weapon.fire_count = 0;
+		app->weapon.is_fired = 1;
+	}
 	else if (key == 12)
-		app->weapon.is_fired = 0;
-	else if (key == 257)
-		app->speed = 0;
-	else if (key == 49)
-		app->jump = 0;
-	else if (key == 8)
-		app->crouch = 0;
+		app->weapon.is_fired = 1;
+	else if (key == 7)
+		app->c = (app->c == 1) ? 0 : 1;
+	else if (key == 18)
+		app->is_weapon = 1;
+	else if (key == 19)
+		app->is_weapon = 0;
+	else if (key == 257 && app->crouch == 0)
+		app->speed = 1;
+	ft_key_press2(key, app);
 	return (0);
 }

@@ -6,11 +6,11 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/11 18:43:12 by thbernar          #+#    #+#             */
-/*   Updated: 2018/12/14 15:48:32 by maxisimo         ###   ########.fr       */
+/*   Updated: 2018/12/16 15:39:31 by lchappon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "doom-nukem.h"
+#include "doom_nukem.h"
 
 static void	ft_app_countmap(t_app *app)
 {
