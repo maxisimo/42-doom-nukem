@@ -6,7 +6,7 @@
 /*   By: lchappon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/16 16:07:10 by lchappon          #+#    #+#             */
-/*   Updated: 2018/12/16 16:17:47 by lchappon         ###   ########.fr       */
+/*   Updated: 2018/12/16 16:43:57 by lchappon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,8 @@ static void		ft_ceiling(int x, int y, t_app *a)
 		a->floor.tex.x = (int)(a->floor.curfloor.x * TEXSIZE) % TEXSIZE;
 		a->floor.tex.y = (int)(a->floor.curfloor.y * TEXSIZE) % TEXSIZE;
 		c1 = get_pixel_color(&a->textures[3], a->floor.tex.x, a->floor.tex.y);
-		ft_apply_shadow_to_cf(&c1, y - WIN_H - a->rot.v);
+		if (a->c == 0)
+			ft_apply_shadow_to_cf(&c1, y - WIN_H - a->rot.v);
 		ft_put_pxl_to_img(a, c1, x, y);
 		y++;
 	}
@@ -83,7 +84,8 @@ static void		ft_floor(int x, int y, t_app *a)
 		a->floor.tex.y = (int)(a->floor.curfloor.y * TEXSIZE) % TEXSIZE;
 		a->floor.tex.y = abs(a->floor.tex.y);
 		c1 = get_pixel_color(&a->textures[6], a->floor.tex.x, a->floor.tex.y);
-		ft_apply_shadow_to_cf(&c1, y - a->rot.v);
+		if (a->c == 0)
+			ft_apply_shadow_to_cf(&c1, y - a->rot.v);
 		ft_put_pxl_to_img(a, c1, x, y);
 		y++;
 	}
@@ -95,7 +97,8 @@ void			ft_choose_color(int x, int start, t_app *a)
 
 	a->texnum = a->map[a->mapy][a->mapx] - 1;
 	c1 = get_pixel_color(&a->textures[a->texnum], a->texx, a->texy);
-	ft_apply_shadow_to_color(&c1, a->wall.clr_intensity);
+	if (a->c == 0)
+		ft_apply_shadow_to_color(&c1, a->wall.clr_intensity);
 	ft_put_pxl_to_img(a, c1, x, start);
 }
 
