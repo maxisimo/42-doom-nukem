@@ -6,21 +6,21 @@
 #    By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/01 00:25:16 by thbernar          #+#    #+#              #
-#    Updated: 2018/12/13 18:15:07 by maxisimo         ###   ########.fr        #
+#    Updated: 2018/12/16 16:09:50 by lchappon         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = doom-nukem
 
 SRC = main.c \
-	  fts_utils.c \
-	  fts_utils2.c \
-	  fts_raycasting.c \
-	  fts_app.c \
-	  fts_minimap.c \
-	  fts_hook.c \
-	  fts_draw.c \
-	  fts_move.c \
+	  utils.c \
+	  utils2.c \
+	  raycasting.c \
+	  app.c \
+	  minimap.c \
+	  hook.c \
+	  draw.c \
+	  move.c \
 	  weapons.c \
 	  sprites.c \
 	  textures.c \
