@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/23 11:15:41 by maxisimo          #+#    #+#             */
-/*   Updated: 2018/12/14 15:43:44 by lchappon         ###   ########.fr       */
+/*   Updated: 2018/12/16 14:56:40 by lchappon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,10 @@ int			ft_key_press2(int key, t_app *app)
 		app->fly = app->fly == 0 ? 1 : 0;
 	else if (key == 8 && app->jump == 0)
 		app->crouch = 1;
+	else if (key == 69 && app->size < 2)
+		app->size++;
+	else if (key == 78 && app->size > 0 && app->move.v < app->size)
+		app->size--;
 	else if (key == 53)
 		exit(0);
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/11 17:30:54 by thbernar          #+#    #+#             */
-/*   Updated: 2018/12/14 15:47:59 by maxisimo         ###   ########.fr       */
+/*   Updated: 2018/12/16 14:58:08 by lchappon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,8 @@ static void		ft_ceiling(int x, int y, t_app *a)
 	while (y < a->start)
 	{
 		a->floor.curdist = WIN_H / (2.0 * y - WIN_H - 2 * a->rot.v);
-		a->floor.weight = a->floor.curdist / a->wall.dist * (a->move.v - 1);
+		a->floor.weight = a->floor.curdist * (2 * a->size + 1) /
+			a->wall.dist * (a->move.v / (2 * a->size + 1) - 1);
 		a->floor.curfloor.x = a->floor.weight * a->floor.x + (1.0 - a->floor.weight) * a->pos.y;
 		a->floor.curfloor.y = a->floor.weight * a->floor.y + (1.0 - a->floor.weight) * a->pos.x;
 		a->floor.tex.x = (int)(a->floor.curfloor.x * TEXSIZE) % TEXSIZE;
@@ -104,10 +105,7 @@ void			draw_wall(int x, int start, int end, t_app *a)
 		a->wallx = a->pos.y + a->wall.dist * a->ray.dir.x;
 	a->wallx -= floor(a->wallx);
 	a->texx = (int)(a->wallx * TEXSIZE);
-	if (a->side == 0 && a->ray.dir.x > 0)
-		a->texx = TEXSIZE - a->texx - 1;
-	if (a->side == 1 && a->ray.dir.y < 0)
-		a->texx = TEXSIZE - a->texx - 1;
+	a->texx = TEXSIZE - a->texx - 1;
 	if (a->c == 0)
 		ft_ceiling(x, start, a);
 	else if (a->c == 1)
@@ -117,7 +115,9 @@ void			draw_wall(int x, int start, int end, t_app *a)
 	{
 		a->texy = (start - WIN_H / 2 + (a->lineheight / 2)
 				* (-a->move.v + 1) - a->rot.v) * TEXSIZE / a->lineheight;
-		a->texy = abs(a->texy) % TEXSIZE;
+		a->texy %= TEXSIZE;
+		if (a->texy < 0)
+			a->texy += TEXSIZE;
 		ft_choose_color(x, start, a);
 	}
 }

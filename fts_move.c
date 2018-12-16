@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/30 11:31:02 by maxisimo          #+#    #+#             */
-/*   Updated: 2018/12/14 15:57:40 by lchappon         ###   ########.fr       */
+/*   Updated: 2018/12/16 14:55:05 by lchappon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static void	ft_move3(t_app *a)
 	}
 	else
 	{
-		if (a->jump == 1 && a->move.v < 0.9)
+		if (a->jump == 1 && a->move.v < 0.9 + a->size * 2)
 			a->move.v += 0.05;
 		if (a->jump == 0 && a->move.v > 0)
 			a->move.v -= 0.05;

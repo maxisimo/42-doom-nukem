@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/12 19:20:06 by maxisimo          #+#    #+#             */
-/*   Updated: 2018/12/14 15:18:36 by lchappon         ###   ########.fr       */
+/*   Updated: 2018/12/16 14:47:33 by lchappon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,6 +121,7 @@ void		*raycasting(void *tab)
 		a.start = -a.lineheight / 2;
 		a.start -= a.start * a.move.v;
 		a.start += WIN_H / 2 + a.rot.v;
+		a.start -= a.lineheight * a.size;
 		a.end = a.lineheight / 2;
 		a.end += a.end * a.move.v;
 		a.end += WIN_H / 2 + a.rot.v;

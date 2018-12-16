@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/26 17:11:44 by thbernar          #+#    #+#             */
-/*   Updated: 2018/12/14 15:48:07 by maxisimo         ###   ########.fr       */
+/*   Updated: 2018/12/16 14:46:12 by lchappon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -191,6 +191,7 @@ typedef struct	s_app
 	int			jumping;
 	int			fly;
 	int			crouch;
+	int			size;
 	struct s_app *main_a;
 	double		wallx;
 	double		distplayer;
