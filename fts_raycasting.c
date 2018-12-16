@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/12 19:20:06 by maxisimo          #+#    #+#             */
-/*   Updated: 2018/12/16 15:40:16 by lchappon         ###   ########.fr       */
+/*   Updated: 2018/12/16 16:01:36 by lchappon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,7 @@ static void	dda_init(t_app *app)
 
 static void	dda(t_app *app)
 {
-	app->hit = 0;
-	while (app->hit == 0)
+	while (app->map[app->mapy][app->mapx] <= 0)
 	{
 		if (app->wall.side_dist.x < app->wall.side_dist.y)
 		{
@@ -57,8 +56,6 @@ static void	dda(t_app *app)
 			app->mapy += app->ray.step.y;
 			app->side = 1;
 		}
-		if (app->map[app->mapy][app->mapx] > 0)
-			app->hit = 1;
 	}
 }
 
