@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 11:54:23 by thbernar          #+#    #+#             */
-/*   Updated: 2018/12/16 16:42:45 by lchappon         ###   ########.fr       */
+/*   Updated: 2018/12/17 17:58:08 by lchappon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,14 @@ void	sprites_init(t_app *a, t_spr *s, t_coord_d pos)
 {
 	s->spr_x = pos.y - a->pos.y;
 	s->spr_y = pos.x - a->pos.x;
+	if (s->spr_x <= 0 && s->spr_y <= 0)
+		s->img = &a->sprites[0];
+	if (s->spr_x <= 0 && s->spr_y >= 0)
+		s->img = &a->sprites[1];
+	if (s->spr_x >= 0 && s->spr_y <= 0)
+		s->img = &a->sprites[2];
+	if (s->spr_x >= 0 && s->spr_y >= 0)
+		s->img = &a->sprites[0];
 	s->invdet = 1.0 / (a->cam.plane.x * a->cam.dir.y -
 			a->cam.dir.x * a->cam.plane.y);
 	s->change_x = s->invdet * (a->cam.dir.y * s->spr_x -
