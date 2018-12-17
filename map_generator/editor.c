@@ -6,13 +6,13 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/02 11:41:56 by maxisimo          #+#    #+#             */
-/*   Updated: 2018/12/16 15:57:26 by lchappon         ###   ########.fr       */
+/*   Updated: 2018/12/17 19:13:38 by maxisimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "map_generator.h"
 
-static void	ft_free_strsplit(char **array)
+static void	free_strsplit(char **array)
 {
 	int		i;
 
@@ -45,7 +45,7 @@ static void	countmap(t_map *map)
 			count[1]++;
 		if (count[1] > count[2])
 			count[2] = count[1];
-		ft_free_strsplit(array);
+		free_strsplit(array);
 		count[0]++;
 	}
 	free(s);
@@ -96,7 +96,7 @@ void		writemap(t_map *map)
 				map->map[map->p.y][map->p.x] = 0;
 			map->p.x++;
 		}
-		ft_free_strsplit(array);
+		free_strsplit(array);
 		map->p.y++;
 	}
 	free(s);

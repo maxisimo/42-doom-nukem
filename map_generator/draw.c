@@ -6,13 +6,13 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/05 12:16:44 by maxisimo          #+#    #+#             */
-/*   Updated: 2018/12/16 15:57:44 by lchappon         ###   ########.fr       */
+/*   Updated: 2018/12/17 19:11:19 by maxisimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "map_generator.h"
 
-static void	put_pxl_to_img(t_map *map, int x, int y, int color)
+static void	put_px_to_img(t_map *map, int x, int y, int color)
 {
 	if (x < map->width && y < map->height && x >= 0 && y >= 0)
 	{
@@ -25,11 +25,11 @@ static void	put_pxl_to_img(t_map *map, int x, int y, int color)
 static void	choose_color(int x, int y, t_map *map)
 {
 	if (map->map[map->y][map->x] < 0)
-		put_pxl_to_img(map, x, y, 0xFF4242);
+		put_px_to_img(map, x, y, 0xFF4242);
 	else if (map->map[map->y][map->x] == 0)
-		put_pxl_to_img(map, x, y, 0);
+		put_px_to_img(map, x, y, 0);
 	else
-		put_pxl_to_img(map, x, y, 0xFFFFFF);
+		put_px_to_img(map, x, y, 0xFFFFFF);
 }
 
 void		draw_grill(int x, int y, t_map *map)
@@ -43,9 +43,9 @@ void		draw_grill(int x, int y, t_map *map)
 		while (y >= 0)
 		{
 			if (x == 0 || y == map->height - 1)
-				put_pxl_to_img(map, x, y, color);
+				put_px_to_img(map, x, y, color);
 			if (((x + 1) % map->bloc) == 0 || ((y + 1) % map->bloc) == 0)
-				put_pxl_to_img(map, x, y, color);
+				put_px_to_img(map, x, y, color);
 			y--;
 		}
 		x++;
