@@ -6,7 +6,7 @@
 /*   By: lchappon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/16 16:07:10 by lchappon          #+#    #+#             */
-/*   Updated: 2018/12/16 16:43:57 by lchappon         ###   ########.fr       */
+/*   Updated: 2018/12/17 14:01:46 by lchappon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ static void		ft_floor(int x, int y, t_app *a)
 		a->floor.tex.y = abs(a->floor.tex.y);
 		c1 = get_pixel_color(&a->textures[6], a->floor.tex.x, a->floor.tex.y);
 		if (a->c == 0)
-			ft_apply_shadow_to_cf(&c1, y - a->rot.v);
+			ft_apply_shadow_to_cf(&c1, y - a->rot.v - a->move.v * TEXSIZE);
 		ft_put_pxl_to_img(a, c1, x, y);
 		y++;
 	}
