@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 11:54:23 by thbernar          #+#    #+#             */
-/*   Updated: 2018/12/16 15:41:03 by lchappon         ###   ########.fr       */
+/*   Updated: 2018/12/17 18:29:54 by lchappon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,20 @@ static int	is_extension_valid(char *fname)
 		return (0);
 }
 
+void		mlx_win_init(t_app *app)
+{
+	app->mlx = mlx_init();
+	app->win = mlx_new_window(app->mlx, WIN_W, WIN_H, "doom-nukem");
+	mlx_hook(app->win, 2, (1L << 0), ft_key_press, app);
+	mlx_hook(app->win, 3, (1L << 1), ft_key_release, app);
+	mlx_mouse_hide();
+	mlx_mouse_move(app->win, WIN_W / 2, WIN_H / 2);
+	mlx_hook(app->win, 6, 0, ft_mouse_motion, app);
+	mlx_hook(app->win, 17, (1L << 17), ft_close, app);
+	mlx_loop_hook(app->mlx, ft_draw, app);
+	mlx_loop(app->mlx);
+}
+
 int			main(int ac, char **av)
 {
 	t_app	app;
@@ -31,18 +45,11 @@ int			main(int ac, char **av)
 		app.cam.dir.x = -1;
 		app.cam.plane.y = 0.66;
 		app.move.s = 0.07;
+		app.startscreen = 1;
 		ft_app_init(&app);
 		sprites_load(&app);
-		app.mlx = mlx_init();
-		app.win = mlx_new_window(app.mlx, WIN_W, WIN_H, "doom-nukem");
 		bmp_loadfile(&app.logo, "sprites/dukenukemlogo.bmp");
-		mlx_hook(app.win, 2, (1L << 0), ft_key_press, &app);
-		mlx_hook(app.win, 3, (1L << 1), ft_key_release, &app);
-		mlx_mouse_move(app.win, WIN_W / 2, WIN_H / 2);
-		mlx_hook(app.win, 6, 0, ft_mouse_motion, &app);
-		mlx_hook(app.win, 17, (1L << 17), ft_close, &app);
-		mlx_loop_hook(app.mlx, ft_draw, &app);
-		mlx_loop(app.mlx);
+		mlx_win_init(&app);
 	}
 	else
 		ft_putstr("usage: ./doom-nukem maps/*.w3d\n");

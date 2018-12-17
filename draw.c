@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/16 16:07:10 by lchappon          #+#    #+#             */
-/*   Updated: 2018/12/17 18:15:43 by maxisimo         ###   ########.fr       */
+/*   Updated: 2018/12/17 19:24:07 by maxisimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,7 +136,7 @@ int				ft_draw(t_app *a)
 
 	a->img = mlx_new_image(a->win, WIN_W, WIN_H);
 	a->img_data = mlx_get_data_addr(a->img, &n[0], &n[1], &n[2]);
-	if (a->startscreen == 1)
+	if (a->startscreen == 0)
 	{
 		ft_pthread(a);
 		enemies_draw(a);
