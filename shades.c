@@ -6,13 +6,13 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/10 17:31:37 by maxisimo          #+#    #+#             */
-/*   Updated: 2018/12/16 15:41:15 by lchappon         ###   ########.fr       */
+/*   Updated: 2018/12/17 12:32:48 by maxisimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "doom_nukem.h"
 
-void			ft_apply_shadow_to_cf(t_color *c, int y)
+void	ft_apply_shadow_to_cf(t_color *c, int y)
 {
 	c->r *= (1 - (800. / abs(y)) / 2.);
 	c->g *= (1 - (800. / abs(y)) / 2.);

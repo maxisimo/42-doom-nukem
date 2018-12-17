@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   generator_maping.h                                 :+:      :+:    :+:   */
+/*   map_generator.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/29 19:40:45 by maxisimo          #+#    #+#             */
-/*   Updated: 2018/12/05 13:50:33 by maxisimo         ###   ########.fr       */
+/*   Updated: 2018/12/17 13:26:29 by maxisimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GENERATOR_MAPING_H
-# define GENERATOR_MAPING_H
+#ifndef MAP_GENERATOR_H
+# define MAP_GENERATOR_H
 
 # include <stdio.h>
 # include <stdlib.h>
 # include <math.h>
-# include "../minilibx/mlx.h"
-# include "../libft/libft.h"
+# include "minilibx/mlx.h"
+# include "libft/libft.h"
 
 typedef struct	s_coord
 {
