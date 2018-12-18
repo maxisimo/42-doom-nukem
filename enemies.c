@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 18:12:53 by maxisimo          #+#    #+#             */
-/*   Updated: 2018/12/18 15:12:08 by lchappon         ###   ########.fr       */
+/*   Updated: 2018/12/18 15:40:42 by lchappon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,18 +77,18 @@ void		enemies_init(t_app *a)
 
 void		enemies_ai(t_app *a, t_coord_d *pos)
 {
-	if (a->pos.x > pos->x &&
+	if (a->pos.x > pos->x && a->pos.x - pos->x < 5 &&
 			a->map[(int)(pos->x + 0.25)][(int)(pos->y)] == 0)
-		pos->x += 0.01;
-	else if (a->pos.x < pos->x &&
+		pos->x += 0.02;
+	if (a->pos.x < pos->x && a->pos.x - pos->x > -5 &&
 			a->map[(int)(pos->x - 0.25)][(int)(pos->y)] == 0)
-		pos->x -= 0.01;
-	if (a->pos.y > pos->y &&
+		pos->x -= 0.02;
+	if (a->pos.y > pos->y && a->pos.y - pos->y < 5 &&
 			a->map[(int)(pos->x)][(int)(pos->y + 0.25)] == 0)
-		pos->y += 0.01;
-	else if (a->pos.y < pos->y &&
+		pos->y += 0.02;
+	if (a->pos.y < pos->y && a->pos.y - pos->y > -5 &&
 			a->map[(int)(pos->x)][(int)(pos->y - 0.25)] == 0)
-		pos->y -= 0.01;
+		pos->y -= 0.02;
 }
 
 void		enemies_draw(t_app *a)
