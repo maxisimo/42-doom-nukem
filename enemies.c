@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 18:12:53 by maxisimo          #+#    #+#             */
-/*   Updated: 2018/12/16 15:49:22 by lchappon         ###   ########.fr       */
+/*   Updated: 2018/12/18 15:40:42 by lchappon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,22 @@ void		enemies_init(t_app *a)
 	printf("enemies = %d\n", a->enemies_count);
 }
 
+void		enemies_ai(t_app *a, t_coord_d *pos)
+{
+	if (a->pos.x > pos->x && a->pos.x - pos->x < 5 &&
+			a->map[(int)(pos->x + 0.25)][(int)(pos->y)] == 0)
+		pos->x += 0.02;
+	if (a->pos.x < pos->x && a->pos.x - pos->x > -5 &&
+			a->map[(int)(pos->x - 0.25)][(int)(pos->y)] == 0)
+		pos->x -= 0.02;
+	if (a->pos.y > pos->y && a->pos.y - pos->y < 5 &&
+			a->map[(int)(pos->x)][(int)(pos->y + 0.25)] == 0)
+		pos->y += 0.02;
+	if (a->pos.y < pos->y && a->pos.y - pos->y > -5 &&
+			a->map[(int)(pos->x)][(int)(pos->y - 0.25)] == 0)
+		pos->y -= 0.02;
+}
+
 void		enemies_draw(t_app *a)
 {
 	int i;
@@ -84,7 +100,8 @@ void		enemies_draw(t_app *a)
 	sort_sprites(a);
 	while (i < a->enemies_count)
 	{
-		sprites_draw(a, a->enemies[i].sprite, a->enemies[i].pos);
+		sprites_draw(a, a->enemies[i].sprite, &a->enemies[i].pos);
+		enemies_ai(a, &a->enemies[i].pos);
 		i++;
 	}
 }

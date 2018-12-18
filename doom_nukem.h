@@ -6,7 +6,11 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/26 17:11:44 by thbernar          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2018/12/18 16:33:06 by maxisimo         ###   ########.fr       */
+=======
+/*   Updated: 2018/12/18 14:24:07 by lchappon         ###   ########.fr       */
+>>>>>>> 2ad717888ba47d96f3172cec9e13944f4674e9a3
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -255,7 +259,7 @@ void				weapons_draw_weapon(t_app *a);
 
 void				sprites_load(t_app *a);
 void				sort_sprites(t_app *a);
-void				sprites_draw(t_app *a, t_spr s, t_coord_d pos);
+void				sprites_draw(t_app *a, t_spr s, t_coord_d *pos);
 void				sprites_get_pos(t_app *a);
 
 void				textures_load(t_app *a);

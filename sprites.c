@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 11:54:23 by thbernar          #+#    #+#             */
-/*   Updated: 2018/12/17 17:58:08 by lchappon         ###   ########.fr       */
+/*   Updated: 2018/12/18 14:52:28 by lchappon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ void	sprites_init(t_app *a, t_spr *s, t_coord_d pos)
 {
 	s->spr_x = pos.y - a->pos.y;
 	s->spr_y = pos.x - a->pos.x;
+	/*
 	if (s->spr_x <= 0 && s->spr_y <= 0)
 		s->img = &a->sprites[0];
 	if (s->spr_x <= 0 && s->spr_y >= 0)
@@ -61,6 +62,7 @@ void	sprites_init(t_app *a, t_spr *s, t_coord_d pos)
 		s->img = &a->sprites[2];
 	if (s->spr_x >= 0 && s->spr_y >= 0)
 		s->img = &a->sprites[0];
+	*/
 	s->invdet = 1.0 / (a->cam.plane.x * a->cam.dir.y -
 			a->cam.dir.x * a->cam.plane.y);
 	s->change_x = s->invdet * (a->cam.dir.y * s->spr_x -
@@ -113,14 +115,22 @@ void	put_sprite(t_app *a, t_spr *s)
 	}
 }
 
-void	sprites_draw(t_app *a, t_spr s, t_coord_d pos)
+void	sprites_draw(t_app *a, t_spr s, t_coord_d *pos)
 {
 	int	c;
 	int	b;
 
-	c = a->pos.x - pos.x;
-	b = a->pos.y - pos.y;
+	c = a->pos.x - pos->x;
+	b = a->pos.y - pos->y;
 	s.dist = c * c + b * b;
-	sprites_init(a, &s, pos);
-	put_sprite(a, &s);
+	sprites_init(a, &s, *pos);
+	if (a->is_weapon == 1 && a->weapon.is_fired == 1 &&
+			WIN_W / 2 >= s.start_x && WIN_W / 2 <= s.end_x &&
+			WIN_H / 2 >= s.start_y && WIN_H/ 2 <= s.end_x)
+	{
+		pos->x = 0;
+		pos->y = 0;
+	}
+	else
+		put_sprite(a, &s);
 }
