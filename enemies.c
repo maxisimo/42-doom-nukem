@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 18:12:53 by maxisimo          #+#    #+#             */
-/*   Updated: 2018/12/18 14:24:09 by lchappon         ###   ########.fr       */
+/*   Updated: 2018/12/18 14:46:09 by lchappon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,18 @@ void		enemies_init(t_app *a)
 	printf("enemies = %d\n", a->enemies_count);
 }
 
+void		enemies_ai(t_app *a, t_coord_d *pos)
+{
+	if (a->pos.x > pos->x && a->map[(int)(pos->x + 0.01)][(int)pos->y] == 0)
+		pos->x += 0.01;
+	else if (a->pos.x < pos->x && a->map[(int)(pos->x - 0.01)][(int)pos->y] == 0)
+		pos->x -= 0.01;
+	if (a->pos.y > pos->y && a->map[(int)pos->x][(int)(pos->y + 0.01)] == 0)
+		pos->y += 0.01;
+	else if (a->pos.y < pos->y && a->map[(int)pos->x][(int)(pos->y - 0.01)] == 0)
+		pos->y -= 0.01;
+}
+
 void		enemies_draw(t_app *a)
 {
 	int i;
@@ -85,6 +97,7 @@ void		enemies_draw(t_app *a)
 	while (i < a->enemies_count)
 	{
 		sprites_draw(a, a->enemies[i].sprite, &a->enemies[i].pos);
+		enemies_ai(a, &a->enemies[i].pos);
 		i++;
 	}
 }
