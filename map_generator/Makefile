@@ -6,7 +6,7 @@
 #    By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/29 22:26:16 by maxisimo          #+#    #+#              #
-#    Updated: 2018/12/16 15:58:34 by lchappon         ###   ########.fr        #
+#    Updated: 2018/12/18 16:31:26 by maxisimo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,6 +17,10 @@ SRC = main.c \
 	  utils.c \
 	  draw.c \
 	  hook.c \
+	  ../bmp_parser.c \
+	  ../utils.c \
+	  ../utils2.c \
+	  ../minimap.c \
 	  editor.c
 
 OBJ = $(SRC:.c=.o)

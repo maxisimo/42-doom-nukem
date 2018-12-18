@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/29 19:40:45 by maxisimo          #+#    #+#             */
-/*   Updated: 2018/12/17 19:07:43 by maxisimo         ###   ########.fr       */
+/*   Updated: 2018/12/18 16:43:46 by maxisimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ typedef struct	s_map
 	int			bpp;
 	int			width;
 	int			height;
-	int			bloc;
+	int			blocw;
+	int			bloch;
 	int			x;
 	int			y;
 	int			i;
@@ -42,6 +43,7 @@ typedef struct	s_map
 	int	    	temp2y;
 	int	    	n;
 	t_coord		p;
+	t_bmp		textures[10];
 }				t_map;
 
 void			mlx_win_init(t_map *map);
@@ -60,5 +62,8 @@ int				mouse_hook(int mousecode, int x, int y, t_map *map);
 void			error(void);
 void	        argc2(char *s, t_map *map);
 void        	argc4(char *s1, char *s2, char *s3, t_map *map);
+
+void    		load_img(t_map *map);
+
 
 #endif
