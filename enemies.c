@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 18:12:53 by maxisimo          #+#    #+#             */
-/*   Updated: 2018/12/16 15:49:22 by lchappon         ###   ########.fr       */
+/*   Updated: 2018/12/18 14:24:09 by lchappon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ void		enemies_draw(t_app *a)
 	sort_sprites(a);
 	while (i < a->enemies_count)
 	{
-		sprites_draw(a, a->enemies[i].sprite, a->enemies[i].pos);
+		sprites_draw(a, a->enemies[i].sprite, &a->enemies[i].pos);
 		i++;
 	}
 }

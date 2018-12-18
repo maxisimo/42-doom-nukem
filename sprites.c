@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 11:54:23 by thbernar          #+#    #+#             */
-/*   Updated: 2018/12/17 17:58:08 by lchappon         ###   ########.fr       */
+/*   Updated: 2018/12/18 14:25:12 by lchappon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,14 +113,22 @@ void	put_sprite(t_app *a, t_spr *s)
 	}
 }
 
-void	sprites_draw(t_app *a, t_spr s, t_coord_d pos)
+void	sprites_draw(t_app *a, t_spr s, t_coord_d *pos)
 {
 	int	c;
 	int	b;
 
-	c = a->pos.x - pos.x;
-	b = a->pos.y - pos.y;
+	c = a->pos.x - pos->x;
+	b = a->pos.y - pos->y;
 	s.dist = c * c + b * b;
-	sprites_init(a, &s, pos);
-	put_sprite(a, &s);
+	sprites_init(a, &s, *pos);
+	if (a->is_weapon == 1 && a->weapon.is_fired == 1 &&
+			WIN_W / 2 >= s.start_x && WIN_W / 2 <= s.end_x &&
+			WIN_H / 2 >= s.start_y && WIN_H/ 2 <= s.end_x)
+	{
+		pos->x = 0;
+		pos->y = 0;
+	}
+	else
+		put_sprite(a, &s);
 }
