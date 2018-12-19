@@ -42,5 +42,6 @@ int			mouse_hook(int mousecode, int x, int y, t_map *map)
 		map->i = 0;
 		put_color(x, y, map);
 	}
+	mlx_put_image_to_window(map->mlx, map->win, map->img, 0, 0);    
 	return (0);
 }
