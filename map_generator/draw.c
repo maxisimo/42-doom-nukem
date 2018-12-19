@@ -24,10 +24,10 @@ static void	put_px_to_img(t_map *map, int x, int y, int color)
 
 void	ft_put_bmp(t_map *map, t_bmp bmp, int x, int y)
 {
+	int		clr;
 	t_coord p;
 	t_color	c;
 	t_coord tmp;
-	int		clr;
 
 	p.x = 0;
 	p.y = 0;
@@ -58,6 +58,29 @@ static void	choose_color(int x, int y, t_map *map)
 		ft_put_bmp(map, map->textures[map->i - 1], x, y);
 }
 
+void		put_color2(int x, int y, t_map *map)
+{
+	while (x < map->width)
+	{
+		while (y < map->height)
+		{
+	        choose_color(x, y, map);
+			y += map->bloch;
+		}
+		x += map->blocw;
+	}
+}
+
+void		put_color(int x, int y, t_map *map)
+{
+	map->x = x / map->blocw;
+	map->y = y / map->bloch;
+	map->tempx = (map->x == 0) ? 1 : map->x * map->blocw;
+    map->tempy = (map->y == 0) ? 0 : map->y * map->bloch;
+	fill_tab(map->tempx, map->tempy, map->i, map);
+	choose_color(map->tempx, map->tempy, map);
+}
+
 void		draw_grill(int x, int y, t_map *map)
 {
 	int		color;
@@ -76,58 +99,7 @@ void		draw_grill(int x, int y, t_map *map)
 		}
 		x++;
 	}
-	mlx_put_image_to_window(map->mlx, map->win, map->img, 0, 0);
-}
-
-void		put_color2(int x, int y, t_map *map)
-{
-	while (x < map->width)
-	{
-		y = 0;
-		while (y < map->height)
-		{
-			map->x = x / map->blocw;
-			map->y = y / map->bloch;
-			map->tempx = (map->x == 0) ? 1 : map->x * map->blocw;
-			map->n = (map->x == 0) ? 3 : 2;
-			map->temp2x = map->tempx;
-			while (map->tempx <= map->temp2x + map->blocw - map->n)
-			{
-				map->tempy = (map->y == 0) ? 0 : map->y * map->bloch;
-				map->temp2y = map->tempy;
-				while (map->tempy <= map->temp2y + map->bloch - 2)
-				{
-					choose_color(map->tempx, map->tempy, map);
-					map->tempy++;
-				}
-				map->tempx++;
-			}
-			mlx_put_image_to_window(map->mlx, map->win, map->img, 0, 0);
-			y += map->bloch;
-		}
-		x += map->blocw;
-	}
-}
-
-void		put_color(int x, int y, t_map *map)
-{
-	map->x = x / map->blocw;
-	map->y = y / map->bloch;
-	//map->tempx = (map->x == 0) ? 1 : map->x * map->blocw;
-	//map->n = (map->x == 0) ? 3 : 2;
-	//map->temp2x = map->tempx;
-	fill_tab(map->x, map->y, map->i, map);
-	choose_color(map->x, map->y, map);
-	/*while (map->tempx <= map->temp2x + map->blocw - map->n)
-	{
-		map->tempy = (map->y == 0) ? 0 : map->y * map->bloch;
-		map->temp2y = map->tempy;
-		while (map->tempy <= map->temp2y + map->bloch - 2)
-		{
-			choose_color(map->tempx, map->tempy, map);
-			map->tempy++;
-		}
-		map->tempx++;
-	}*/
+    if (map->ac == 2)
+		put_color2(0, 0, &map);
 	mlx_put_image_to_window(map->mlx, map->win, map->img, 0, 0);
 }
