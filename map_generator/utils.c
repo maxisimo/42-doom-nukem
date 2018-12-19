@@ -32,7 +32,6 @@ static void	texture_load(t_map *map)
 
 void	argc4(char *s1, char *s2, char *s3, t_map *map)
 {
-	texture_load(map);
 	map->ac = 4;
 	map->width = (abs(ft_atoi(s2)) > 55) ? 55 : abs(ft_atoi(s2));
 	map->height = (abs(ft_atoi(s3)) > 55) ? 55 : abs(ft_atoi(s3));
@@ -47,7 +46,6 @@ void	argc4(char *s1, char *s2, char *s3, t_map *map)
 
 void	argc2(char *s, t_map *map)
 {
-	texture_load(map);
 	map->ac = 2;
 	map->name = s;
 	map->i = 1;
@@ -61,4 +59,6 @@ void	mlx_win_init(t_map *map)
 	map->img = mlx_new_image(map->mlx, 1320, 1320);
 	map->img_ptr = mlx_get_data_addr(map->img,
 			&map->bpp, &map->sl, &map->endian);
+	texture_load(map);
+	draw_grill(0, 0, &map);
 }
