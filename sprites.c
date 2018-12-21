@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 11:54:23 by thbernar          #+#    #+#             */
-/*   Updated: 2018/12/21 16:26:11 by lchappon         ###   ########.fr       */
+/*   Updated: 2018/12/21 17:59:28 by lchappon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,23 +74,34 @@ void	sprites_init(t_app *a, t_spr *s, t_coord_d pos)
 	s->start_y = -s->height / 2;
 	s->start_y -= s->start_y * a->move.v;
 	s->start_y += WIN_H / 2 + a->rot.v;
-	s->start_y = (s->start_y < 0) ? 0 : s->start_y;
 	s->end_y = s->height / 2;
 	s->end_y += s->end_y * a->move.v;
 	s->end_y += WIN_H / 2 + a->rot.v;
-	s->end_y = (s->end_y > WIN_H) ? WIN_H - 1 : s->end_y;
 	s->width = abs((int)(WIN_H / (s->change_y)));
 	s->start_x = -s->width / 2 + s->screenx;
-	s->start_x = (s->start_x < 0) ? 0 : s->start_x;
 	s->end_x = s->width / 2 + s->screenx;
-	s->end_x = (s->end_x > WIN_W) ? WIN_W - 1 : s->end_x;
-	s->stripe = s->start_x;
+	s->start_y = s->start_y < 0 ? 0 : s->start_y;
+	s->start_y = s->start_y > WIN_H ? WIN_H : s->start_y;
+	s->end_y = s->end_y < 0 ? 0 : s->end_y;
+	s->end_y = s->end_y > WIN_H ? WIN_H : s->end_y;
+	s->start_x = s->start_x < 0 ? 0 : s->start_x;
+	s->start_x = s->start_x > WIN_W ? WIN_W : s->start_x;
+	s->end_x = s->end_x < 0 ? 0 : s->end_x;
+	s->end_x = s->end_x > WIN_W ? WIN_W : s->end_x;
+	if (s->start_x == s->end_x || s->start_y == s->end_y)
+	{
+		s->start_x = 0;
+		s->end_x = 0;
+		s->start_y = 0;
+		s->end_y = 0;
+	}
 }
 
 void	put_sprite(t_app *a, t_spr *s)
 {
 	t_color		c;
 
+	s->stripe = s->start_x;
 	while (s->stripe < s->end_x)
 	{
 		s->texx = (int)((s->stripe - (-s->width / 2 + s->screenx))
