@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/05 11:54:43 by maxisimo          #+#    #+#             */
-/*   Updated: 2018/12/18 16:33:38 by maxisimo         ###   ########.fr       */
+/*   Updated: 2018/12/23 15:08:19 by lchappon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,5 +60,5 @@ void	mlx_win_init(t_map *map)
 	map->img_ptr = mlx_get_data_addr(map->img,
 			&map->bpp, &map->sl, &map->endian);
 	texture_load(map);
-	draw_grill(0, 0, &map);
+	draw_grill(0, 0, map);
 }

@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/05 12:16:44 by maxisimo          #+#    #+#             */
-/*   Updated: 2018/12/18 16:45:15 by maxisimo         ###   ########.fr       */
+/*   Updated: 2018/12/23 15:08:29 by lchappon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,6 @@ void		draw_grill(int x, int y, t_map *map)
 		x++;
 	}
     if (map->ac == 2)
-		put_color2(0, 0, &map);
+		put_color2(0, 0, map);
 	mlx_put_image_to_window(map->mlx, map->win, map->img, 0, 0);
 }
