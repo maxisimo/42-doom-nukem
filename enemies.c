@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 18:12:53 by maxisimo          #+#    #+#             */
-/*   Updated: 2018/12/23 17:17:14 by lchappon         ###   ########.fr       */
+/*   Updated: 2018/12/23 18:01:36 by lchappon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,13 +91,42 @@ void		enemies_ai(t_app *a, t_coord_d *pos)
 		pos->y -= 0.02;
 }
 
+void	enemies_sort(t_app *a)
+{
+	int		i;
+	t_enemy	tmp;
+
+	i = 0;
+	while (i < a->enemies_count)
+	{
+		if (a->enemies[i].sprite.dist < a->enemies[i + 1].sprite.dist)
+		{
+			tmp = a->enemies[i];
+			a->enemies[i] = a->enemies[i + 1];
+			a->enemies[i + 1] = tmp;
+			i = 0;
+		}
+		else
+			i++;
+	}
+}
+
 void		enemies_draw(t_app *a)
 {
 	int i;
 
 	i = 0;
-	// SORT ENEMIES HERE
-	sort_sprites(a);
+	while (i < a->enemies_count)
+	{
+		a->enemies[i].sprite.spr_x = a->enemies[i].pos.x - a->pos.x;
+		a->enemies[i].sprite.spr_y = a->enemies[i].pos.y - a->pos.y;
+		a->enemies[i].sprite.dist =
+			a->enemies[i].sprite.spr_x * a->enemies[i].sprite.spr_x +
+			a->enemies[i].sprite.spr_y * a->enemies[i].sprite.spr_y;
+		i++;
+	}
+	enemies_sort(a);
+	i = 0;
 	while (i < a->enemies_count)
 	{
 		sprites_draw(a, a->enemies[i].sprite, &a->enemies[i].pos);
