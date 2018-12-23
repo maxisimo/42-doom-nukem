@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 11:54:23 by thbernar          #+#    #+#             */
-/*   Updated: 2018/12/21 17:59:28 by lchappon         ###   ########.fr       */
+/*   Updated: 2018/12/23 17:18:52 by lchappon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,9 @@ void	sort_sprites(t_app *a)
 
 void	sprites_init(t_app *a, t_spr *s, t_coord_d pos)
 {
-	s->spr_x = pos.y - a->pos.y;
-	s->spr_y = pos.x - a->pos.x;
+	s->spr_x = pos.x - a->pos.x;
+	s->spr_y = pos.y - a->pos.y;
+	s->dist = s->spr_x * s->spr_x + s->spr_y * s->spr_y;
 	/*
 	if (s->spr_x <= 0 && s->spr_y <= 0)
 		s->img = &a->sprites[0];
@@ -65,10 +66,10 @@ void	sprites_init(t_app *a, t_spr *s, t_coord_d pos)
 	*/
 	s->invdet = 1.0 / (a->cam.plane.x * a->cam.dir.y -
 			a->cam.dir.x * a->cam.plane.y);
-	s->change_x = s->invdet * (a->cam.dir.y * s->spr_x -
-			a->cam.dir.x * s->spr_y);
-	s->change_y = s->invdet * (-a->cam.plane.y * s->spr_x +
-			a->cam.plane.x * s->spr_y);
+	s->change_x = s->invdet * (a->cam.dir.y * s->spr_y -
+			a->cam.dir.x * s->spr_x);
+	s->change_y = s->invdet * (-a->cam.plane.y * s->spr_y +
+			a->cam.plane.x * s->spr_x);
 	s->screenx = (int)((WIN_W / 2) * (1 + s->change_x / s->change_y));
 	s->height = abs((int)(WIN_H / (s->change_y)));
 	s->start_y = -s->height / 2;
@@ -128,12 +129,6 @@ void	put_sprite(t_app *a, t_spr *s)
 
 void	sprites_draw(t_app *a, t_spr s, t_coord_d *pos)
 {
-	int	c;
-	int	b;
-
-	c = a->pos.x - pos->x;
-	b = a->pos.y - pos->y;
-	s.dist = c * c + b * b;
 	sprites_init(a, &s, *pos);
 	if (a->is_weapon == 1 && a->weapon.is_fired == 1 &&
 			WIN_W / 2 >= s.start_x && WIN_W / 2 <= s.end_x &&
