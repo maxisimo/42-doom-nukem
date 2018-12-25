@@ -55,7 +55,7 @@ static void	countmap(t_map *map)
 	map->height = count[0];
 }
 
-void		allocmap(t_map *map)
+static void	allocmap(t_map *map)
 {
 	int		i;
 
@@ -76,7 +76,7 @@ void		allocmap(t_map *map)
 	}
 }
 
-void		writemap(t_map *map)
+static void	writemap(t_map *map)
 {
 	int		fd;
 	char	**array;
