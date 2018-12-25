@@ -18,18 +18,18 @@ int		main(int ac, char **av)
 
 	if (ac == 4 && ft_strisnumeric(av[2]) == 1 && ft_strisnumeric(av[3]) == 1)
 	{
-		argc4(av[1], av[2], av[3], &map);
-		init_tab(&map);
-		mlx_win_init(&map);
+		is_argc_4(av[1], av[2], av[3], &map);
+*		init_tab(&map);
+		start(&map);
 		mlx_hook(map.win, 2, (1L << 0), &key_hook, &map);
 		mlx_mouse_hook(map.win, mouse_hook, &map);
 		mlx_loop(map.mlx);
 	}
 	else if (ac == 2)
 	{
-		argc2(av[1], &map);
+		is_argc_2(av[1], &map);
 		init(&map);
-		mlx_win_init(&map);
+		start(&map);
 		mlx_hook(map.win, 2, (1L << 0), &key_hook, &map);
 		mlx_mouse_hook(map.win, mouse_hook, &map);
 		mlx_loop(map.mlx);
