@@ -12,13 +12,6 @@
 
 #include "map_generator.h"
 
-void	error(void)
-{
-	ft_putendl("usage: ./generator_maping newfilename [width] [height]");
-	ft_putendl("or");
-	ft_putendl("usage: ./generator_maping filename");
-}
-
 static void	texture_load(t_map *map)
 {
 	bmp_loadfile(&map->textures[0], "textures/bigdoor.bmp");
@@ -30,7 +23,22 @@ static void	texture_load(t_map *map)
 	bmp_loadfile(&map->textures[6], "textures/skulwall2.bmp");
 }
 
-void	argc4(char *s1, char *s2, char *s3, t_map *map)
+void		error(void)
+{
+	ft_putendl("usage: ./generator_maping newfilename [width] [height]");
+	ft_putendl("or");
+	ft_putendl("usage: ./generator_maping filename");
+}
+
+void		is_argc_2(char *s, t_map *map)
+{
+	map->ac = 2;
+	map->name = s;
+	map->i = 1;
+	map->player = 0;
+}
+
+void		is_argc_4(char *s1, char *s2, char *s3, t_map *map)
 {
 	map->ac = 4;
 	map->width = (abs(ft_atoi(s2)) > 55) ? 55 : abs(ft_atoi(s2));
@@ -44,21 +52,14 @@ void	argc4(char *s1, char *s2, char *s3, t_map *map)
 	map->player = 0;
 }
 
-void	argc2(char *s, t_map *map)
-{
-	map->ac = 2;
-	map->name = s;
-	map->i = 1;
-	map->player = 0;
-}
-
-void	mlx_win_init(t_map *map)
+void		start(t_map *map)
 {
 	map->mlx = mlx_init();
 	map->win = mlx_new_window(map->mlx, 1620, 1320, map->name);
-	map->img = mlx_new_image(map->mlx, 1320, 1320);
+	map->img = mlx_new_image(map->mlx, 1620, 1320);
 	map->img_ptr = mlx_get_data_addr(map->img,
 			&map->bpp, &map->sl, &map->endian);
 	texture_load(map);
-	draw_grill(0, 0, map);
+	infos(map);
+	draw_map(0, 0, map);
 }
