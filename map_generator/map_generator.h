@@ -46,24 +46,21 @@ typedef struct	s_map
 	t_bmp		textures[10];
 }				t_map;
 
-void			mlx_win_init(t_map *map);
-void			init(t_map *map);
-void			draw_grill(int x, int y, t_map *map);
-void			init_tab(t_map *map);
-void			put_color(int x, int y, t_map *map);
-void			fill_tab(int x, int y, int value, t_map *map);
-void			put_color2(int x, int y, t_map *map);
+void			error(void);
+void	        is_argc_2(char *s, t_map *map);
+void        	is_argc_4(char *s1, char *s2, char *s3, t_map *map);
+void			start(t_map *map);
 
 int				key_hook(int keycode, t_map *map);
-int				but_press(int mousecode, t_map *map);
-int				but_release(int mousecode, t_map *map);
 int				mouse_hook(int mousecode, int x, int y, t_map *map);
 
-void			error(void);
-void	        argc2(char *s, t_map *map);
-void        	argc4(char *s1, char *s2, char *s3, t_map *map);
+void			init(t_map *map);
 
-void    		load_img(t_map *map);
+void			init_tab(t_map *map);
+void			fill_tab(int x, int y, int value, t_map *map);
 
+void			put_color2(int x, int y, t_map *map);
+void			put_color(int x, int y, t_map *map);
+void			draw_map(int x, int y, t_map *map);
 
 #endif
