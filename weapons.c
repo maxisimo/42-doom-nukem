@@ -21,7 +21,7 @@ static void	weapons_fire(t_app *a)
 	if (a->weapon.fire_count % 2 == 0)
 		ft_put_bmp_to_img(a, a->weapon.img, tmp.x, tmp.y + 10);
 	else
-		ft_put_bmp_to_img(a, a->weapon.img, tmp.x, tmp.y);
+		ft_put_bmp_to_img(a, a->weapon.img2, tmp.x, tmp.y);
 	a->weapon.fire_count++;
 }
 

@@ -83,6 +83,7 @@ typedef struct		s_bmp
 typedef struct		s_weapon
 {
 	t_bmp			img;
+	t_bmp			img2;
 	t_bmp			scope;
 	int				is_fired;
 	int				fire_count;
