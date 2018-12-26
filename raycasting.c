@@ -6,7 +6,7 @@
 /*   By: lchappon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/16 16:08:44 by lchappon          #+#    #+#             */
-/*   Updated: 2018/12/16 16:08:46 by lchappon         ###   ########.fr       */
+/*   Updated: 2018/12/26 17:49:53 by lchappon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,8 @@ static void	dda_init(t_app *app)
 
 static void	dda(t_app *app)
 {
-	while (app->map[app->mapy][app->mapx] <= 0)
+	while (app->map[app->mapy][app->mapx] <= 0 ||
+			(app->map[app->mapy][app->mapx] == WINDOW && app->p.x % 2 != 0))
 	{
 		if (app->wall.side_dist.x < app->wall.side_dist.y)
 		{
@@ -59,9 +60,9 @@ static void	dda(t_app *app)
 	}
 }
 
-static void	raycasting_init(t_app *app, int x)
+static void	raycasting_init(t_app *app)
 {
-	app->camx = 2 * x / (double)WIN_W - 1;
+	app->camx = 2 * app->p.x / (double)WIN_W - 1;
 	app->ray.pos.x = app->pos.y;
 	app->ray.pos.y = app->pos.x;
 	app->ray.dir.x = app->cam.dir.x + app->cam.plane.x * app->camx;
@@ -125,7 +126,7 @@ void		*raycasting(void *tab)
 	a.p.xx = (WIN_W / 4) * (a.current_thread + 1);
 	while (a.p.x < a.p.xx)
 	{
-		raycasting_init(&a, a.p.x);
+		raycasting_init(&a);
 		if (a.start < 0)
 			a.start = 0;
 		if (a.end > WIN_H)

@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/26 17:11:44 by thbernar          #+#    #+#             */
-/*   Updated: 2018/12/21 16:08:59 by lchappon         ###   ########.fr       */
+/*   Updated: 2018/12/26 17:48:14 by lchappon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 # define WIN_HS WIN_H / 2 + 250
 # define WIN_WS WIN_W / 2 - 120
 # define TEXSIZE 64
+# define WINDOW 5
 
 typedef struct		s_coord
 {
