@@ -57,6 +57,7 @@ static void	enemies_get_pos(t_app *a)
 				a->enemies[i].pos.y = (double)p.y + 0.5;
 				a->enemies[i].pos.x = (double)p.x + 0.5;
 				a->enemies[i].sprite.img = &a->sprites[2];
+				a->enemies[i].life = 100;
 				a->map[p.x][p.y] = 0;
 				printf("-> %f %f\n", a->enemies[i].pos.x, a->enemies[i].pos.y);
 				i++;
@@ -129,7 +130,7 @@ void		enemies_draw(t_app *a)
 	i = 0;
 	while (i < a->enemies_count)
 	{
-		sprites_draw(a, a->enemies[i].sprite, &a->enemies[i].pos);
+		sprites_draw(a, &a->enemies[i]);
 		enemies_ai(a, &a->enemies[i].pos);
 		i++;
 	}

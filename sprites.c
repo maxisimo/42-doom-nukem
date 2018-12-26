@@ -124,16 +124,15 @@ void	put_sprite(t_app *a, t_spr *s)
 	}
 }
 
-void	sprites_draw(t_app *a, t_spr s, t_coord_d *pos)
+void	sprites_draw(t_app *a, t_enemy *e)
 {
-	sprites_init(a, &s);
+	sprites_init(a, &e->sprite);
 	if (a->is_weapon == 1 && a->weapon.is_fired == 1 &&
-			WIN_W / 2 >= s.start_x && WIN_W / 2 <= s.end_x &&
-			WIN_H / 2 >= s.start_y && WIN_H/ 2 <= s.end_x)
+			WIN_W / 2 >= e->sprite.start_x && WIN_W / 2 <= e->sprite.end_x &&
+			WIN_H / 2 >= e->sprite.start_y && WIN_H / 2 <= e->sprite.end_y)
 	{
-		pos->x = 0;
-		pos->y = 0;
+		e->life -= 10;
 	}
-	else
-		put_sprite(a, &s);
+	if (e->life > 0)
+		put_sprite(a, &e->sprite);
 }

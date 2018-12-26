@@ -255,7 +255,7 @@ void				weapons_draw_weapon(t_app *a);
 
 void				sprites_load(t_app *a);
 void				sort_sprites(t_app *a);
-void				sprites_draw(t_app *a, t_spr s, t_coord_d *pos);
+void				sprites_draw(t_app *a, t_enemy *e);
 void				sprites_get_pos(t_app *a);
 
 void				textures_load(t_app *a);
