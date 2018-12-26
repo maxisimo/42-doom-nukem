@@ -6,11 +6,29 @@
 /*   By: lchappon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/16 16:08:17 by lchappon          #+#    #+#             */
-/*   Updated: 2018/12/16 16:08:18 by lchappon         ###   ########.fr       */
+/*   Updated: 2018/12/26 18:46:23 by lchappon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "doom_nukem.h"
+
+void		ft_doors(t_app *a)
+{
+	if (a->map[(int)a->pos.x][(int)(a->pos.y + a->cam.dir.x)] == HDOOR &&
+			a->move.v <= 1)
+		a->map[(int)a->pos.x][(int)(a->pos.y + a->cam.dir.x)] = HDOOR_O;
+	else if (a->map[(int)a->pos.x][(int)(a->pos.y + a->cam.dir.x)] == HDOOR_O &&
+			a->map[(int)a->pos.x][(int)a->pos.y] != HDOOR_O &&
+			a->move.v <= 1)
+		a->map[(int)a->pos.x][(int)(a->pos.y + a->cam.dir.x)] = HDOOR;
+	if (a->map[(int)(a->pos.x + a->cam.dir.y)][(int)a->pos.y] == VDOOR &&
+			a->move.v <= 1)
+		a->map[(int)(a->pos.x + a->cam.dir.y)][(int)a->pos.y] = VDOOR_O;
+	else if (a->map[(int)(a->pos.x + a->cam.dir.y)][(int)a->pos.y] == VDOOR_O &&
+			a->map[(int)a->pos.x][(int)a->pos.y] != VDOOR_O &&
+			a->move.v <= 1)
+		a->map[(int)(a->pos.x + a->cam.dir.y)][(int)a->pos.y] = VDOOR;
+}
 
 static void	ft_rotate(t_app *a)
 {
@@ -65,19 +83,19 @@ static void	ft_move2(t_app *a)
 	if (a->move.left == 1)
 	{
 		if (a->map[(int)(a->pos.x + a->cam.dir.x * a->move.s)][(int)(a->pos.y)]
-				== 0)
+				<= 0)
 			a->pos.x += a->cam.dir.x * a->move.s;
 		if (a->map[(int)(a->pos.x)][(int)(a->pos.y - a->cam.dir.y * a->move.s)]
-				== 0)
+				<= 0)
 			a->pos.y -= a->cam.dir.y * a->move.s;
 	}
 	if (a->move.right == 1)
 	{
 		if (a->map[(int)(a->pos.x - a->cam.dir.x * a->move.s)][(int)(a->pos.y)]
-				== 0)
+				<= 0)
 			a->pos.x -= a->cam.dir.x * a->move.s;
 		if (a->map[(int)(a->pos.x)][(int)(a->pos.y + a->cam.dir.y * a->move.s)]
-				== 0)
+				<= 0)
 			a->pos.y += a->cam.dir.y * a->move.s;
 	}
 }
@@ -89,19 +107,19 @@ int			ft_move(t_app *a)
 	if (a->move.up == 1)
 	{
 		if (a->map[(int)(a->pos.x + a->cam.dir.y * a->move.s)][(int)(a->pos.y)]
-				== 0)
+				<= 0)
 			a->pos.x += a->cam.dir.y * a->move.s;
 		if (a->map[(int)(a->pos.x)][(int)(a->pos.y + a->cam.dir.x * a->move.s)]
-				== 0)
+				<= 0)
 			a->pos.y += a->cam.dir.x * a->move.s;
 	}
 	if (a->move.down == 1)
 	{
 		if (a->map[(int)(a->pos.x - a->cam.dir.y * a->move.s)][(int)(a->pos.y)]
-				== 0)
+				<= 0)
 			a->pos.x -= a->cam.dir.y * a->move.s;
 		if (a->map[(int)(a->pos.x)][(int)(a->pos.y - a->cam.dir.x * a->move.s)]
-				== 0)
+				<= 0)
 			a->pos.y -= a->cam.dir.x * a->move.s;
 	}
 	ft_move2(a);

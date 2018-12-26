@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/16 16:07:26 by lchappon          #+#    #+#             */
-/*   Updated: 2018/12/17 19:25:15 by maxisimo         ###   ########.fr       */
+/*   Updated: 2018/12/26 18:18:34 by lchappon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,8 @@ int			ft_key_press(int key, t_app *app)
 		app->is_weapon = 0;
 	else if (key == 257 && app->crouch == 0)
 		app->speed = 1;
+	else if (key == 14)
+		ft_doors(app);
 	ft_key_press2(key, app);
 	return (0);
 }
