@@ -89,8 +89,8 @@ void		enemies_ai(t_app *a, t_enemy *e)
 	if (a->pos.y - 0.5 < e->pos.y && a->pos.y - e->pos.y > -6 &&
 			a->map[(int)(e->pos.x)][(int)(e->pos.y - 0.25)] == 0)
 		e->pos.y -= 0.02;
-	if (e->sprite.dist <= 0.5)
-		a->life -= 0.9;
+	if (e->sprite.dist <= 1)
+		a->life -= 1;
 }
 
 void	enemies_sort(t_app *a)
