@@ -138,13 +138,21 @@ int				ft_draw(t_app *a)
 	a->img_data = mlx_get_data_addr(a->img, &n[0], &n[1], &n[2]);
 	if (a->startscreen == 0)
 	{
-		ft_pthread(a);
-		enemies_draw(a);
-		draw_minimap(a);
-		draw_player(a);
-		weapons_draw_weapon(a);
-		ft_move(a);
-		mlx_put_image_to_window(a->mlx, a->win, a->img, 0, 0);
+		if (a->life > 0)
+		{
+			ft_pthread(a);
+			enemies_draw(a);
+			draw_minimap(a);
+			draw_player(a);
+			weapons_draw_weapon(a);
+			ft_move(a);
+			mlx_put_image_to_window(a->mlx, a->win, a->img, 0, 0);
+			mlx_string_put(a->mlx, a->win, 10, WIN_H - 30, 0xFFFFFF, ft_strjoin(ft_itoa(a->life), " LIFE POINTS"));
+		}
+		else
+		{
+			mlx_string_put(a->mlx, a->win, WIN_WS, WIN_HS, 0xFFFFFF, "GAME OVER");
+		}
 	}
 	else
 		startscreen_draw(a);
