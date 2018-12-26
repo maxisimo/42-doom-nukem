@@ -73,7 +73,6 @@ void		enemies_init(t_app *a)
 	enemies_count(a);
 	enemies_alloc(a);
 	enemies_get_pos(a);
-	printf("enemies = %d\n", a->enemies_count);
 }
 
 void		enemies_ai(t_app *a, t_enemy *e)
