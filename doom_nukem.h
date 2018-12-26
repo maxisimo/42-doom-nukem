@@ -128,7 +128,6 @@ typedef struct		s_enemy
 	t_spr			sprite;
 	t_coord_d		pos;
 	int				life;
-	int				state;
 }					t_enemy;
 
 typedef struct		s_dir
@@ -213,6 +212,7 @@ typedef struct		s_app
 	t_weapon		weapon;
 	t_enemy			*enemies;
 	t_wall			wall;
+	double			life;
 }					t_app;
 
 void				ft_app_allocmap(t_app *app);

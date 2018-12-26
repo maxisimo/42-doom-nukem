@@ -73,23 +73,24 @@ void		enemies_init(t_app *a)
 	enemies_count(a);
 	enemies_alloc(a);
 	enemies_get_pos(a);
-	printf("enemies = %d\n", a->enemies_count);
 }
 
-void		enemies_ai(t_app *a, t_coord_d *pos)
+void		enemies_ai(t_app *a, t_enemy *e)
 {
-	if (a->pos.x > pos->x && a->pos.x - pos->x < 6 &&
-			a->map[(int)(pos->x + 0.25)][(int)(pos->y)] == 0)
-		pos->x += 0.02;
-	if (a->pos.x < pos->x && a->pos.x - pos->x > -6 &&
-			a->map[(int)(pos->x - 0.25)][(int)(pos->y)] == 0)
-		pos->x -= 0.02;
-	if (a->pos.y > pos->y && a->pos.y - pos->y < 6 &&
-			a->map[(int)(pos->x)][(int)(pos->y + 0.25)] == 0)
-		pos->y += 0.02;
-	if (a->pos.y < pos->y && a->pos.y - pos->y > -6 &&
-			a->map[(int)(pos->x)][(int)(pos->y - 0.25)] == 0)
-		pos->y -= 0.02;
+	if (a->pos.x > e->pos.x && a->pos.x - e->pos.x < 6 &&
+			a->map[(int)(e->pos.x + 0.25)][(int)(e->pos.y)] == 0)
+		e->pos.x += 0.02;
+	if (a->pos.x < e->pos.x && a->pos.x - e->pos.x > -6 &&
+			a->map[(int)(e->pos.x - 0.25)][(int)(e->pos.y)] == 0)
+		e->pos.x -= 0.02;
+	if (a->pos.y > e->pos.y && a->pos.y - e->pos.y < 6 &&
+			a->map[(int)(e->pos.x)][(int)(e->pos.y + 0.25)] == 0)
+		e->pos.y += 0.02;
+	if (a->pos.y < e->pos.y && a->pos.y - e->pos.y > -6 &&
+			a->map[(int)(e->pos.x)][(int)(e->pos.y - 0.25)] == 0)
+		e->pos.y -= 0.02;
+	if (e->sprite.dist < 0.5)
+		a->life -= 0.5;
 }
 
 void	enemies_sort(t_app *a)
@@ -130,8 +131,11 @@ void		enemies_draw(t_app *a)
 	i = 0;
 	while (i < a->enemies_count)
 	{
-		sprites_draw(a, &a->enemies[i]);
-		enemies_ai(a, &a->enemies[i].pos);
+		if (a->enemies[i].life > 0)
+		{
+			sprites_draw(a, &a->enemies[i]);
+			enemies_ai(a, &a->enemies[i]);
+		}
 		i++;
 	}
 }

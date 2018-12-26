@@ -123,4 +123,5 @@ void		ft_app_init(t_app *app)
 	ft_app_calcplayerpos(app);
 	enemies_init(app);
 	textures_load(app);
+	app->life = 100;
 }
