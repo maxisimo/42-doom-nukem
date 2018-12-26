@@ -6,11 +6,27 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/16 16:07:10 by lchappon          #+#    #+#             */
-/*   Updated: 2018/12/17 19:24:07 by maxisimo         ###   ########.fr       */
+/*   Updated: 2018/12/26 19:09:02 by lchappon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "doom_nukem.h"
+
+void		ft_doors_info(t_app *a)
+{
+	if ((a->map[(int)a->pos.x][(int)(a->pos.y + a->cam.dir.x)] == HDOOR ||
+			a->map[(int)(a->pos.x + a->cam.dir.y)][(int)a->pos.y] == VDOOR) &&
+			a->move.v <= 1)
+		mlx_string_put(a->mlx, a->win, WIN_W / 2 - 90, WIN_H / 2, 0xFFFFFF,
+				"Press 'E' to open");
+	if (((a->map[(int)a->pos.x][(int)(a->pos.y + a->cam.dir.x)] == HDOOR_O &&
+			a->map[(int)a->pos.x][(int)a->pos.y] != HDOOR_O) ||
+			(a->map[(int)(a->pos.x + a->cam.dir.y)][(int)a->pos.y] == VDOOR_O &&
+			a->map[(int)a->pos.x][(int)a->pos.y] != VDOOR_O)) &&
+			a->move.v <= 1)
+		mlx_string_put(a->mlx, a->win, WIN_W / 2 - 90, WIN_H / 2, 0xFFFFFF,
+				"Press 'E' to close");
+}
 
 static void		ft_draw_sky(int x, int start, t_app *a)
 {
@@ -147,6 +163,7 @@ int				ft_draw(t_app *a)
 			weapons_draw_weapon(a);
 			ft_move(a);
 			mlx_put_image_to_window(a->mlx, a->win, a->img, 0, 0);
+			ft_doors_info(a);
 			mlx_string_put(a->mlx, a->win, 10, WIN_H - 30, 0xFFFFFF, ft_strjoin(ft_itoa(a->life), " LIFE POINTS"));
 		}
 		else
