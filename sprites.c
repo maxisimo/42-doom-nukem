@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 11:54:23 by thbernar          #+#    #+#             */
-/*   Updated: 2018/12/23 18:00:15 by lchappon         ###   ########.fr       */
+/*   Updated: 2018/12/26 20:48:01 by lchappon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,10 +130,10 @@ void	sprites_draw(t_app *a, t_enemy *e)
 	sprites_init(a, &e->sprite);
 	if (a->is_weapon == 1 && a->weapon.is_fired == 1 &&
 			WIN_W / 2 >= e->sprite.start_x && WIN_W / 2 <= e->sprite.end_x &&
-			WIN_H / 2 >= e->sprite.start_y && WIN_H / 2 <= e->sprite.end_y)
-	{
+			WIN_H / 2 >= e->sprite.start_y && WIN_H / 2 <= e->sprite.end_y &&
+			e->sprite.change_y < a->zbuffer[WIN_W / 2] &&
+			e->sprite.change_y > 0)
 		e->life -= 10;
-	}
 	if (e->life > 0)
 		put_sprite(a, &e->sprite);
 }
