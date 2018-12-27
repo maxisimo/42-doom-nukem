@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/16 16:07:26 by lchappon          #+#    #+#             */
-/*   Updated: 2018/12/26 18:18:34 by lchappon         ###   ########.fr       */
+/*   Updated: 2018/12/27 16:30:37 by lchappon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,26 @@ int			ft_mouse_motion(int x, int y, t_app *app)
 		mlx_mouse_move(app->win, x, 0);
 	if (y > WIN_H)
 		mlx_mouse_move(app->win, x, WIN_H);
+	return (0);
+}
+
+int			ft_button_release(int button, int x, int y, t_app *app)
+{
+	if (x >= 0 && x <= WIN_W && y >= 0 && y <= WIN_H)
+	{
+		if (button == 1)
+			app->weapon.is_fired = 0;
+	}
+	return (0);
+}
+
+int			ft_button_press(int button, int x, int y, t_app *app)
+{
+	if (x >= 0 && x <= WIN_W && y >= 0 && y <= WIN_H)
+	{
+		if (button == 1)
+			app->weapon.is_fired = 1;
+	}
 	return (0);
 }
 

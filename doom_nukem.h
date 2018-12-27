@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/26 17:11:44 by thbernar          #+#    #+#             */
-/*   Updated: 2018/12/26 18:24:45 by lchappon         ###   ########.fr       */
+/*   Updated: 2018/12/27 16:23:44 by lchappon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -224,6 +224,8 @@ int					expose_hook(t_app *a);
 int					ft_key_press(int key, t_app *app);
 int					ft_key_press2(int key, t_app *app);
 int					ft_key_release(int key, t_app *app);
+int					ft_button_press(int button, int x, int y, t_app *app);
+int					ft_button_release(int button, int x, int y, t_app *app);
 int					ft_mouse_motion(int x, int y, t_app *app);
 
 int					ft_move(t_app *a);
