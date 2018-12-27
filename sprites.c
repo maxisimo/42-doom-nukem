@@ -128,7 +128,7 @@ void	put_sprite(t_app *a, t_spr *s)
 void	sprites_draw(t_app *a, t_enemy *e)
 {
 	sprites_init(a, &e->sprite);
-	if (a->is_weapon == 1 && a->weapon.is_fired == 1 &&
+	if (a->is_weapon == 1 && a->weapon.is_fired == 1 && a->ammo > 0 &&
 			WIN_W / 2 >= e->sprite.start_x && WIN_W / 2 <= e->sprite.end_x &&
 			WIN_H / 2 >= e->sprite.start_y && WIN_H / 2 <= e->sprite.end_y &&
 			e->sprite.change_y < a->zbuffer[WIN_W / 2] &&

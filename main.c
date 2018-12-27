@@ -50,7 +50,7 @@ int			main(int ac, char **av)
 		app.startscreen = 1;
 		ft_app_init(&app);
 		sprites_load(&app);
-		bmp_loadfile(&app.logo, "sprites/dukenukemlogo.bmp");
+		bmp_loadfile(&app.logo, "sprites/doomnukemlogo.bmp");
 		mlx_win_init(&app);
 	}
 	else

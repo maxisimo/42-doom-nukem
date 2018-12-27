@@ -215,6 +215,7 @@ typedef struct		s_app
 	t_enemy			*enemies;
 	t_wall			wall;
 	double			life;
+	int				ammo;
 }					t_app;
 
 void				ft_app_allocmap(t_app *app);

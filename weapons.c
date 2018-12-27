@@ -18,10 +18,13 @@ static void	weapons_fire(t_app *a)
 
 	tmp.x = WIN_W - a->weapon.img.width;
 	tmp.y = WIN_H - a->weapon.img.height;
-	if (a->weapon.fire_count % 2 == 0)
+	if (a->weapon.fire_count % 2 != 0)
 		ft_put_bmp_to_img(a, a->weapon.img, tmp.x, tmp.y + 10);
 	else
+	{
 		ft_put_bmp_to_img(a, a->weapon.img2, tmp.x, tmp.y);
+		a->ammo--;
+	}
 	a->weapon.fire_count++;
 }
 
@@ -36,7 +39,7 @@ void		weapons_draw_weapon(t_app *a)
 		tmp.y = WIN_H - a->weapon.img.height;
 		tmp2.x = WIN_W / 2 - a->weapon.scope.width / 2;
 		tmp2.y = WIN_H / 2 - a->weapon.scope.height / 2;
-		if (a->weapon.is_fired)
+		if (a->weapon.is_fired && a->ammo > 0)
 			weapons_fire(a);
 		else
 			ft_put_bmp_to_img(a, a->weapon.img, tmp.x, tmp.y + 10);
