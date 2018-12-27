@@ -165,6 +165,8 @@ int				ft_draw(t_app *a)
 			mlx_put_image_to_window(a->mlx, a->win, a->img, 0, 0);
 			ft_doors_info(a);
 			mlx_string_put(a->mlx, a->win, 10, WIN_H - 30, 0xFFFFFF, ft_strjoin(ft_itoa(a->life), " LIFE POINTS"));
+			mlx_string_put(a->mlx, a->win, 10, WIN_H - 50, 0xFFFFFF, ft_strjoin(ft_itoa(a->ammo), " AMMUNITIONS"));
+
 		}
 		else
 			mlx_string_put(a->mlx, a->win, WIN_WS, WIN_HS, 0xFFFFFF, "GAME OVER");

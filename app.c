@@ -124,4 +124,5 @@ void		ft_app_init(t_app *app)
 	enemies_init(app);
 	textures_load(app);
 	app->life = 100;
+	app->ammo = 90;
 }
