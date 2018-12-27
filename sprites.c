@@ -15,7 +15,7 @@
 void	sprites_load(t_app *a)
 {
 	a->spr_num = 7;
-	bmp_loadfile(&a->sprites[2], "sprites/zombie1.bmp");
+	bmp_loadfile(&a->sprites[2], "textures/window.bmp");
 	bmp_loadfile(&a->weapon.img, "sprites/ak47.bmp");
 	bmp_loadfile(&a->weapon.img2, "sprites/ak47fired.bmp");
 	bmp_loadfile(&a->weapon.scope, "sprites/scope.bmp");
