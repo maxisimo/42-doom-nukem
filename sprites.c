@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 11:54:23 by thbernar          #+#    #+#             */
-/*   Updated: 2018/12/26 20:48:01 by lchappon         ###   ########.fr       */
+/*   Updated: 2018/12/27 17:12:38 by lchappon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	sprites_load(t_app *a)
 {
 	a->spr_num = 7;
-	bmp_loadfile(&a->sprites[2], "textures/window.bmp");
+	bmp_loadfile(&a->sprites[2], "sprites/zombie1.bmp");
 	bmp_loadfile(&a->weapon.img, "sprites/ak47.bmp");
 	bmp_loadfile(&a->weapon.img2, "sprites/ak47fired.bmp");
 	bmp_loadfile(&a->weapon.scope, "sprites/scope.bmp");

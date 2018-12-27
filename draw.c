@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/16 16:07:10 by lchappon          #+#    #+#             */
-/*   Updated: 2018/12/26 19:09:02 by lchappon         ###   ########.fr       */
+/*   Updated: 2018/12/27 17:15:13 by lchappon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,11 @@ static void		ft_draw_sky(int x, int start, t_app *a)
 	alpha += x * FOV_RAD / WIN_W - HFOV_RAD;
 	alpha += (alpha < 0) ? 2 * M_PI : 0;
 	alpha -= (alpha > 2 * M_PI) ? 2 * M_PI : 0;
-	a->sky.x = alpha * a->textures[8].width / (2 * M_PI);
+	a->sky.x = alpha * a->textures[9].width / (2 * M_PI);
 	while (i <= start)
 	{
-		a->sky.y = (WIN_H / 2 + i - a->rot.v) * a->textures[8].height / WIN_H;
-		c1 = get_pixel_color(&a->textures[8], a->sky.x, a->sky.y);
+		a->sky.y = (WIN_H / 2 + i - a->rot.v) * a->textures[9].height / WIN_H;
+		c1 = get_pixel_color(&a->textures[9], a->sky.x, a->sky.y);
 		clr = ft_rgb_to_hex(c1);
 		ft_memcpy(a->img_data + 4 * WIN_W * i + x * 4,
 				&clr, sizeof(int));
@@ -74,7 +74,7 @@ static void		ft_ceiling(int x, int y, t_app *a)
 			(1.0 - a->floor.weight) * a->pos.x;
 		a->floor.tex.x = (int)(a->floor.curfloor.x * TEXSIZE) % TEXSIZE;
 		a->floor.tex.y = (int)(a->floor.curfloor.y * TEXSIZE) % TEXSIZE;
-		c1 = get_pixel_color(&a->textures[3], a->floor.tex.x, a->floor.tex.y);
+		c1 = get_pixel_color(&a->textures[2], a->floor.tex.x, a->floor.tex.y);
 		if (a->c == 0)
 			ft_apply_shadow_to_cf(&c1, y - WIN_H - a->rot.v);
 		ft_put_pxl_to_img(a, c1, x, y);
@@ -99,7 +99,7 @@ static void		ft_floor(int x, int y, t_app *a)
 		a->floor.tex.x = (int)(a->floor.curfloor.x * TEXSIZE) % TEXSIZE;
 		a->floor.tex.y = (int)(a->floor.curfloor.y * TEXSIZE) % TEXSIZE;
 		a->floor.tex.y = abs(a->floor.tex.y);
-		c1 = get_pixel_color(&a->textures[6], a->floor.tex.x, a->floor.tex.y);
+		c1 = get_pixel_color(&a->textures[5], a->floor.tex.x, a->floor.tex.y);
 		if (a->c == 0)
 			ft_apply_shadow_to_cf(&c1, y - a->rot.v - a->move.v * TEXSIZE);
 		ft_put_pxl_to_img(a, c1, x, y);

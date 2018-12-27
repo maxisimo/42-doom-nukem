@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/26 17:11:44 by thbernar          #+#    #+#             */
-/*   Updated: 2018/12/27 16:23:44 by lchappon         ###   ########.fr       */
+/*   Updated: 2018/12/27 17:18:25 by lchappon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,11 @@
 # define WIN_HS WIN_H / 2 + 250
 # define WIN_WS WIN_W / 2 - 120
 # define TEXSIZE 64
-# define WINDOW 5
-# define HDOOR 6
-# define VDOOR 7
-# define HDOOR_O -6
-# define VDOOR_O -7
+# define WINDOW 7
+# define HDOOR 8
+# define VDOOR 9
+# define HDOOR_O -8
+# define VDOOR_O -9
 
 
 typedef struct		s_coord
