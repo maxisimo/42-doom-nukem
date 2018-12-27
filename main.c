@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 11:54:23 by thbernar          #+#    #+#             */
-/*   Updated: 2018/12/17 18:29:54 by lchappon         ###   ########.fr       */
+/*   Updated: 2018/12/27 16:23:51 by lchappon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ void		mlx_win_init(t_app *app)
 	mlx_hook(app->win, 3, (1L << 1), ft_key_release, app);
 	mlx_mouse_hide();
 	mlx_mouse_move(app->win, WIN_W / 2, WIN_H / 2);
+	mlx_hook(app->win, 4, 0, ft_button_press, app);
+	mlx_hook(app->win, 5, 0, ft_button_release, app);
 	mlx_hook(app->win, 6, 0, ft_mouse_motion, app);
 	mlx_hook(app->win, 17, (1L << 17), ft_close, app);
 	mlx_loop_hook(app->mlx, ft_draw, app);
