@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/26 17:11:44 by thbernar          #+#    #+#             */
-/*   Updated: 2018/12/27 17:18:25 by lchappon         ###   ########.fr       */
+/*   Updated: 2018/12/27 19:01:23 by lchappon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,8 @@
 # define VDOOR 9
 # define HDOOR_O -8
 # define VDOOR_O -9
-
+# define DOOR1 7
+# define DOOR2 8
 
 typedef struct		s_coord
 {
