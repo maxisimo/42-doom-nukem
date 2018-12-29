@@ -6,7 +6,7 @@
 /*   By: lchappon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/16 16:08:17 by lchappon          #+#    #+#             */
-/*   Updated: 2018/12/26 18:46:23 by lchappon         ###   ########.fr       */
+/*   Updated: 2018/12/29 14:31:37 by lchappon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,17 +32,19 @@ void		ft_doors(t_app *a)
 
 static void	ft_rotate(t_app *a)
 {
+	double	tmp;
+
 	if (a->rot.right == 1)
 		a->rot.s = -0.05;
 	if (a->rot.left == 1)
 		a->rot.s = 0.05;
-	a->old_dir_x = a->cam.dir.x;
+	tmp = a->cam.dir.x;
 	a->cam.dir.x = a->cam.dir.x * cos(a->rot.s) - a->cam.dir.y * sin(a->rot.s);
-	a->cam.dir.y = a->old_dir_x * sin(a->rot.s) + a->cam.dir.y * cos(a->rot.s);
-	a->oldplane_x = a->cam.plane.x;
+	a->cam.dir.y = tmp * sin(a->rot.s) + a->cam.dir.y * cos(a->rot.s);
+	tmp = a->cam.plane.x;
 	a->cam.plane.x = a->cam.plane.x * cos(a->rot.s) -
 		a->cam.plane.y * sin(a->rot.s);
-	a->cam.plane.y = a->oldplane_x * sin(a->rot.s) +
+	a->cam.plane.y = tmp * sin(a->rot.s) +
 		a->cam.plane.y * cos(a->rot.s);
 	a->rot.s = 0;
 	if (a->rot.up == 1 && a->rot.v < WIN_H / 2)

@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/26 17:11:44 by thbernar          #+#    #+#             */
-/*   Updated: 2018/12/27 19:01:23 by lchappon         ###   ########.fr       */
+/*   Updated: 2018/12/29 14:30:52 by lchappon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -194,8 +194,6 @@ typedef struct		s_app
 	double			wallx;
 	double			distplayer;
 	double			loop;
-	double			old_dir_x;
-	double			oldplane_x;
 	double			camx;
 	double			zbuffer[WIN_W];
 	t_bmp			startscreentxt;
