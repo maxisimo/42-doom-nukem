@@ -6,7 +6,7 @@
 /*   By: lchappon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/16 16:08:17 by lchappon          #+#    #+#             */
-/*   Updated: 2018/12/29 14:31:37 by lchappon         ###   ########.fr       */
+/*   Updated: 2018/12/29 14:35:12 by lchappon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void		ft_doors(t_app *a)
 		a->map[(int)(a->pos.x + a->cam.dir.y)][(int)a->pos.y] = VDOOR;
 }
 
-static void	ft_rotate(t_app *a)
+void		ft_rotate(t_app *a)
 {
 	double	tmp;
 
@@ -126,6 +126,5 @@ int			ft_move(t_app *a)
 	}
 	ft_move2(a);
 	ft_move3(a);
-	ft_rotate(a);
 	return (0);
 }

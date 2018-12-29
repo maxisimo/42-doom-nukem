@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/16 16:07:10 by lchappon          #+#    #+#             */
-/*   Updated: 2018/12/27 19:00:54 by lchappon         ###   ########.fr       */
+/*   Updated: 2018/12/29 14:34:53 by lchappon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -200,6 +200,7 @@ int				ft_draw(t_app *a)
 			draw_player(a);
 			weapons_draw_weapon(a);
 			ft_move(a);
+			ft_rotate(a);
 			mlx_put_image_to_window(a->mlx, a->win, a->img, 0, 0);
 			ft_doors_info(a);
 			mlx_string_put(a->mlx, a->win, 10, WIN_H - 30, 0xFFFFFF, ft_strjoin(ft_itoa(a->life), " LIFE POINTS"));
