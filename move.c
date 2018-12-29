@@ -6,7 +6,7 @@
 /*   By: lchappon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/16 16:08:17 by lchappon          #+#    #+#             */
-/*   Updated: 2018/12/29 14:35:12 by lchappon         ###   ########.fr       */
+/*   Updated: 2018/12/29 16:12:07 by lchappon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,26 @@
 
 void		ft_doors(t_app *a)
 {
-	if (a->map[(int)a->pos.x][(int)(a->pos.y + a->cam.dir.x)] == HDOOR &&
-			a->move.v <= 1)
-		a->map[(int)a->pos.x][(int)(a->pos.y + a->cam.dir.x)] = HDOOR_O;
-	else if (a->map[(int)a->pos.x][(int)(a->pos.y + a->cam.dir.x)] == HDOOR_O &&
-			a->map[(int)a->pos.x][(int)a->pos.y] != HDOOR_O &&
-			a->move.v <= 1)
-		a->map[(int)a->pos.x][(int)(a->pos.y + a->cam.dir.x)] = HDOOR;
-	if (a->map[(int)(a->pos.x + a->cam.dir.y)][(int)a->pos.y] == VDOOR &&
-			a->move.v <= 1)
-		a->map[(int)(a->pos.x + a->cam.dir.y)][(int)a->pos.y] = VDOOR_O;
-	else if (a->map[(int)(a->pos.x + a->cam.dir.y)][(int)a->pos.y] == VDOOR_O &&
-			a->map[(int)a->pos.x][(int)a->pos.y] != VDOOR_O &&
-			a->move.v <= 1)
-		a->map[(int)(a->pos.x + a->cam.dir.y)][(int)a->pos.y] = VDOOR;
+	if (fabs(a->cam.dir.x) > fabs(a->cam.dir.y))
+	{
+		if (a->map[(int)a->pos.x][(int)(a->pos.y + a->cam.dir.x)] == HDOOR &&
+				a->move.v <= 1)
+			a->map[(int)a->pos.x][(int)(a->pos.y + a->cam.dir.x)] = HDOOR_O;
+		else if (a->map[(int)a->pos.x][(int)(a->pos.y + a->cam.dir.x)] ==
+				HDOOR_O && a->map[(int)a->pos.x][(int)a->pos.y] != HDOOR_O &&
+				a->move.v <= 1)
+			a->map[(int)a->pos.x][(int)(a->pos.y + a->cam.dir.x)] = HDOOR;
+	}
+	else
+	{
+		if (a->map[(int)(a->pos.x + a->cam.dir.y)][(int)a->pos.y] == VDOOR &&
+				a->move.v <= 1)
+			a->map[(int)(a->pos.x + a->cam.dir.y)][(int)a->pos.y] = VDOOR_O;
+		else if (a->map[(int)(a->pos.x + a->cam.dir.y)][(int)a->pos.y] ==
+				VDOOR_O && a->map[(int)a->pos.x][(int)a->pos.y] != VDOOR_O &&
+				a->move.v <= 1)
+			a->map[(int)(a->pos.x + a->cam.dir.y)][(int)a->pos.y] = VDOOR;
+	}
 }
 
 void		ft_rotate(t_app *a)

@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/16 16:07:10 by lchappon          #+#    #+#             */
-/*   Updated: 2018/12/29 14:34:53 by lchappon         ###   ########.fr       */
+/*   Updated: 2018/12/29 16:16:11 by lchappon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,18 @@
 
 void		ft_doors_info(t_app *a)
 {
-	if ((a->map[(int)a->pos.x][(int)(a->pos.y + a->cam.dir.x)] == HDOOR ||
-			a->map[(int)(a->pos.x + a->cam.dir.y)][(int)a->pos.y] == VDOOR) &&
+	if (((a->map[(int)a->pos.x][(int)(a->pos.y + a->cam.dir.x)] == HDOOR &&
+			fabs(a->cam.dir.x) > fabs(a->cam.dir.y)) ||
+			(a->map[(int)(a->pos.x + a->cam.dir.y)][(int)a->pos.y] == VDOOR &&
+			fabs(a->cam.dir.x) < fabs(a->cam.dir.y))) &&
 			a->move.v <= 1)
 		mlx_string_put(a->mlx, a->win, WIN_W / 2 - 90, WIN_H / 2, 0xFFFFFF,
 				"Press 'E' to open");
 	if (((a->map[(int)a->pos.x][(int)(a->pos.y + a->cam.dir.x)] == HDOOR_O &&
+			fabs(a->cam.dir.x) > fabs(a->cam.dir.y) &&
 			a->map[(int)a->pos.x][(int)a->pos.y] != HDOOR_O) ||
 			(a->map[(int)(a->pos.x + a->cam.dir.y)][(int)a->pos.y] == VDOOR_O &&
+			fabs(a->cam.dir.x) < fabs(a->cam.dir.y) &&
 			a->map[(int)a->pos.x][(int)a->pos.y] != VDOOR_O)) &&
 			a->move.v <= 1)
 		mlx_string_put(a->mlx, a->win, WIN_W / 2 - 90, WIN_H / 2, 0xFFFFFF,
