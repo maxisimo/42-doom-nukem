@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/26 17:11:44 by thbernar          #+#    #+#             */
-/*   Updated: 2018/12/29 14:34:32 by lchappon         ###   ########.fr       */
+/*   Updated: 2018/12/29 16:34:50 by lchappon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -185,6 +185,7 @@ typedef struct		s_app
 	int				mapx;
 	int				mapy;
 	int				enemies_count;
+	int				enemies_count2;
 	int				jump;
 	int				jumping;
 	int				fly;

@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 11:54:23 by thbernar          #+#    #+#             */
-/*   Updated: 2018/12/27 17:12:38 by lchappon         ###   ########.fr       */
+/*   Updated: 2018/12/29 16:38:45 by lchappon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,7 +133,11 @@ void	sprites_draw(t_app *a, t_enemy *e)
 			WIN_H / 2 >= e->sprite.start_y && WIN_H / 2 <= e->sprite.end_y &&
 			e->sprite.change_y < a->zbuffer[WIN_W / 2] &&
 			e->sprite.change_y > 0)
+	{
 		e->life -= 10;
+		if (e->life <= 0)
+			a->enemies_count2--;
+	}
 	if (e->life > 0)
 		put_sprite(a, &e->sprite);
 }

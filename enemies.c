@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 18:12:53 by maxisimo          #+#    #+#             */
-/*   Updated: 2018/12/23 18:01:36 by lchappon         ###   ########.fr       */
+/*   Updated: 2018/12/29 16:36:13 by lchappon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ static void	enemies_count(t_app *a)
 		}
 		p.y++;
 	}
+	a->enemies_count2 = a->enemies_count;
 }
 
 static void	enemies_alloc(t_app *a)

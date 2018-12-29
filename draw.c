@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/16 16:07:10 by lchappon          #+#    #+#             */
-/*   Updated: 2018/12/29 16:16:11 by lchappon         ###   ########.fr       */
+/*   Updated: 2018/12/29 16:37:15 by lchappon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -207,9 +207,9 @@ int				ft_draw(t_app *a)
 			ft_rotate(a);
 			mlx_put_image_to_window(a->mlx, a->win, a->img, 0, 0);
 			ft_doors_info(a);
-			mlx_string_put(a->mlx, a->win, 10, WIN_H - 30, 0xFFFFFF, ft_strjoin(ft_itoa(a->life), " LIFE POINTS"));
+			mlx_string_put(a->mlx, a->win, 10, WIN_H - 30, 0xFFFFFF, ft_strjoin(ft_itoa(a->life), " HEALTH POINTS"));
 			mlx_string_put(a->mlx, a->win, 10, WIN_H - 50, 0xFFFFFF, ft_strjoin(ft_itoa(a->ammo), " AMMUNITIONS"));
-
+			mlx_string_put(a->mlx, a->win, 10, WIN_H - 70, 0xFFFFFF, ft_strjoin(ft_itoa(a->enemies_count2), " ENEMIES"));
 		}
 		else
 			mlx_string_put(a->mlx, a->win, WIN_WS, WIN_HS, 0xFFFFFF, "GAME OVER");
