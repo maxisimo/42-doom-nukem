@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/16 16:07:26 by lchappon          #+#    #+#             */
-/*   Updated: 2018/12/27 16:30:37 by lchappon         ###   ########.fr       */
+/*   Updated: 2018/12/29 14:53:23 by lchappon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,12 @@ int			ft_mouse_motion(int x, int y, t_app *app)
 {
 	mlx_mouse_hide();
 	app->rot.s = -0.002 * (x - WIN_W / 2);
-	mlx_mouse_move(app->win, WIN_W / 2, y);
-	if (y >= 0 && y <= WIN_H)
-		app->rot.v = -(y - WIN_H / 2);
-	if (y < 0)
-		mlx_mouse_move(app->win, x, 0);
-	if (y > WIN_H)
-		mlx_mouse_move(app->win, x, WIN_H);
+	app->rot.v -= (y - WIN_H / 2);
+	if (app->rot.v < -WIN_H / 2)
+		app->rot.v = -WIN_H / 2;
+	if (app->rot.v > WIN_H / 2)
+		app->rot.v = WIN_H / 2;
+	mlx_mouse_move(app->win, WIN_W / 2, WIN_H / 2);
 	return (0);
 }
 
