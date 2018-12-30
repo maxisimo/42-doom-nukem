@@ -12,6 +12,14 @@
 
 #include "map_generator.h"
 
+static int	is_extension_valid(char *fname)
+{
+	if (ft_strncmp(ft_strrev(fname), "d3w.", 4) == 0)
+		return (1);
+	else
+		return (0);
+}
+
 int		main(int ac, char **av)
 {
 	t_map	map;
@@ -25,7 +33,7 @@ int		main(int ac, char **av)
 		mlx_mouse_hook(map.win, mouse_hook, &map);
 		mlx_loop(map.mlx);
 	}
-	else if (ac == 2)
+	else if (ac == 2 && is_extension_valid(ft_strdup(av[1])) == 1)
 	{
 		is_argc_2(av[1], &map);
 		init(&map);
