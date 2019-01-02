@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/05 11:54:43 by maxisimo          #+#    #+#             */
-/*   Updated: 2018/12/23 15:08:19 by lchappon         ###   ########.fr       */
+/*   Updated: 2019/01/02 16:18:15 by lchappon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ static void	texture_load(t_map *map)
 
 void		error(void)
 {
-	ft_putendl("usage: ./generator_maping newfilename [width] [height]");
+	ft_putendl("usage: ./map_generator newfilename [width] [height]");
 	ft_putendl("or");
-	ft_putendl("usage: ./generator_maping filename");
+	ft_putendl("usage: ./map_generator filename");
 }
 
 void		is_argc_2(char *s, t_map *map)
@@ -60,6 +60,6 @@ void		start(t_map *map)
 	map->img_ptr = mlx_get_data_addr(map->img,
 			&map->bpp, &map->sl, &map->endian);
 	texture_load(map);
-	infos(map);
+	//infos(map);
 	draw_map(0, 0, map);
 }

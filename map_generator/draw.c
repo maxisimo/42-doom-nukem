@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/05 12:16:44 by maxisimo          #+#    #+#             */
-/*   Updated: 2018/12/23 15:08:29 by lchappon         ###   ########.fr       */
+/*   Updated: 2019/01/02 16:18:36 by lchappon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ static void	choose_color(int x, int y, t_map *map)
 		ft_put_bmp(map, map->textures[map->i - 1], x, y);
 }
 
+/*
 void		infos(t_map *map)
 {
 	map->textures.scale = 3.125;
@@ -68,6 +69,7 @@ void		infos(t_map *map)
 	mlx_string_put(map->mlx, map->win, 1380, 500, "Press the right mouse button to take off a wall / player position");
 	ft_put_bmp(map, map->textures[map->i - 1], 1380, 600);
 }
+*/
 
 void		put_color2(int x, int y, t_map *map)
 {
@@ -97,7 +99,7 @@ void		draw_map(int x, int y, t_map *map)
 	int		color;
 
 	color = 0xFFFFFF;
-	map->textures.scale = 64 / map->blocw;
+	//map->textures.scale = 64 / map->blocw;
 	while (x < map->width)
 	{
 		y = map->height - 1;
