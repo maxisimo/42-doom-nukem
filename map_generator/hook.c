@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/05 12:14:38 by maxisimo          #+#    #+#             */
-/*   Updated: 2018/12/18 16:57:28 by maxisimo         ###   ########.fr       */
+/*   Updated: 2019/01/02 16:24:25 by lchappon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,6 @@ int			mouse_hook(int mousecode, int x, int y, t_map *map)
 		map->i = 0;
 		put_color(x, y, map);
 	}
-	mlx_put_image_to_window(map->mlx, map->win, map->img, 0, 0);    
+	mlx_put_image_to_window(map->mlx, map->win, map->img, 0, 0);
 	return (0);
 }

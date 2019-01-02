@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/29 19:40:45 by maxisimo          #+#    #+#             */
-/*   Updated: 2018/12/18 16:43:46 by maxisimo         ###   ########.fr       */
+/*   Updated: 2019/01/02 16:30:30 by lchappon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ typedef struct	s_map
 	int	    	n;
 	t_coord		p;
 	t_bmp		textures[10];
+	double		textures_scale;
 }				t_map;
 
 void			error(void);
@@ -59,6 +60,7 @@ void			init(t_map *map);
 void			init_tab(t_map *map);
 void			fill_tab(int x, int y, int value, t_map *map);
 
+void			infos(t_map *map);
 void			put_color2(int x, int y, t_map *map);
 void			put_color(int x, int y, t_map *map);
 void			draw_map(int x, int y, t_map *map);

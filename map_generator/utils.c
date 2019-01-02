@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/05 11:54:43 by maxisimo          #+#    #+#             */
-/*   Updated: 2019/01/02 16:18:15 by lchappon         ###   ########.fr       */
+/*   Updated: 2019/01/02 16:29:20 by lchappon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,6 @@ void		start(t_map *map)
 	map->img_ptr = mlx_get_data_addr(map->img,
 			&map->bpp, &map->sl, &map->endian);
 	texture_load(map);
-	//infos(map);
+	infos(map);
 	draw_map(0, 0, map);
 }

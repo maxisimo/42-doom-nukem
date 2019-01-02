@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/05 12:16:44 by maxisimo          #+#    #+#             */
-/*   Updated: 2019/01/02 16:18:36 by lchappon         ###   ########.fr       */
+/*   Updated: 2019/01/02 16:31:04 by lchappon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,18 +58,18 @@ static void	choose_color(int x, int y, t_map *map)
 		ft_put_bmp(map, map->textures[map->i - 1], x, y);
 }
 
-/*
+
 void		infos(t_map *map)
 {
-	map->textures.scale = 3.125;
-	mlx_string_put(map->mlx, map->win, 1380, 100, "Press tab to change texture");
-	mlx_string_put(map->mlx, map->win, 1380, 200, "Press 'esc' or 's' to save and quit");
-	mlx_string_put(map->mlx, map->win, 1380, 300, "Press 'P' to activate/desactivate the player position");
-	mlx_string_put(map->mlx, map->win, 1380, 400, "Press the left mouse button to put a wall / player position");
-	mlx_string_put(map->mlx, map->win, 1380, 500, "Press the right mouse button to take off a wall / player position");
+	map->textures_scale = 3.125;
+	mlx_string_put(map->mlx, map->win, 1380, 100, 0xFFFFFF, "Press tab to change texture");
+	mlx_string_put(map->mlx, map->win, 1380, 200, 0xFFFFFF, "Press 'esc' or 's' to save and quit");
+	mlx_string_put(map->mlx, map->win, 1380, 300, 0xFFFFFF, "Press 'P' to activate/desactivate the player position");
+	mlx_string_put(map->mlx, map->win, 1380, 400, 0xFFFFFF, "Press the left mouse button to put a wall / player position");
+	mlx_string_put(map->mlx, map->win, 1380, 500, 0xFFFFFF, "Press the right mouse button to take off a wall / player position");
 	ft_put_bmp(map, map->textures[map->i - 1], 1380, 600);
 }
-*/
+
 
 void		put_color2(int x, int y, t_map *map)
 {
@@ -99,7 +99,7 @@ void		draw_map(int x, int y, t_map *map)
 	int		color;
 
 	color = 0xFFFFFF;
-	//map->textures.scale = 64 / map->blocw;
+	map->textures_scale = 64 / map->blocw;
 	while (x < map->width)
 	{
 		y = map->height - 1;
