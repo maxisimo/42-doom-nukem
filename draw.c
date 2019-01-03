@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/16 16:07:10 by lchappon          #+#    #+#             */
-/*   Updated: 2018/12/29 16:37:15 by lchappon         ###   ########.fr       */
+/*   Updated: 2019/01/03 17:53:16 by lchappon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,9 +164,6 @@ void			ft_choose_color(int x, int start, t_app *a)
 
 void			draw_wall(int x, int start, int end, t_app *a)
 {
-	int		y;
-
-	y = start;
 	if (a->side == 0)
 		a->wallx = a->pos.x + a->wall.dist * a->ray.dir.y;
 	else
@@ -179,12 +176,13 @@ void			draw_wall(int x, int start, int end, t_app *a)
 	else if (a->c == 1)
 		ft_draw_sky(x, start, a);
 	ft_floor(x, start, a);
-	while (++start <= end - 1)
+	while (start <= end - 1)
 	{
 		a->texy = (start - WIN_H / 2 + (a->lineheight / 2)
 				* (-a->move.v + 1) - a->rot.v) * TEXSIZE / a->lineheight;
 		a->texy %= TEXSIZE;
 		ft_choose_color(x, start, a);
+		start++;
 	}
 }
 
