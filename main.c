@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 11:54:23 by thbernar          #+#    #+#             */
-/*   Updated: 2019/01/03 20:27:59 by lchappon         ###   ########.fr       */
+/*   Updated: 2019/01/03 20:33:25 by lchappon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ int			main(int ac, char **av)
 		app.cam.dir.x = -1;
 		app.cam.plane.y = 0.66;
 		app.move.s = 0.07;
-		app.life2 = 100;
 		app.startscreen = 1;
 		ft_app_init(&app);
 		sprites_load(&app);

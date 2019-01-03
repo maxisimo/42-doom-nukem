@@ -6,7 +6,7 @@
 /*   By: lchappon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/16 16:06:47 by lchappon          #+#    #+#             */
-/*   Updated: 2018/12/16 16:06:50 by lchappon         ###   ########.fr       */
+/*   Updated: 2019/01/03 20:33:46 by lchappon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,5 +124,6 @@ void		ft_app_init(t_app *app)
 	enemies_init(app);
 	textures_load(app);
 	app->life = 100;
+	app->life2 = app->life;
 	app->ammo = 90;
 }
