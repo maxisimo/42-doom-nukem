@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/26 17:11:44 by thbernar          #+#    #+#             */
-/*   Updated: 2019/01/04 16:39:48 by lchappon         ###   ########.fr       */
+/*   Updated: 2019/01/04 17:03:53 by lchappon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -213,7 +213,6 @@ typedef struct		s_app
 	t_floor			floor;
 	t_weapon		weapon;
 	t_enemy			*enemies;
-	t_enemy			*object;
 	t_wall			wall;
 	double			life;
 	double			life2;
