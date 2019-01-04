@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 11:54:23 by thbernar          #+#    #+#             */
-/*   Updated: 2019/01/04 17:33:19 by lchappon         ###   ########.fr       */
+/*   Updated: 2019/01/04 17:49:32 by lchappon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,25 @@ void	sprites_img(t_app *a, t_spr *s, int type)
 	}
 }
 
+void	sprites_limits(t_spr *s)
+{
+	s->start_y = s->start_y < 0 ? 0 : s->start_y;
+	s->start_y = s->start_y > WIN_H ? WIN_H : s->start_y;
+	s->end_y = s->end_y < 0 ? 0 : s->end_y;
+	s->end_y = s->end_y > WIN_H ? WIN_H : s->end_y;
+	s->start_x = s->start_x < 0 ? 0 : s->start_x;
+	s->start_x = s->start_x > WIN_W ? WIN_W : s->start_x;
+	s->end_x = s->end_x < 0 ? 0 : s->end_x;
+	s->end_x = s->end_x > WIN_W ? WIN_W : s->end_x;
+	if (s->start_x == s->end_x || s->start_y == s->end_y)
+	{
+		s->start_x = 0;
+		s->end_x = 0;
+		s->start_y = 0;
+		s->end_y = 0;
+	}
+}
+
 void	sprites_init(t_app *a, t_spr *s)
 {
 	s->invdet = 1.0 / (a->cam.plane.x * a->cam.dir.y -
@@ -61,21 +80,7 @@ void	sprites_init(t_app *a, t_spr *s)
 	s->width = abs((int)(WIN_H / (s->change_y)));
 	s->start_x = -s->width / 2 + s->screenx;
 	s->end_x = s->width / 2 + s->screenx;
-	s->start_y = s->start_y < 0 ? 0 : s->start_y;
-	s->start_y = s->start_y > WIN_H ? WIN_H : s->start_y;
-	s->end_y = s->end_y < 0 ? 0 : s->end_y;
-	s->end_y = s->end_y > WIN_H ? WIN_H : s->end_y;
-	s->start_x = s->start_x < 0 ? 0 : s->start_x;
-	s->start_x = s->start_x > WIN_W ? WIN_W : s->start_x;
-	s->end_x = s->end_x < 0 ? 0 : s->end_x;
-	s->end_x = s->end_x > WIN_W ? WIN_W : s->end_x;
-	if (s->start_x == s->end_x || s->start_y == s->end_y)
-	{
-		s->start_x = 0;
-		s->end_x = 0;
-		s->start_y = 0;
-		s->end_y = 0;
-	}
+	sprites_limits(s);
 }
 
 void	put_sprite(t_app *a, t_spr *s)
