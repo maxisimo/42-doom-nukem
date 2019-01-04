@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/05 12:16:44 by maxisimo          #+#    #+#             */
-/*   Updated: 2019/01/04 13:46:06 by maxisimo         ###   ########.fr       */
+/*   Updated: 2019/01/04 15:56:07 by maxisimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,13 +74,11 @@ static void	choose_color(int x, int y, t_map *map)
 
 void		infos(t_map *map)
 {
-	map->textures[map->i - 1].scale = 3.125;
 	mlx_string_put(map->mlx, map->win, 1310, 100, 0xFFFFFF, "Press 'tab' to change texture");
 	mlx_string_put(map->mlx, map->win, 1310, 200, 0xFFFFFF, "Press 'esc' or 's' to save and quit");
 	mlx_string_put(map->mlx, map->win, 1310, 300, 0xFFFFFF, "Press 'P' to activate/desactivate the player position");
 	mlx_string_put(map->mlx, map->win, 1310, 400, 0xFFFFFF, "Press the left mouse button to put a wall / player position");
 	mlx_string_put(map->mlx, map->win, 1310, 500, 0xFFFFFF, "Press the right mouse button to take off a wall / player position");
-	ft_put_bmp(map, map->textures[map->i - 1], 310, 600);
 }
 
 
