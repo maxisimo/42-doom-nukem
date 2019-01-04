@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 11:54:23 by thbernar          #+#    #+#             */
-/*   Updated: 2019/01/04 16:01:04 by lchappon         ###   ########.fr       */
+/*   Updated: 2019/01/04 16:40:06 by lchappon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,9 @@ void	sprites_load(t_app *a)
 {
 	//a->spr_num = 7;
 	bmp_loadfile(&a->sprites[0], "sprites/zombie1.bmp");
+	bmp_loadfile(&a->sprites[1], "sprites/ak47.bmp");
+	bmp_loadfile(&a->sprites[2], "sprites/ak47fired.bmp");
+	bmp_loadfile(&a->sprites[3], "sprites/scope.bmp");
 	bmp_loadfile(&a->weapon.img, "sprites/ak47.bmp");
 	bmp_loadfile(&a->weapon.img2, "sprites/ak47fired.bmp");
 	bmp_loadfile(&a->weapon.scope, "sprites/scope.bmp");
@@ -64,7 +67,7 @@ void	sprites_init(t_app *a, t_spr *s)
 	if (s->spr_x >= 0 && s->spr_y <= 0)
 		s->img = &a->sprites[2];
 	if (s->spr_x >= 0 && s->spr_y >= 0)
-		s->img = &a->sprites[0];
+		s->img = &a->sprites[3];
 	*/
 	s->invdet = 1.0 / (a->cam.plane.x * a->cam.dir.y -
 			a->cam.dir.x * a->cam.plane.y);
@@ -136,12 +139,11 @@ void	sprites_draw(t_app *a, t_enemy *e)
 			WIN_W / 2 >= e->sprite.start_x && WIN_W / 2 <= e->sprite.end_x &&
 			WIN_H / 2 >= e->sprite.start_y && WIN_H / 2 <= e->sprite.end_y &&
 			e->sprite.change_y < a->zbuffer[WIN_W / 2] &&
-			e->sprite.change_y > 0)
+			e->sprite.change_y > 0 && e->type == 0)
 	{
 		e->life -= 10;
 		if (e->life <= 0)
 			a->enemies_count2--;
 	}
-	if (e->life > 0)
-		put_sprite(a, &e->sprite);
+	put_sprite(a, &e->sprite);
 }

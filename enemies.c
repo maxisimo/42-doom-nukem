@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 18:12:53 by maxisimo          #+#    #+#             */
-/*   Updated: 2019/01/04 16:01:17 by lchappon         ###   ########.fr       */
+/*   Updated: 2019/01/04 17:02:17 by lchappon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,16 @@ static void	enemies_count(t_app *a)
 			if (a->map[p.x][p.y] == 10)
 			{
 				a->enemies_count++;
+				a->enemies_count2++;
+			}
+			if (a->map[p.x][p.y] == 11)
+			{
+				a->enemies_count++;
 			}
 			p.x++;
 		}
 		p.y++;
 	}
-	a->enemies_count2 = a->enemies_count;
 }
 
 static void	enemies_alloc(t_app *a)
@@ -59,9 +63,29 @@ static void	enemies_get_pos(t_app *a)
 				a->enemies[i].pos.x = (double)p.x + 0.5;
 				a->enemies[i].sprite.img = &a->sprites[0];
 				a->enemies[i].life = 100;
+				a->enemies[i].type = 0;
 				a->map[p.x][p.y] = 0;
 				printf("-> %f %f\n", a->enemies[i].pos.x, a->enemies[i].pos.y);
 				i++;
+			}
+			//PICK
+			if (a->map[p.x][p.y] == 11)
+			{
+				a->enemies[i].pos.y = (double)p.y + 0.5;
+				a->enemies[i].pos.x = (double)p.x + 0.5;
+				a->enemies[i].sprite.img = &a->sprites[1];
+				a->enemies[i].life = 100;
+				a->enemies[i].type = 1;
+				a->map[p.x][p.y] = 0;
+				i++;
+			}
+			//BLOCK
+			if (a->map[p.x][p.y] == 12)
+			{
+			}
+			//FINAL
+			if (a->map[p.x][p.y] == 13)
+			{
 			}
 			p.x++;
 		}
@@ -114,6 +138,19 @@ void	enemies_sort(t_app *a)
 	}
 }
 
+void		enemies_pick(t_app *a, t_enemy *e)
+{
+	if (e->type == 1 && e->sprite.dist <= 0.5)
+	{
+		if (a->life < 150)
+			a->life += 10;
+		if (a->ammo < 300)
+			a->ammo += 30;
+		if (a->life != 150 && a->ammo != 300)
+			e->life = 0;
+	}
+}
+
 void		enemies_draw(t_app *a)
 {
 	int i;
@@ -134,7 +171,9 @@ void		enemies_draw(t_app *a)
 	{
 		if (a->enemies[i].life > 0)
 		{
-			enemies_ai(a, &a->enemies[i]);
+			enemies_pick(a, &a->enemies[i]);
+			if (a->enemies[i].type == 0)
+				enemies_ai(a, &a->enemies[i]);
 			sprites_draw(a, &a->enemies[i]);
 		}
 		i++;
