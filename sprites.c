@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 11:54:23 by thbernar          #+#    #+#             */
-/*   Updated: 2019/01/04 16:40:06 by lchappon         ###   ########.fr       */
+/*   Updated: 2019/01/04 17:14:43 by lchappon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,18 +57,19 @@ void	sort_sprites(t_app *a)
 }
 */
 
-void	sprites_init(t_app *a, t_spr *s)
+void	sprites_init(t_app *a, t_spr *s, int type)
 {
-	/* MULTI-SPRITE
-	if (s->spr_x <= 0 && s->spr_y <= 0)
-		s->img = &a->sprites[0];
-	if (s->spr_x <= 0 && s->spr_y >= 0)
-		s->img = &a->sprites[1];
-	if (s->spr_x >= 0 && s->spr_y <= 0)
-		s->img = &a->sprites[2];
-	if (s->spr_x >= 0 && s->spr_y >= 0)
-		s->img = &a->sprites[3];
-	*/
+	if (type == 2)
+	{
+		if (s->spr_x <= 0 && s->spr_y <= 0)
+			s->img = &a->sprites[0];
+		if (s->spr_x <= 0 && s->spr_y >= 0)
+			s->img = &a->sprites[1];
+		if (s->spr_x >= 0 && s->spr_y <= 0)
+			s->img = &a->sprites[2];
+		if (s->spr_x >= 0 && s->spr_y >= 0)
+			s->img = &a->sprites[3];
+	}
 	s->invdet = 1.0 / (a->cam.plane.x * a->cam.dir.y -
 			a->cam.dir.x * a->cam.plane.y);
 	s->change_x = s->invdet * (a->cam.dir.y * s->spr_y -
@@ -134,7 +135,7 @@ void	put_sprite(t_app *a, t_spr *s)
 
 void	sprites_draw(t_app *a, t_enemy *e)
 {
-	sprites_init(a, &e->sprite);
+	sprites_init(a, &e->sprite, e->type);
 	if (a->is_weapon == 1 && a->weapon.is_fired == 1 && a->ammo > 0 &&
 			WIN_W / 2 >= e->sprite.start_x && WIN_W / 2 <= e->sprite.end_x &&
 			WIN_H / 2 >= e->sprite.start_y && WIN_H / 2 <= e->sprite.end_y &&

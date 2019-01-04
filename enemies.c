@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 18:12:53 by maxisimo          #+#    #+#             */
-/*   Updated: 2019/01/04 17:02:17 by lchappon         ###   ########.fr       */
+/*   Updated: 2019/01/04 17:17:24 by lchappon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,12 +142,16 @@ void		enemies_pick(t_app *a, t_enemy *e)
 {
 	if (e->type == 1 && e->sprite.dist <= 0.5)
 	{
+		if (a->life < 150 || a->ammo < 300)
+			e->life = 0;
 		if (a->life < 150)
 			a->life += 10;
+		if (a->life > 150)
+			a->life = 150;
 		if (a->ammo < 300)
 			a->ammo += 30;
-		if (a->life != 150 && a->ammo != 300)
-			e->life = 0;
+		if (a->ammo > 300)
+			a->ammo = 300;
 	}
 }
 
