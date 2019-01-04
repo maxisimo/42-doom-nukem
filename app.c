@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   app.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lchappon <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/16 16:06:47 by lchappon          #+#    #+#             */
-/*   Updated: 2019/01/03 20:33:46 by lchappon         ###   ########.fr       */
+/*   Updated: 2019/01/04 17:07:50 by maxisimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void	ft_app_countmap(t_app *app)
 	count[2] = 0;
 	count[0] = 0;
 	if (((count[3] = open(app->fname, O_RDONLY)) < 0))
-		ft_error("Fatal error : invalid file.");
+		ft_error("Error : invalid file.");
 	while ((get_next_line(count[3], &s)) > 0)
 	{
 		array = ft_strsplit(s, ' ');
@@ -31,6 +31,8 @@ static void	ft_app_countmap(t_app *app)
 			count[1]++;
 		if (count[1] > count[2])
 			count[2] = count[1];
+		else if (count[1] < count[2])
+			ft_error("Error : Invalid file.");
 		ft_free_strsplit(array);
 		count[0]++;
 		if (count[0] > 100 || count[2] > 100)
