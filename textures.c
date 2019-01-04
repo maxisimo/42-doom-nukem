@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 11:54:23 by thbernar          #+#    #+#             */
-/*   Updated: 2018/12/27 17:17:05 by lchappon         ###   ########.fr       */
+/*   Updated: 2019/01/04 16:00:27 by lchappon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,4 @@ void	textures_load(t_app *a)
 	bmp_loadfile(&a->textures[7], "textures/door1.bmp");
 	bmp_loadfile(&a->textures[8], "textures/door2.bmp");
 	//bmp_loadfile(&a->textures[9], "textures/sky1.bmp");
-	bmp_loadfile(&a->sprites[0], "sprites/ak47.bmp");
-	bmp_loadfile(&a->sprites[1], "sprites/scope.bmp");
 }
