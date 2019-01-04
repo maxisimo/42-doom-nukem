@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/16 16:09:00 by lchappon          #+#    #+#             */
-/*   Updated: 2018/12/18 14:40:53 by maxisimo         ###   ########.fr       */
+/*   Updated: 2019/01/03 20:26:39 by lchappon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,18 @@ void	ft_put_pxl_to_img(t_app *a, t_color c, int x, int y)
 	int i;
 
 	i = (x + (y * WIN_W)) * 4;
-	a->img_data[i] = (char)c.b;
-	a->img_data[i + 1] = (char)c.g;
-	a->img_data[i + 2] = (char)c.r;
+	if (a->life2 != a->life)
+	{
+		a->img_data[i] = (char)255 - c.b;
+		a->img_data[i + 1] = (char)255 - c.g;
+		a->img_data[i + 2] = (char)255 - c.r;
+	}
+	else
+	{
+		a->img_data[i] = (char)c.b;
+		a->img_data[i + 1] = (char)c.g;
+		a->img_data[i + 2] = (char)c.r;
+	}
 }
 
 void	ft_put_circle_to_img(t_app *a, t_circle *c)

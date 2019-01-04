@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/26 17:11:44 by thbernar          #+#    #+#             */
-/*   Updated: 2018/12/29 16:34:50 by lchappon         ###   ########.fr       */
+/*   Updated: 2019/01/03 20:24:24 by lchappon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -214,6 +214,7 @@ typedef struct		s_app
 	t_enemy			*enemies;
 	t_wall			wall;
 	double			life;
+	double			life2;
 	int				ammo;
 }					t_app;
 
