@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 11:54:23 by thbernar          #+#    #+#             */
-/*   Updated: 2019/01/04 17:14:43 by lchappon         ###   ########.fr       */
+/*   Updated: 2019/01/04 17:33:19 by lchappon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	sprites_load(t_app *a)
 {
-	//a->spr_num = 7;
 	bmp_loadfile(&a->sprites[0], "sprites/zombie1.bmp");
 	bmp_loadfile(&a->sprites[1], "sprites/ak47.bmp");
 	bmp_loadfile(&a->sprites[2], "sprites/ak47fired.bmp");
@@ -22,43 +21,14 @@ void	sprites_load(t_app *a)
 	bmp_loadfile(&a->weapon.img, "sprites/ak47.bmp");
 	bmp_loadfile(&a->weapon.img2, "sprites/ak47fired.bmp");
 	bmp_loadfile(&a->weapon.scope, "sprites/scope.bmp");
-	/*
-	bmp_loadfile(&a->startscreentxt, "sprites/zombie1.bmp");
-	a->sprites[2].p.x = 2.5;
-	a->sprites[2].p.y = 2.5;
-	*/
 }
 
-/*
-void	sort_sprites(t_app *a)
+void	sprites_img(t_app *a, t_spr *s, int type)
 {
-	int		i;
-	int		n;
-	int		new;
-	t_bmp	tmp;
-
-	n = a->spr_num;
-	new = 1;
-	while (new != 0)
-	{
-		new = 0;
-		i = 0;
-		while (++i <= n - 1)
-		{
-			if (a->sprites[i].dist - a->sprites[i - 1].dist > 0.1)
-			{
-				tmp = a->sprites[i];
-				a->sprites[i] = a->sprites[i - 1];
-				a->sprites[i - 1] = tmp;
-				new = 1;
-			}
-		}
-	}
-}
-*/
-
-void	sprites_init(t_app *a, t_spr *s, int type)
-{
+	if (type == 0)
+		s->img = &a->sprites[0];
+	if (type == 1)
+		s->img = &a->sprites[1];
 	if (type == 2)
 	{
 		if (s->spr_x <= 0 && s->spr_y <= 0)
@@ -70,6 +40,10 @@ void	sprites_init(t_app *a, t_spr *s, int type)
 		if (s->spr_x >= 0 && s->spr_y >= 0)
 			s->img = &a->sprites[3];
 	}
+}
+
+void	sprites_init(t_app *a, t_spr *s)
+{
 	s->invdet = 1.0 / (a->cam.plane.x * a->cam.dir.y -
 			a->cam.dir.x * a->cam.plane.y);
 	s->change_x = s->invdet * (a->cam.dir.y * s->spr_y -
@@ -135,7 +109,8 @@ void	put_sprite(t_app *a, t_spr *s)
 
 void	sprites_draw(t_app *a, t_enemy *e)
 {
-	sprites_init(a, &e->sprite, e->type);
+	sprites_img(a, &e->sprite, e->type);
+	sprites_init(a, &e->sprite);
 	if (a->is_weapon == 1 && a->weapon.is_fired == 1 && a->ammo > 0 &&
 			WIN_W / 2 >= e->sprite.start_x && WIN_W / 2 <= e->sprite.end_x &&
 			WIN_H / 2 >= e->sprite.start_y && WIN_H / 2 <= e->sprite.end_y &&

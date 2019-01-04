@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 18:12:53 by maxisimo          #+#    #+#             */
-/*   Updated: 2019/01/04 17:17:24 by lchappon         ###   ########.fr       */
+/*   Updated: 2019/01/04 17:47:20 by lchappon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,8 @@ static void	enemies_count(t_app *a)
 				a->enemies_count++;
 				a->enemies_count2++;
 			}
-			if (a->map[p.x][p.y] == 11)
-			{
+			if (a->map[p.x][p.y] == 11 || a->map[p.x][p.y] == 12)
 				a->enemies_count++;
-			}
 			p.x++;
 		}
 		p.y++;
@@ -57,35 +55,19 @@ static void	enemies_get_pos(t_app *a)
 		p.x = 0;
 		while (p.x < a->map_size.x)
 		{
-			if (a->map[p.x][p.y] == 10)
+			if (a->map[p.x][p.y] == 10 || a->map[p.x][p.y] == 11 ||
+					a->map[p.x][p.y] == 12)
 			{
 				a->enemies[i].pos.y = (double)p.y + 0.5;
 				a->enemies[i].pos.x = (double)p.x + 0.5;
-				a->enemies[i].sprite.img = &a->sprites[0];
 				a->enemies[i].life = 100;
-				a->enemies[i].type = 0;
+				a->map[p.x][p.y] == 10 ? a->enemies[i].type = 0 : 0;
+				a->map[p.x][p.y] == 11 ? a->enemies[i].type = 1 : 0;
+				a->map[p.x][p.y] == 12 ? a->enemies[i].type = 2 : 0;
 				a->map[p.x][p.y] = 0;
-				printf("-> %f %f\n", a->enemies[i].pos.x, a->enemies[i].pos.y);
+				if (a->enemies[i].type == 0)
+					printf("-> %f %f\n", a->enemies[i].pos.x, a->enemies[i].pos.y);
 				i++;
-			}
-			//PICK
-			if (a->map[p.x][p.y] == 11)
-			{
-				a->enemies[i].pos.y = (double)p.y + 0.5;
-				a->enemies[i].pos.x = (double)p.x + 0.5;
-				a->enemies[i].sprite.img = &a->sprites[1];
-				a->enemies[i].life = 100;
-				a->enemies[i].type = 1;
-				a->map[p.x][p.y] = 0;
-				i++;
-			}
-			//BLOCK
-			if (a->map[p.x][p.y] == 12)
-			{
-			}
-			//FINAL
-			if (a->map[p.x][p.y] == 13)
-			{
 			}
 			p.x++;
 		}
