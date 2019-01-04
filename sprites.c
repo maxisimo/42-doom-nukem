@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 11:54:23 by thbernar          #+#    #+#             */
-/*   Updated: 2018/12/29 16:38:45 by lchappon         ###   ########.fr       */
+/*   Updated: 2019/01/04 16:01:04 by lchappon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,19 @@
 
 void	sprites_load(t_app *a)
 {
-	a->spr_num = 7;
-	bmp_loadfile(&a->sprites[2], "sprites/zombie1.bmp");
+	//a->spr_num = 7;
+	bmp_loadfile(&a->sprites[0], "sprites/zombie1.bmp");
 	bmp_loadfile(&a->weapon.img, "sprites/ak47.bmp");
 	bmp_loadfile(&a->weapon.img2, "sprites/ak47fired.bmp");
 	bmp_loadfile(&a->weapon.scope, "sprites/scope.bmp");
+	/*
 	bmp_loadfile(&a->startscreentxt, "sprites/zombie1.bmp");
 	a->sprites[2].p.x = 2.5;
 	a->sprites[2].p.y = 2.5;
+	*/
 }
 
+/*
 void	sort_sprites(t_app *a)
 {
 	int		i;
@@ -49,10 +52,11 @@ void	sort_sprites(t_app *a)
 		}
 	}
 }
+*/
 
 void	sprites_init(t_app *a, t_spr *s)
 {
-	/*
+	/* MULTI-SPRITE
 	if (s->spr_x <= 0 && s->spr_y <= 0)
 		s->img = &a->sprites[0];
 	if (s->spr_x <= 0 && s->spr_y >= 0)
