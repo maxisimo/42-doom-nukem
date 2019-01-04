@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/05 11:54:43 by maxisimo          #+#    #+#             */
-/*   Updated: 2019/01/03 19:32:38 by maxisimo         ###   ########.fr       */
+/*   Updated: 2019/01/04 13:54:09 by maxisimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,42 +14,40 @@
 
 static void	texture_load(t_map *map)
 {
-	bmp_loadfile(&map->textures[0], "../textures/bigdoor.bmp");
-	bmp_loadfile(&map->textures[1], "../textures/dude.bmp");
-	bmp_loadfile(&map->textures[2], "../textures/metal.bmp");
-	bmp_loadfile(&map->textures[3], "../textures/floor.bmp");
-	bmp_loadfile(&map->textures[4], "../textures/skulwall.bmp");
-	bmp_loadfile(&map->textures[5], "../textures/marbface.bmp");
-	bmp_loadfile(&map->textures[6], "../textures/skulwall2.bmp");
+	bmp_loadfile(&map->textures[0], "textures/bigdoor.bmp");
+	bmp_loadfile(&map->textures[1], "textures/dude.bmp");
+	bmp_loadfile(&map->textures[2], "textures/metal.bmp");
+	bmp_loadfile(&map->textures[3], "textures/floor.bmp");
+	bmp_loadfile(&map->textures[4], "textures/skulwall.bmp");
+	bmp_loadfile(&map->textures[5], "textures/marbface.bmp");
+	bmp_loadfile(&map->textures[6], "textures/skulwall2.bmp");
 }
 
 void		error(void)
 {
-	ft_putendl("usage: ./map_generator newfilename [width] [height]");
-	ft_putendl("or");
-	ft_putendl("usage: ./map_generator filename");
+	ft_putendl("usage: ./map_generator newfilename create");
+	ft_putendl("                 or                   ");
+	ft_putendl("usage: ./map_generator filename edit");
 }
 
-void		is_argc_2(char *s, t_map *map)
+void		is_edit(char *s, t_map *map)
 {
-	map->ac = 2;
+	map->edit = 1;
 	map->name = s;
 	map->i = 1;
 	map->player = 0;
+	init(map);
 }
 
-void		is_argc_4(char *s1, char *s2, char *s3, t_map *map)
+void		is_create(char *s, t_map *map)
 {
-	map->ac = 4;
-	map->width = (abs(ft_atoi(s2)) > 40) ? 40 : abs(ft_atoi(s2));
-	map->height = (abs(ft_atoi(s3)) > 40) ? 40 : abs(ft_atoi(s3));
-	map->blocw = 1280 / map->width;
-	map->bloch = 1280 / map->height;
-	map->width *= map->blocw;
-	map->height *= map->bloch;
-	map->name = s1;
+	map->size = 40;
+	map->bloc = 1280 / map->size;
+	map->size *= map->bloc;
+	map->name = s;
 	map->i = 1;
 	map->player = 0;
+	init_tab(map);
 }
 
 void		start(t_map *map)

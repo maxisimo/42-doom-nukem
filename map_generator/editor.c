@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/02 11:41:56 by maxisimo          #+#    #+#             */
-/*   Updated: 2018/12/18 14:15:14 by maxisimo         ###   ########.fr       */
+/*   Updated: 2019/01/04 13:54:13 by maxisimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static void	countmap(t_map *map)
 	count[2] = 0;
 	count[0] = 0;
 	if (((fd = open(map->name, O_RDONLY)) < 0))
-		ft_error("Fail to read file");
+		ft_error("Error : Fail to read file");
 	while ((get_next_line(fd, &s)) > 0)
 	{
 		array = ft_strsplit(s, ' ');
@@ -49,10 +49,9 @@ static void	countmap(t_map *map)
 		count[0]++;
 	}
 	free(s);
-	if (count[2] > 55 || count[0] > 55)
-		ft_error("File is to big to be edited");
-	map->width = count[2];
-	map->height = count[0];
+	if (count[2] != 40 || count[0] != 40)
+		ft_error("Error : File size must be 40x40");
+	map->size = count[0];
 }
 
 static void	allocmap(t_map *map)
@@ -60,16 +59,16 @@ static void	allocmap(t_map *map)
 	int		i;
 
 	i = 0;
-	if (!(map->map = (int**)malloc(sizeof(int*) * map->height / map->bloch)))
+	if (!(map->map = (int**)malloc(sizeof(int*) * map->size / map->bloc)))
 	{
-		ft_error("fail to malloc tab");
+		ft_error("Error : Fail to malloc tab");
 		exit(-1);
 	}
-	while (i < map->height / map->bloch)
+	while (i < map->size / map->bloc)
 	{
-		if (!(map->map[i] = (int*)malloc(sizeof(int) * map->width / map->blocw)))
+		if (!(map->map[i] = (int*)malloc(sizeof(int) * map->size / map->bloc)))
 		{
-			ft_error("fail to malloc tab");
+			ft_error("Error : Fail to malloc tab");
 			exit(-1);
 		}
 		i++;
@@ -84,13 +83,13 @@ static void	writemap(t_map *map)
 
 	map->p.y = 0;
 	if (((fd = open(map->name, O_RDONLY)) < 0))
-		ft_error("Fatal error : invalid file.");
-	while ((get_next_line(fd, &s)) > 0 && map->p.y < map->height / map->bloch)
+		ft_error("Error : invalid file.");
+	while ((get_next_line(fd, &s)) > 0 && map->p.y < map->size / map->bloc)
 	{
 		map->p.x = 0;
 		array = ft_strsplit(s, ' ');
 		free(s);
-		while (map->p.x < map->width / map->blocw)
+		while (map->p.x < map->size / map->bloc)
 		{
 			if (array[map->p.x])
 				map->map[map->p.y][map->p.x] = ft_atoi(array[map->p.x]);
@@ -108,10 +107,8 @@ static void	writemap(t_map *map)
 void		init(t_map *map)
 {
 	countmap(map);
-	map->blocw = 1320 / map->width;
-	map->bloch = 1320 / map->height;
-	map->width *= map->blocw;
-	map->height *= map->bloch;
+	map->bloc = 1280 / map->size;
+	map->size *= map->bloc;
 	allocmap(map);
 	writemap(map);
 }

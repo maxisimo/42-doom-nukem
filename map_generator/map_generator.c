@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/29 20:27:34 by maxisimo          #+#    #+#             */
-/*   Updated: 2019/01/03 14:52:39 by maxisimo         ###   ########.fr       */
+/*   Updated: 2019/01/04 13:43:26 by maxisimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,19 @@ void		init_tab(t_map *map)
 	int		i;
 
 	i = 0;
-	if (!(map->map = (int**)malloc(sizeof(int*) * map->height / map->bloch)))
+	if (!(map->map = (int**)malloc(sizeof(int*) * map->size / map->bloc)))
 	{
-		ft_error("fail to malloc");
+		ft_error("Error : Fail to malloc");
 		exit(-1);
 	}
-	while (i < map->height / map->bloch)
+	while (i < map->size / map->bloc)
 	{
-		if (!(map->map[i] = (int*)malloc(sizeof(int) * map->width / map->blocw)))
+		if (!(map->map[i] = (int*)malloc(sizeof(int) * map->size / map->bloc)))
 		{
-			ft_error("fail to malloc");
+			ft_error("Error : Fail to malloc");
 			exit(-1);
 		}
-		ft_bzero(map->map[i], sizeof(int) * (map->width / map->blocw));
+		ft_bzero(map->map[i], sizeof(int) * (map->size / map->bloc));
 		i++;
 	}
 }
@@ -39,16 +39,16 @@ void		fill_tab(int x, int y, int value, t_map *map)
 	int		i;
 	int		j;
 	int		fd;
-	char	s[map->width];
+	char	s[map->size];
 
 	i = 0;
 	map->map[y][x] = value;
 	if (((fd = open(map->name, O_CREAT | O_WRONLY, 446)) < 0))
-		ft_error("File not create correctly");
-	while (i < map->height / map->bloch)
+		ft_error("Error : File not create correctly");
+	while (i < map->size / map->bloc)
 	{
 		j = -1;
-		while (++j < map->width / map->blocw)
+		while (++j < map->size / map->bloc)
 		{
 			s[j] = (abs(map->map[i][j] % 10) + 48);
 			if (map->map[i][j] < 0)
@@ -56,7 +56,7 @@ void		fill_tab(int x, int y, int value, t_map *map)
 			ft_putchar_fd(s[j], fd);
 			ft_putchar_fd(' ', fd);
 		}
-		if (i + 1 != map->height / map->bloch)
+		if (i + 1 != map->size / map->bloc)
 			ft_putchar_fd('\n', fd);
 		i++;
 	}

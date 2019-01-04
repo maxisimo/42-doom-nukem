@@ -6,37 +6,40 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/29 19:39:00 by maxisimo          #+#    #+#             */
-/*   Updated: 2019/01/02 15:48:06 by lchappon         ###   ########.fr       */
+/*   Updated: 2019/01/04 14:44:38 by maxisimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "map_generator.h"
 
-static int	is_extension_valid(char *fname)
+static int	check(char *fname)
 {
 	if (ft_strncmp(ft_strrev(fname), "d3w.", 4) == 0)
 		return (1);
+	else if (ft_strncmp(ft_strrev(fname), "edit", 4) == 0)
+		return (2);
+	else if (ft_strncmp(ft_strrev(fname), "etaerc", 6) == 0)
+		return (3);
 	else
 		return (0);
 }
 
-int		main(int ac, char **av)
+int			main(int ac, char **av)
 {
 	t_map	map;
 
-	if (ac == 4 && ft_strisnumeric(av[2]) == 1 && ft_strisnumeric(av[3]) == 1)
+	if (ac == 3 && check(ft_strdup(av[1])) == 1)
 	{
-		is_argc_4(av[1], av[2], av[3], &map);
-		init_tab(&map);
-		start(&map);
-		mlx_hook(map.win, 2, (1L << 0), &key_hook, &map);
-		mlx_mouse_hook(map.win, mouse_hook, &map);
-		mlx_loop(map.mlx);
-	}
-	else if (ac == 2 && is_extension_valid(ft_strdup(av[1])) == 1)
-	{
-		is_argc_2(av[1], &map);
-		init(&map);
+		ft_bzero(&map, sizeof(t_map));
+		if (check(ft_strdup(av[2])) == 2)
+			is_edit(av[1], &map);
+		else if (check(ft_strdup(av[2])) == 3)
+			is_create(av[1], &map);
+		else
+		{
+			error();
+			return (0);
+		}
 		start(&map);
 		mlx_hook(map.win, 2, (1L << 0), &key_hook, &map);
 		mlx_mouse_hook(map.win, mouse_hook, &map);

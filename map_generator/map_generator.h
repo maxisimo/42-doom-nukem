@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/29 19:40:45 by maxisimo          #+#    #+#             */
-/*   Updated: 2019/01/02 16:30:30 by lchappon         ###   ########.fr       */
+/*   Updated: 2019/01/04 13:19:18 by maxisimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,17 +26,13 @@ typedef struct	s_map
 	int			endian;
 	int			sl;
 	int			bpp;
-	int			width;
-	int			height;
-	int			blocw;
-	int			bloch;
+	int			size;
+	int			bloc;
 	int			x;
 	int			y;
 	int			i;
 	int			player;
-	int			but1;
-	int			but2;
-	int			ac;
+	int			edit;
     int		    tempx;
 	int		    tempy;
 	int		    temp2x;
@@ -48,8 +44,8 @@ typedef struct	s_map
 }				t_map;
 
 void			error(void);
-void	        is_argc_2(char *s, t_map *map);
-void        	is_argc_4(char *s1, char *s2, char *s3, t_map *map);
+void	        is_edit(char *s, t_map *map);
+void        	is_create(char *s, t_map *map);
 void			start(t_map *map);
 
 int				key_hook(int keycode, t_map *map);
