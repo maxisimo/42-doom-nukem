@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/05 11:54:43 by maxisimo          #+#    #+#             */
-/*   Updated: 2019/01/04 13:54:09 by maxisimo         ###   ########.fr       */
+/*   Updated: 2019/01/06 14:45:05 by maxisimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ static void	texture_load(t_map *map)
 
 void		error(void)
 {
-	ft_putendl("usage: ./map_generator newfilename create");
+	ft_putendl("usage: ./map_generator newfile.w3d create");
 	ft_putendl("                 or                   ");
-	ft_putendl("usage: ./map_generator filename edit");
+	ft_putendl("usage: ./map_generator filename.w3d edit");
 }
 
 void		is_edit(char *s, t_map *map)

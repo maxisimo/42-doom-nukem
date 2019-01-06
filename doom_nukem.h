@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/26 17:11:44 by thbernar          #+#    #+#             */
-/*   Updated: 2019/01/04 17:03:53 by lchappon         ###   ########.fr       */
+/*   Updated: 2019/01/06 20:10:33 by maxisimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,14 @@
 # define WIN_W 1280
 # define WIN_H 720
 # define START "PRESS ANY KEY TO START"
+# define SENTENCE1 "October, 10th 2042"
+# define SENTENCE2 "after the II world war, adolf hitler commits suicide for"
+# define SENTENCE3 "not having to answer for his many crimes. Many followers"
+# define SENTENCE4 "continued for years to venerate him like a god. In the year"
+# define SENTENCE5 "2032, some would have discovered a treasure, a piece of"
+# define SENTENCE6 "inestimable value however during this discovery a virus was"
+# define SENTENCE7 "released transforming all the people present in the jail in"
+# define SENTENCE8 "zombie ... Find the piece but becareful to the nun."
 # define HFOV_RAD 30 * 2 * M_PI / 360
 # define FOV_RAD 60 * 2 * M_PI / 360
 # define WIN_HS WIN_H / 2 + 250
@@ -180,6 +188,7 @@ typedef struct		s_app
 	int				texx;
 	int				texy;
 	int				startscreen;
+	int				endscreen;
 	int				texnum;
 	int				current_thread;
 	int				is_weapon;
@@ -200,6 +209,7 @@ typedef struct		s_app
 	double			zbuffer[WIN_W];
 	t_bmp			startscreentxt;
 	t_bmp			logo;
+	t_bmp			game_over;
 	t_bmp			textures[10];
 	t_bmp			sprites[10];
 	t_coord			map_size;
@@ -275,6 +285,8 @@ void				sprites_get_pos(t_app *a);
 void				textures_load(t_app *a);
 
 void				startscreen_draw(t_app *a);
+void				story(t_app *a);
+void				game_over(t_app *a);
 
 void				enemies_init(t_app *a);
 void				enemies_draw(t_app *a);

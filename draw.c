@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/16 16:07:10 by lchappon          #+#    #+#             */
-/*   Updated: 2019/01/03 20:25:18 by lchappon         ###   ########.fr       */
+/*   Updated: 2019/01/06 20:09:20 by maxisimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -211,7 +211,8 @@ int				ft_draw(t_app *a)
 			mlx_string_put(a->mlx, a->win, 10, WIN_H - 70, 0xFFFFFF, ft_strjoin(ft_itoa(a->enemies_count2), " ENEMIES"));
 		}
 		else
-			mlx_string_put(a->mlx, a->win, WIN_WS, WIN_HS, 0xFFFFFF, "GAME OVER");
+			game_over(a);
+			//mlx_string_put(a->mlx, a->win, WIN_WS, WIN_HS, 0xFFFFFF, "GAME OVER");
 	}
 	else
 		startscreen_draw(a);
