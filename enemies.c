@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 18:12:53 by maxisimo          #+#    #+#             */
-/*   Updated: 2019/01/06 17:51:38 by lchappon         ###   ########.fr       */
+/*   Updated: 2019/01/06 18:19:41 by lchappon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,10 @@ static void	enemies_count(t_app *a)
 		p.x = 0;
 		while (p.x < a->map_size.x)
 		{
+			if (a->map[p.x][p.y] >= 10 && a->map[p.x][p.y] <= 13)
+				a->enemies_count++;
 			if (a->map[p.x][p.y] == 10)
-			{
-				a->enemies_count++;
 				a->enemies_count2++;
-			}
-			if (a->map[p.x][p.y] == 11 || a->map[p.x][p.y] == 12)
-				a->enemies_count++;
 			p.x++;
 		}
 		p.y++;
@@ -55,8 +52,7 @@ static void	enemies_get_pos(t_app *a)
 		p.x = 0;
 		while (p.x < a->map_size.x)
 		{
-			if (a->map[p.x][p.y] == 10 || a->map[p.x][p.y] == 11 ||
-					a->map[p.x][p.y] == 12)
+			if (a->map[p.x][p.y] >= 10 && a->map[p.x][p.y] <= 13)
 			{
 				a->enemies[i].pos.y = (double)p.y + 0.5;
 				a->enemies[i].pos.x = (double)p.x + 0.5;
@@ -64,7 +60,9 @@ static void	enemies_get_pos(t_app *a)
 				a->map[p.x][p.y] == 10 ? a->enemies[i].type = 0 : 0;
 				a->map[p.x][p.y] == 11 ? a->enemies[i].type = 1 : 0;
 				a->map[p.x][p.y] == 12 ? a->enemies[i].type = 2 : 0;
-				a->map[p.x][p.y] = 0;
+				a->map[p.x][p.y] == 13 ? a->enemies[i].type = 3 : 0;
+				if (a->map[p.x][p.y] < 12)
+					a->map[p.x][p.y] = 0;
 				if (a->enemies[i].type == 0)
 					printf("-> %f %f\n", a->enemies[i].pos.x, a->enemies[i].pos.y);
 				i++;
