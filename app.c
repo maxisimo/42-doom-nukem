@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/16 16:06:47 by lchappon          #+#    #+#             */
-/*   Updated: 2019/01/06 14:21:43 by maxisimo         ###   ########.fr       */
+/*   Updated: 2019/01/06 20:33:19 by maxisimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,7 @@ static void	ft_app_countmap(t_app *app)
 		count[1] = 0;
 		while (array[count[1]])
 			count[1]++;
-		if (count[1] > count[2])
-			count[2] = count[1];
-		else if (count[1] < count[2])
+		count[1] >= count[2] ? count[2] = count[1] :
 			ft_error("Error : Invalid file.");
 		ft_free_strsplit(array);
 		count[0]++;

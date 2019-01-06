@@ -6,7 +6,7 @@
 #    By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/01 00:25:16 by thbernar          #+#    #+#              #
-#    Updated: 2018/12/16 16:09:50 by lchappon         ###   ########.fr        #
+#    Updated: 2019/01/06 21:37:27 by maxisimo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,12 +18,14 @@ SRC = main.c \
 	  raycasting.c \
 	  app.c \
 	  minimap.c \
-	  hook.c \
+	  key_hook.c \
+	  mouse_hook.c \
+	  doors.c \
 	  draw.c \
 	  move.c \
 	  weapons.c \
 	  sprites.c \
-	  textures.c \
+	  load.c \
 	  shades.c \
 	  startscreen.c \
 	  enemies.c \

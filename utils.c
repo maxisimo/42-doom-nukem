@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/16 16:09:00 by lchappon          #+#    #+#             */
-/*   Updated: 2019/01/04 15:45:50 by lchappon         ###   ########.fr       */
+/*   Updated: 2019/01/06 21:29:45 by maxisimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,4 +70,22 @@ void	ft_put_bmp_to_img(t_app *a, t_bmp bmp, int x, int y)
 		}
 		p.y++;
 	}
+}
+
+void	ft_choose_color(int x, int start, t_app *a)
+{
+	t_color c1;
+
+	a->texnum = a->map[a->mapy][a->mapx] - 1;
+	if (a->texnum >= DOOR2)
+		a->texnum = DOOR1;
+	if (a->texy < 0 && a->texnum == DOOR1)
+		a->texnum = DOOR2;
+	ft_door_side(a);
+	if (a->texy < 0)
+		a->texy += TEXSIZE;
+	c1 = get_pixel_color(&a->textures[a->texnum], a->texx, a->texy);
+	if (a->c == 0)
+		ft_apply_shadow_to_color(&c1, a->wall.clr_intensity);
+	ft_put_pxl_to_img(a, c1, x, start);
 }

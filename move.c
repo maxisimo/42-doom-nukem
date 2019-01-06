@@ -3,44 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   move.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lchappon <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/16 16:08:17 by lchappon          #+#    #+#             */
-/*   Updated: 2019/01/06 18:36:55 by lchappon         ###   ########.fr       */
+/*   Updated: 2019/01/06 21:37:08 by maxisimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "doom_nukem.h"
-
-void		ft_doors(t_app *a)
-{
-	if (fabs(a->cam.dir.x) > fabs(a->cam.dir.y))
-	{
-		if (a->map[(int)a->pos.x][(int)(a->pos.y + a->cam.dir.x)] == HDOOR &&
-				a->move.v <= 1)
-			a->map[(int)a->pos.x][(int)(a->pos.y + a->cam.dir.x)] = HDOOR_O;
-		else if (a->map[(int)a->pos.x][(int)(a->pos.y + a->cam.dir.x)] ==
-				HDOOR_O && a->map[(int)a->pos.x][(int)a->pos.y] != HDOOR_O &&
-				a->move.v <= 1)
-			a->map[(int)a->pos.x][(int)(a->pos.y + a->cam.dir.x)] = HDOOR;
-	}
-	else
-	{
-		if (a->map[(int)(a->pos.x + a->cam.dir.y)][(int)a->pos.y] == VDOOR &&
-				a->move.v <= 1)
-			a->map[(int)(a->pos.x + a->cam.dir.y)][(int)a->pos.y] = VDOOR_O;
-		else if (a->map[(int)(a->pos.x + a->cam.dir.y)][(int)a->pos.y] ==
-				VDOOR_O && a->map[(int)a->pos.x][(int)a->pos.y] != VDOOR_O &&
-				a->move.v <= 1)
-			a->map[(int)(a->pos.x + a->cam.dir.y)][(int)a->pos.y] = VDOOR;
-	}
-	if ((a->map[(int)a->pos.x][(int)(a->pos.y + a->cam.dir.x)] == 13 ||
-			a->map[(int)(a->pos.x + a->cam.dir.y)][(int)a->pos.y] == 13) &&
-			a->move.v <= 1)
-	{
-		// SCREAMER
-	}
-}
 
 void		ft_rotate(t_app *a)
 {

@@ -6,36 +6,11 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/16 16:07:10 by lchappon          #+#    #+#             */
-/*   Updated: 2019/01/06 20:21:04 by maxisimo         ###   ########.fr       */
+/*   Updated: 2019/01/06 21:40:54 by maxisimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "doom_nukem.h"
-
-void		ft_doors_info(t_app *a)
-{
-	if (((a->map[(int)a->pos.x][(int)(a->pos.y + a->cam.dir.x)] == HDOOR &&
-			fabs(a->cam.dir.x) > fabs(a->cam.dir.y)) ||
-			(a->map[(int)(a->pos.x + a->cam.dir.y)][(int)a->pos.y] == VDOOR &&
-			fabs(a->cam.dir.x) < fabs(a->cam.dir.y))) &&
-			a->move.v <= 1)
-		mlx_string_put(a->mlx, a->win, WIN_W / 2 - 90, WIN_H / 2, 0xFFFFFF,
-				"Press 'E' to open");
-	if (((a->map[(int)a->pos.x][(int)(a->pos.y + a->cam.dir.x)] == HDOOR_O &&
-			fabs(a->cam.dir.x) > fabs(a->cam.dir.y) &&
-			a->map[(int)a->pos.x][(int)a->pos.y] != HDOOR_O) ||
-			(a->map[(int)(a->pos.x + a->cam.dir.y)][(int)a->pos.y] == VDOOR_O &&
-			fabs(a->cam.dir.x) < fabs(a->cam.dir.y) &&
-			a->map[(int)a->pos.x][(int)a->pos.y] != VDOOR_O)) &&
-			a->move.v <= 1)
-		mlx_string_put(a->mlx, a->win, WIN_W / 2 - 90, WIN_H / 2, 0xFFFFFF,
-				"Press 'E' to close");
-	if ((a->map[(int)a->pos.x][(int)(a->pos.y + a->cam.dir.x)] == 13 ||
-			a->map[(int)(a->pos.x + a->cam.dir.y)][(int)a->pos.y] == 13) &&
-			a->move.v <= 1)
-		mlx_string_put(a->mlx, a->win, WIN_W / 2 - 90, WIN_H / 2, 0xFFFFFF,
-				"Press 'E' to end");
-}
 
 static void		ft_draw_sky(int x, int start, t_app *a)
 {
@@ -116,57 +91,6 @@ static void		ft_floor(int x, int y, t_app *a)
 	}
 }
 
-void			ft_door_side_entry(t_app *a)
-{
-	if (a->map[a->mapy][a->mapx] < WINDOW &&
-			a->side == 0 && a->ray.dir.x < 0 &&
-			a->map[a->mapy][a->mapx + 1] == VDOOR_O)
-		a->texnum = DOOR2;
-	else if (a->map[a->mapy][a->mapx] < WINDOW &&
-			a->side == 0 && a->ray.dir.x > 0 &&
-			a->map[a->mapy][a->mapx - 1] == VDOOR_O &&
-			(a->map[a->mapy][a->mapx - 2] <= 0 ||
-			a->map[a->mapy][a->mapx - 2] >= WINDOW))
-		a->texnum = DOOR2;
-	if (a->map[a->mapy][a->mapx] < WINDOW &&
-			a->side == 1 && a->ray.dir.y < 0 &&
-			a->map[a->mapy + 1][a->mapx] == HDOOR_O)
-		a->texnum = DOOR2;
-	else if (a->map[a->mapy][a->mapx] < WINDOW &&
-			a->side == 1 && a->ray.dir.y > 0 &&
-			a->map[a->mapy - 1][a->mapx] == HDOOR_O &&
-			(a->map[a->mapy - 2][a->mapx] <= 0 ||
-			a->map[a->mapy - 2][a->mapx] >= WINDOW))
-		a->texnum = DOOR2;
-}
-
-void			ft_door_side(t_app *a)
-{
-	if (a->map[a->mapy][a->mapx] == VDOOR && a->side == 0)
-		a->texnum = DOOR2;
-	if (a->map[a->mapy][a->mapx] == HDOOR && a->side == 1)
-		a->texnum = DOOR2;
-	ft_door_side_entry(a);
-}
-
-void			ft_choose_color(int x, int start, t_app *a)
-{
-	t_color c1;
-
-	a->texnum = a->map[a->mapy][a->mapx] - 1;
-	if (a->texnum >= DOOR2)
-		a->texnum = DOOR1;
-	if (a->texy < 0 && a->texnum == DOOR1)
-		a->texnum = DOOR2;
-	ft_door_side(a);
-	if (a->texy < 0)
-		a->texy += TEXSIZE;
-	c1 = get_pixel_color(&a->textures[a->texnum], a->texx, a->texy);
-	if (a->c == 0)
-		ft_apply_shadow_to_color(&c1, a->wall.clr_intensity);
-	ft_put_pxl_to_img(a, c1, x, start);
-}
-
 void			draw_wall(int x, int start, int end, t_app *a)
 {
 	if (a->side == 0)
@@ -193,10 +117,8 @@ void			draw_wall(int x, int start, int end, t_app *a)
 
 int				ft_draw(t_app *a)
 {
-	int		n[3];
-
 	a->img = mlx_new_image(a->win, WIN_W, WIN_H);
-	a->img_data = mlx_get_data_addr(a->img, &n[0], &n[1], &n[2]);
+	a->img_data = mlx_get_data_addr(a->img, &a->n[0], &a->n[1], &a->n[2]);
 	if (a->startscreen == 0)
 	{
 		if (a->life > 0)
@@ -210,14 +132,10 @@ int				ft_draw(t_app *a)
 			ft_move(a);
 			ft_rotate(a);
 			mlx_put_image_to_window(a->mlx, a->win, a->img, 0, 0);
-			ft_doors_info(a);
-			mlx_string_put(a->mlx, a->win, 10, WIN_H - 30, 0xFFFFFF, ft_strjoin(ft_itoa(a->life), " HEALTH POINTS"));
-			mlx_string_put(a->mlx, a->win, 10, WIN_H - 50, 0xFFFFFF, ft_strjoin(ft_itoa(a->ammo), " AMMUNITIONS"));
-			mlx_string_put(a->mlx, a->win, 10, WIN_H - 70, 0xFFFFFF, ft_strjoin(ft_itoa(a->enemies_count2), " ENEMIES"));
+			ft_info(a);
 		}
 		else
 			game_over(a);
-			//mlx_string_put(a->mlx, a->win, WIN_WS, WIN_HS, 0xFFFFFF, "GAME OVER");
 	}
 	else
 		startscreen_draw(a);

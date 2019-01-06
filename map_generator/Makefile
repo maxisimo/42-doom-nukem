@@ -6,7 +6,7 @@
 #    By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/29 22:26:16 by maxisimo          #+#    #+#              #
-#    Updated: 2018/12/18 16:31:26 by maxisimo         ###   ########.fr        #
+#    Updated: 2019/01/06 21:58:45 by maxisimo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,6 +17,7 @@ SRC = main.c \
 	  utils.c \
 	  draw.c \
 	  hook.c \
+	  color.c \
 	  ../bmp_parser.c \
 	  ../utils.c \
 	  ../utils2.c \

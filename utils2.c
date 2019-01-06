@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lchappon <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/16 16:09:25 by lchappon          #+#    #+#             */
-/*   Updated: 2018/12/16 16:09:26 by lchappon         ###   ########.fr       */
+/*   Updated: 2019/01/06 21:22:07 by maxisimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,4 +62,32 @@ void	ft_init_tex_fc(t_app *a)
 	}
 	if (a->end < 0)
 		a->end = WIN_H;
+}
+
+void	ft_info(t_app *a)
+{
+	if (((a->map[(int)a->pos.x][(int)(a->pos.y + a->cam.dir.x)] == HDOOR &&
+			fabs(a->cam.dir.x) > fabs(a->cam.dir.y)) ||
+			(a->map[(int)(a->pos.x + a->cam.dir.y)][(int)a->pos.y] == VDOOR &&
+			fabs(a->cam.dir.x) < fabs(a->cam.dir.y))) &&
+			a->move.v <= 1)
+		mlx_string_put(a->mlx, a->win, WIN_WD, WIN_HD, 0xFFFFFF, OPEN);
+	if (((a->map[(int)a->pos.x][(int)(a->pos.y + a->cam.dir.x)] == HDOOR_O &&
+			fabs(a->cam.dir.x) > fabs(a->cam.dir.y) &&
+			a->map[(int)a->pos.x][(int)a->pos.y] != HDOOR_O) ||
+			(a->map[(int)(a->pos.x + a->cam.dir.y)][(int)a->pos.y] == VDOOR_O &&
+			fabs(a->cam.dir.x) < fabs(a->cam.dir.y) &&
+			a->map[(int)a->pos.x][(int)a->pos.y] != VDOOR_O)) &&
+			a->move.v <= 1)
+		mlx_string_put(a->mlx, a->win, WIN_WD, WIN_HD, 0xFFFFFF, CLOSE);
+	if ((a->map[(int)a->pos.x][(int)(a->pos.y + a->cam.dir.x)] == 13 ||
+			a->map[(int)(a->pos.x + a->cam.dir.y)][(int)a->pos.y] == 13) &&
+			a->move.v <= 1)
+		mlx_string_put(a->mlx, a->win, WIN_WD, WIN_HD, 0xFFFFFF, END);
+	mlx_string_put(a->mlx, a->win, 10, WIN_H - 30, 0xFFFFFF,
+			ft_strjoin(ft_itoa(a->life), " HEALTH POINTS"));
+	mlx_string_put(a->mlx, a->win, 10, WIN_H - 50, 0xFFFFFF,
+			ft_strjoin(ft_itoa(a->ammo), " AMMUNITIONS"));
+	mlx_string_put(a->mlx, a->win, 10, WIN_H - 70, 0xFFFFFF,
+			ft_strjoin(ft_itoa(a->enemies_count2), " ENEMIES"));
 }

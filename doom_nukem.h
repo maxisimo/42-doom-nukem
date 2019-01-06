@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/26 17:11:44 by thbernar          #+#    #+#             */
-/*   Updated: 2019/01/06 20:10:33 by maxisimo         ###   ########.fr       */
+/*   Updated: 2019/01/06 21:35:27 by maxisimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,15 @@
 # define SENTENCE6 "inestimable value however during this discovery a virus was"
 # define SENTENCE7 "released transforming all the people present in the jail in"
 # define SENTENCE8 "zombie ... Find the piece but becareful to the nun."
+# define OPEN "Press 'E' to open"
+# define CLOSE "Press 'E' to close"
+# define END "Press 'E' to end"
 # define HFOV_RAD 30 * 2 * M_PI / 360
 # define FOV_RAD 60 * 2 * M_PI / 360
 # define WIN_HS WIN_H / 2 + 250
 # define WIN_WS WIN_W / 2 - 120
+# define WIN_HD WIN_H / 2
+# define WIN_WD WIN_W / 2 - 90
 # define TEXSIZE 64
 # define WINDOW 7
 # define HDOOR 8
@@ -177,6 +182,7 @@ typedef struct		s_app
 	char			*fname;
 	char			*img_data;
 	int				**map;
+	int				n[3];
 	int				spr_num;
 	int				p_count;
 	int				start;
@@ -243,17 +249,20 @@ int					ft_mouse_motion(int x, int y, t_app *app);
 
 int					ft_move(t_app *a);
 void				ft_rotate(t_app *a);
+
 void				ft_doors(t_app *a);
+void				draw_wall(int x, int start, int end, t_app *a);
+void				ft_door_side(t_app *a);
 
 void				ft_pthread(t_app *a);
 void				*raycasting(void *tab);
 
-void				ft_apply_shadow_to_cf(t_color *c, int y);
 void				draw_wall(int x, int start, int end, t_app *a);
 int					ft_draw(t_app *a);
 
-t_color				ft_choose_tex(t_app *a);
-void				ft_choose_color(int x, int start, t_app *a);
+void				ft_apply_shadow_to_cf(t_color *c, int y);
+void				ft_apply_shadow_to_spr(t_color *c, int y);
+void				ft_apply_shadow_to_color(t_color *c, double intensity);
 
 void				draw_minimap(t_app *a);
 void				put_pxl_to_img(t_app *a, int x, int y, int color);
@@ -262,27 +271,26 @@ void				draw_player(t_app *a);
 int					ft_rgb_to_hex(t_color c);
 void				ft_put_pxl_to_img(t_app *a, t_color c, int x, int y);
 void				ft_put_circle_to_img(t_app *a, t_circle *c);
-void				ft_import_textures(t_app *a);
 void				ft_put_bmp_to_img(t_app *a, t_bmp bmp, int x, int y);
+void				ft_choose_color(int x, int start, t_app *a);
 
 int					ft_close(t_app *app);
 void				ft_error(char *s);
 void				ft_free_strsplit(char **array);
 void				ft_init_tex_fc(t_app *a);
-void				ft_apply_shadow_to_color(t_color *c, double intensity);
-void				ft_apply_shadow_to_spr(t_color *c, int y);
+void				ft_info(t_app *a);
 
 void				bmp_loadfile(t_bmp *bmp, char *fname);
 t_color				get_pixel_color(t_bmp *img, int x, int y);
 
 void				weapons_draw_weapon(t_app *a);
 
-void				sprites_load(t_app *a);
 void				sort_sprites(t_app *a);
 void				sprites_draw(t_app *a, t_enemy *e);
 void				sprites_get_pos(t_app *a);
 
 void				textures_load(t_app *a);
+void				sprites_load(t_app *a);
 
 void				startscreen_draw(t_app *a);
 void				story(t_app *a);
