@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 18:12:53 by maxisimo          #+#    #+#             */
-/*   Updated: 2019/01/04 17:57:10 by lchappon         ###   ########.fr       */
+/*   Updated: 2019/01/06 18:53:22 by lchappon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,10 @@ static void	enemies_count(t_app *a)
 		p.x = 0;
 		while (p.x < a->map_size.x)
 		{
+			if (a->map[p.x][p.y] >= 10 && a->map[p.x][p.y] <= 13)
+				a->enemies_count++;
 			if (a->map[p.x][p.y] == 10)
-			{
-				a->enemies_count++;
 				a->enemies_count2++;
-			}
-			if (a->map[p.x][p.y] == 11 || a->map[p.x][p.y] == 12)
-				a->enemies_count++;
 			p.x++;
 		}
 		p.y++;
@@ -38,9 +35,24 @@ static void	enemies_count(t_app *a)
 
 static void	enemies_alloc(t_app *a)
 {
-	a->enemies = malloc(sizeof(t_enemy) * a->enemies_count);
+	a->enemies = ft_memalloc(sizeof(t_enemy) * a->enemies_count);
 	if (!(a->enemies))
 		exit(-1);
+}
+
+static void	enemies_get_type(t_app *a, t_coord p, int i)
+{
+	a->enemies[i].pos.y = (double)p.y + 0.5;
+	a->enemies[i].pos.x = (double)p.x + 0.5;
+	a->enemies[i].life = 100;
+	a->map[p.x][p.y] == 10 ? a->enemies[i].type = 0 : 0;
+	a->map[p.x][p.y] == 11 ? a->enemies[i].type = 1 : 0;
+	a->map[p.x][p.y] == 12 ? a->enemies[i].type = 2 : 0;
+	a->map[p.x][p.y] == 13 ? a->enemies[i].type = 3 : 0;
+	if (a->map[p.x][p.y] < 12)
+		a->map[p.x][p.y] = 0;
+	if (a->enemies[i].type == 0)
+		printf("-> %f %f\n", a->enemies[i].pos.x, a->enemies[i].pos.y);
 }
 
 static void	enemies_get_pos(t_app *a)
@@ -55,18 +67,9 @@ static void	enemies_get_pos(t_app *a)
 		p.x = 0;
 		while (p.x < a->map_size.x)
 		{
-			if (a->map[p.x][p.y] == 10 || a->map[p.x][p.y] == 11 ||
-					a->map[p.x][p.y] == 12)
+			if (a->map[p.x][p.y] >= 10 && a->map[p.x][p.y] <= 13)
 			{
-				a->enemies[i].pos.y = (double)p.y + 0.5;
-				a->enemies[i].pos.x = (double)p.x + 0.5;
-				a->enemies[i].life = 100;
-				a->map[p.x][p.y] == 10 ? a->enemies[i].type = 0 : 0;
-				a->map[p.x][p.y] == 11 ? a->enemies[i].type = 1 : 0;
-				a->map[p.x][p.y] == 12 ? a->enemies[i].type = 2 : 0;
-				a->map[p.x][p.y] = 0;
-				if (a->enemies[i].type == 0)
-					printf("-> %f %f\n", a->enemies[i].pos.x, a->enemies[i].pos.y);
+				enemies_get_type(a, p, i);
 				i++;
 			}
 			p.x++;
@@ -96,11 +99,11 @@ void		enemies_ai(t_app *a, t_enemy *e)
 	if (a->pos.y - 0.5 < e->pos.y && a->pos.y - e->pos.y > -6 &&
 			a->map[(int)(e->pos.x)][(int)(e->pos.y - 0.25)] == 0)
 		e->pos.y -= 0.02;
-	if (e->sprite.dist <= 0.5 && a->move.v <= 1)
+	if (e->sprite.dist <= 1 && a->move.v <= 1)
 		a->life -= 1;
 }
 
-void	enemies_sort(t_app *a)
+void		enemies_sort(t_app *a)
 {
 	int		i;
 	t_enemy	tmp;

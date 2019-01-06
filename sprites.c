@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 11:54:23 by thbernar          #+#    #+#             */
-/*   Updated: 2019/01/04 17:49:32 by lchappon         ###   ########.fr       */
+/*   Updated: 2019/01/06 18:41:18 by lchappon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,17 @@
 
 void	sprites_load(t_app *a)
 {
+	// ZOMBIE
 	bmp_loadfile(&a->sprites[0], "sprites/zombie1.bmp");
+	// BARREL
 	bmp_loadfile(&a->sprites[1], "sprites/ak47.bmp");
-	bmp_loadfile(&a->sprites[2], "sprites/ak47fired.bmp");
-	bmp_loadfile(&a->sprites[3], "sprites/scope.bmp");
+	// PILLAR
+	bmp_loadfile(&a->sprites[2], "sprites/scope.bmp");
+	// FINAL
+	bmp_loadfile(&a->sprites[3], "sprites/zombie1.bmp");
+	bmp_loadfile(&a->sprites[4], "sprites/ak47.bmp");
+	bmp_loadfile(&a->sprites[5], "sprites/ak47fired.bmp");
+	bmp_loadfile(&a->sprites[6], "sprites/scope.bmp");
 	bmp_loadfile(&a->weapon.img, "sprites/ak47.bmp");
 	bmp_loadfile(&a->weapon.img2, "sprites/ak47fired.bmp");
 	bmp_loadfile(&a->weapon.scope, "sprites/scope.bmp");
@@ -30,15 +37,17 @@ void	sprites_img(t_app *a, t_spr *s, int type)
 	if (type == 1)
 		s->img = &a->sprites[1];
 	if (type == 2)
+		s->img = &a->sprites[2];
+	if (type == 3)
 	{
 		if (s->spr_x <= 0 && s->spr_y <= 0)
-			s->img = &a->sprites[0];
-		if (s->spr_x <= 0 && s->spr_y >= 0)
-			s->img = &a->sprites[1];
-		if (s->spr_x >= 0 && s->spr_y <= 0)
-			s->img = &a->sprites[2];
-		if (s->spr_x >= 0 && s->spr_y >= 0)
 			s->img = &a->sprites[3];
+		if (s->spr_x <= 0 && s->spr_y >= 0)
+			s->img = &a->sprites[4];
+		if (s->spr_x >= 0 && s->spr_y <= 0)
+			s->img = &a->sprites[5];
+		if (s->spr_x >= 0 && s->spr_y >= 0)
+			s->img = &a->sprites[6];
 	}
 }
 

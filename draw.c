@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/16 16:07:10 by lchappon          #+#    #+#             */
-/*   Updated: 2019/01/06 20:09:20 by maxisimo         ###   ########.fr       */
+/*   Updated: 2019/01/06 20:21:04 by maxisimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,11 @@ void		ft_doors_info(t_app *a)
 			a->move.v <= 1)
 		mlx_string_put(a->mlx, a->win, WIN_W / 2 - 90, WIN_H / 2, 0xFFFFFF,
 				"Press 'E' to close");
+	if ((a->map[(int)a->pos.x][(int)(a->pos.y + a->cam.dir.x)] == 13 ||
+			a->map[(int)(a->pos.x + a->cam.dir.y)][(int)a->pos.y] == 13) &&
+			a->move.v <= 1)
+		mlx_string_put(a->mlx, a->win, WIN_W / 2 - 90, WIN_H / 2, 0xFFFFFF,
+				"Press 'E' to end");
 }
 
 static void		ft_draw_sky(int x, int start, t_app *a)

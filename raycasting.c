@@ -6,7 +6,7 @@
 /*   By: lchappon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/16 16:08:44 by lchappon          #+#    #+#             */
-/*   Updated: 2018/12/26 17:49:53 by lchappon         ###   ########.fr       */
+/*   Updated: 2019/01/06 18:11:28 by lchappon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,8 @@ static void	dda_init(t_app *app)
 static void	dda(t_app *app)
 {
 	while (app->map[app->mapy][app->mapx] <= 0 ||
-			(app->map[app->mapy][app->mapx] == WINDOW && app->p.x % 2 != 0))
+			(app->map[app->mapy][app->mapx] == WINDOW && app->p.x % 2 != 0) ||
+			app->map[app->mapy][app->mapx] >= 12)
 	{
 		if (app->wall.side_dist.x < app->wall.side_dist.y)
 		{
