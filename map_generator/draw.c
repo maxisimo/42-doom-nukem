@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/05 12:16:44 by maxisimo          #+#    #+#             */
-/*   Updated: 2019/01/06 22:01:07 by maxisimo         ###   ########.fr       */
+/*   Updated: 2019/01/07 18:13:28 by maxisimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void		put_px_to_img(t_map *map, int x, int y, int color)
 	if (x < map->size && y < map->size && x >= 0 && y >= 0)
 	{
 		color = mlx_get_color_value(map->mlx, color);
-		ft_memcpy(map->img_ptr + 4 * map->size * y + x * 4,
+		ft_memcpy(map->img_ptr + 4 * (map->size + 700) * y + x * 4,
 				&color, sizeof(int));
 	}
 }

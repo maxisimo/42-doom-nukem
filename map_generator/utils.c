@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/05 11:54:43 by maxisimo          #+#    #+#             */
-/*   Updated: 2019/01/06 14:45:05 by maxisimo         ###   ########.fr       */
+/*   Updated: 2019/01/07 18:14:43 by maxisimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,10 @@ void		start(t_map *map)
 {
 	map->mlx = mlx_init();
 	map->win = mlx_new_window(map->mlx, 1280 + 700, 1280, map->name);
-	map->img = mlx_new_image(map->mlx, 1280, 1280);
+	map->img = mlx_new_image(map->mlx, 1280 + 700, 1280);
 	map->img_ptr = mlx_get_data_addr(map->img,
 			&map->bpp, &map->sl, &map->endian);
 	texture_load(map);
-	infos(map);
 	draw_map(0, 0, map);
+	infos(map);
 }

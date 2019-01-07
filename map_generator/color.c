@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/06 21:57:36 by maxisimo          #+#    #+#             */
-/*   Updated: 2019/01/06 21:58:18 by maxisimo         ###   ########.fr       */
+/*   Updated: 2019/01/07 17:48:45 by maxisimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,10 @@ static void	choose_color(int x, int y, t_map *map)
 		}
 	}
 	else
-		ft_put_bmp(map, map->textures[map->i - 1], x, y);
+	{
+		printf("%d %d %d\n", map->textures[map->i - 1].height, x, y);
+		ft_put_bmp(map, map->textures[map->i - 1], 0, 0);
+	}
 }
 
 void		put_color2(int x, int y, t_map *map)

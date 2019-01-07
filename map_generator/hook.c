@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/05 12:14:38 by maxisimo          #+#    #+#             */
-/*   Updated: 2019/01/03 14:47:57 by maxisimo         ###   ########.fr       */
+/*   Updated: 2019/01/07 18:14:10 by maxisimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,15 +33,11 @@ int			key_hook(int keycode, t_map *map)
 int			mouse_hook(int mousecode, int x, int y, t_map *map)
 {
 	if (mousecode == 1)
-	{
 		map->i = (map->player == 1) ? -1 : map->i;
-		put_color(x, y, map);
-	}
 	else if (mousecode == 2)
-	{
 		map->i = 0;
-		put_color(x, y, map);
-	}
+	put_color(x, y, map);
 	mlx_put_image_to_window(map->mlx, map->win, map->img, 0, 0);
+	infos(map);
 	return (0);
 }
