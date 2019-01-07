@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/16 16:07:26 by lchappon          #+#    #+#             */
-/*   Updated: 2019/01/07 21:35:43 by lchappon         ###   ########.fr       */
+/*   Updated: 2019/01/07 22:04:19 by lchappon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,13 @@ int			ft_key_release(int key, t_app *app)
 
 int			ft_key_press2(int key, t_app *app)
 {
-	if (key == 49 && app->jump == 0 && app->crouch == 0)
+	if (key == 49 && app->jump == 0 && app->crouch == 0 &&
+		(app->fly == 1 || (app->map[(int)app->pos.x][(int)app->pos.y] < 12 &&
+			app->move.v <= 0) || (app->map[(int)app->pos.x][(int)app->pos.y]
+				>= 12 && app->move.v <= 2.4)))
 	{
-		app->jump = 1;
-		app->jumping = 1;
+			app->jump = 1;
+			app->jumping = 1;
 	}
 	else if (key == 3)
 		app->fly = app->fly == 0 ? 1 : 0;
