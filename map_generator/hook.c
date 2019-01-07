@@ -26,7 +26,10 @@ int			key_hook(int keycode, t_map *map)
 	else if (keycode == 53)
 		exit(0);
 	else if (keycode == 1)
+	{
+		map_save(map);
 		exit(0);
+	}
 	return (0);
 }
 
@@ -36,8 +39,6 @@ int			mouse_hook(int mousecode, int x, int y, t_map *map)
 		map->i = (map->player == 1) ? -1 : map->i;
 	else if (mousecode == 2)
 		map->i = 0;
-	put_color(x, y, map);
-	mlx_put_image_to_window(map->mlx, map->win, map->img, 0, 0);
-	infos(map);
+	map->map[y / map->bloc][x / map->bloc] = map->i;
 	return (0);
 }

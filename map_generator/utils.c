@@ -58,6 +58,5 @@ void		start(t_map *map)
 	map->img_ptr = mlx_get_data_addr(map->img,
 			&map->bpp, &map->sl, &map->endian);
 	texture_load(map);
-	draw_map(0, 0, map);
-	infos(map);
+	draw_map(map);
 }

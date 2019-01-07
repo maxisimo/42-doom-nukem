@@ -34,7 +34,7 @@ void		init_tab(t_map *map)
 	}
 }
 
-void		fill_tab(int x, int y, int value, t_map *map)
+void		map_save(t_map *map)
 {
 	int		i;
 	int		j;
@@ -42,7 +42,6 @@ void		fill_tab(int x, int y, int value, t_map *map)
 	char	s[map->size];
 
 	i = 0;
-	map->map[y][x] = value;
 	if (((fd = open(map->name, O_CREAT | O_WRONLY, 446)) < 0))
 		ft_error("Error : File not create correctly");
 	while (i < map->size / map->bloc)
