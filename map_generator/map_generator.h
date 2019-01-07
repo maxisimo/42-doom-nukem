@@ -59,7 +59,7 @@ int				mouse_hook(int mousecode, int x, int y, t_map *map);
 void			init(t_map *map);
 
 void			init_tab(t_map *map);
-void			fill_tab(int x, int y, int value, t_map *map);
+void			map_save(t_map *map);
 
 void			put_color2(int x, int y, t_map *map);
 void			put_color(int x, int y, t_map *map);
@@ -67,6 +67,8 @@ void			put_color(int x, int y, t_map *map);
 void			put_px_to_img(t_map *map, int x, int y, int color);
 void			ft_put_bmp(t_map *map, t_bmp bmp, int x, int y);
 void			infos(t_map *map);
-void			draw_map(int x, int y, t_map *map);
+void			draw_map(t_map *map);
+
+int				draw(t_map *map);
 
 #endif

@@ -41,8 +41,9 @@ int			main(int ac, char **av)
 			return (0);
 		}
 		start(&map);
-		mlx_hook(map.win, 2, (1L << 0), &key_hook, &map);
+		mlx_key_hook(map.win, key_hook, &map);
 		mlx_mouse_hook(map.win, mouse_hook, &map);
+		mlx_loop_hook(map.mlx, &draw, &map);
 		mlx_loop(map.mlx);
 	}
 	else

@@ -48,34 +48,61 @@ void		ft_put_bmp(t_map *map, t_bmp bmp, int x, int y)
 	}
 }
 
-void		infos(t_map *map)
+void		draw_lines(t_map *map)
 {
-	mlx_string_put(map->mlx, map->win, 1310, 500, 0xFFFFFF, TIP1);
-	mlx_string_put(map->mlx, map->win, 1310, 550, 0xFFFFFF, TIP2);
-	mlx_string_put(map->mlx, map->win, 1310, 600, 0xFFFFFF, TIP3);
-	mlx_string_put(map->mlx, map->win, 1310, 650, 0xFFFFFF, TIP4);
-	mlx_string_put(map->mlx, map->win, 1310, 700, 0xFFFFFF, TIP5);
-}
+	int		x;
+	int		y;
 
-void		draw_map(int x, int y, t_map *map)
-{
-	int		color;
-
-	color = 0xFFFFFF;
+	x = 0;
 	while (x < map->size)
 	{
 		y = 0;
 		while (y < map->size)
 		{
 			if (x == 0 || y == 0)
-				put_px_to_img(map, x, y, color);
-			if (((x + 1) % map->bloc) == 0 || ((y + 1) % map->bloc) == 0)
-				put_px_to_img(map, x, y, color);
+				put_px_to_img(map, x, y, 0xFFFFFF);
+			if ((x + 1) % map->bloc == 0 || (y + 1) % map->bloc == 0)
+				put_px_to_img(map, x, y, 0xFFFFFF);
 			y++;
 		}
 		x++;
 	}
-	if (map->edit == 1)
-		put_color2(0, 0, map);
+}
+
+void		draw_map(t_map *map)
+{
+	int		color;
+	int		x;
+	int		y;
+	t_coord	tmp;
+
+	x = 0;
+	color = 0xFFFFFF;
+	while (x < map->size)
+	{
+		y = 0;
+		while (y < map->size)
+		{
+			tmp.y = y / map->bloc;
+			tmp.x = x / map->bloc;
+			if (map->map[y / map->bloc][x / map->bloc] == -1)
+				put_px_to_img(map, x, y, 0xFF4242);
+			else if (map->map[y / map->bloc][x / map->bloc] == 0)
+				put_px_to_img(map, x, y, 0x000000);
+			else if (map->map[y / map->bloc][x / map->bloc] > 0)
+				put_px_to_img(map, x, y, ft_rgb_to_hex(get_pixel_color(&map->textures[map->map[tmp.y][tmp.x]], x % 32, y % 32)));
+			y++;
+		}
+		x++;
+	}
+}
+
+int		draw(t_map *map)
+{
+	draw_map(map);
+	draw_lines(map);
+	ft_put_bmp(map, map->textures[5], 0, 0);
 	mlx_put_image_to_window(map->mlx, map->win, map->img, 0, 0);
+	infos(map);
+	return (0);
 }
