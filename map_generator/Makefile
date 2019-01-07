@@ -6,7 +6,7 @@
 #    By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/29 22:26:16 by maxisimo          #+#    #+#              #
-#    Updated: 2019/01/06 21:58:45 by maxisimo         ###   ########.fr        #
+#    Updated: 2019/01/07 12:32:56 by maxisimo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,9 @@ SRC = main.c \
 	  ../utils.c \
 	  ../utils2.c \
 	  ../minimap.c \
+	  ../shades.c \
+	  ../doors.c \
+	  ../startscreen.c \
 	  editor.c
 
 OBJ = $(SRC:.c=.o)
