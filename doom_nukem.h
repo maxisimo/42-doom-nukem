@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/26 17:11:44 by thbernar          #+#    #+#             */
-/*   Updated: 2019/01/07 18:38:26 by maxisimo         ###   ########.fr       */
+/*   Updated: 2019/01/07 20:23:35 by lchappon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -250,7 +250,7 @@ int					ft_button_press(int button, int x, int y, t_app *app);
 int					ft_button_release(int button, int x, int y, t_app *app);
 int					ft_mouse_motion(int x, int y, t_app *app);
 
-int					ft_move(t_app *a);
+void				ft_move(t_app *a);
 void				ft_rotate(t_app *a);
 
 void				ft_doors(t_app *a);

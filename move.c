@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/16 16:08:17 by lchappon          #+#    #+#             */
-/*   Updated: 2019/01/06 21:37:08 by maxisimo         ###   ########.fr       */
+/*   Updated: 2019/01/07 21:34:19 by lchappon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,31 +35,53 @@ void		ft_rotate(t_app *a)
 		a->rot.v -= 20;
 }
 
+static void	ft_move4(t_app *a)
+{
+	if (a->crouch == 1 &&
+			((a->move.v > -0.5 && a->map[(int)a->pos.x][(int)a->pos.y] < 12) ||
+			(a->move.v > 1.1 && a->map[(int)a->pos.x][(int)a->pos.y] >= 12)))
+		a->move.v -= 0.1;
+	if (a->crouch == 0 && a->move.v < 0 &&
+			a->map[(int)a->pos.x][(int)a->pos.y] < 12)
+	{
+		a->move.v += 0.1;
+		a->move.v = a->move.v > 0 ? 0 : a->move.v;
+	}
+	else if (a->crouch == 0 && a->move.v < 1.6 &&
+			a->map[(int)a->pos.x][(int)a->pos.y] >= 12)
+	{
+		a->move.v += 0.1;
+		a->move.v = a->move.v > 1.6 ? 1.6 : a->move.v;
+	}
+}
+
 static void	ft_move3(t_app *a)
 {
 	if (a->fly == 0)
 	{
-		if (a->jumping == 1 && a->move.v < 0.8)
+		if (a->jumping == 1 &&
+			((a->move.v < 0.8 && a->map[(int)a->pos.x][(int)a->pos.y] < 12) ||
+			(a->move.v < 2.4 && a->map[(int)a->pos.x][(int)a->pos.y] >= 12)))
 			a->move.v += 0.1;
-		if (a->jump == 0 || a->move.v >= 0.8)
+		if (a->jump == 0 ||
+			(a->move.v >= 0.8 && a->map[(int)a->pos.x][(int)a->pos.y] < 12) ||
+			(a->move.v >= 2.4 && a->map[(int)a->pos.x][(int)a->pos.y] >= 12))
 			a->jumping = 0;
-		if (a->jumping == 0 && a->move.v > 0)
+		if (a->jumping == 0 &&
+			((a->move.v > 0 && a->map[(int)a->pos.x][(int)a->pos.y] < 12) ||
+			(a->move.v > 1.6 && a->map[(int)a->pos.x][(int)a->pos.y] >= 12)))
 			a->move.v -= 0.1;
 	}
 	else
 	{
 		if (a->jump == 1 && a->move.v < 0.9 + a->size * 2)
 			a->move.v += 0.05;
-		if (a->jump == 0 && a->move.v > 0)
+		if (a->jump == 0 &&
+			((a->move.v > 0 && a->map[(int)a->pos.x][(int)a->pos.y] < 12) ||
+			(a->move.v > 1.6 && a->map[(int)a->pos.x][(int)a->pos.y] >= 12)))
 			a->move.v -= 0.05;
 	}
-	if (a->crouch == 1 && a->move.v > -0.5)
-		a->move.v -= 0.1;
-	if (a->crouch == 0 && a->move.v < 0)
-	{
-		a->move.v += 0.1;
-		a->move.v = a->move.v > 0 ? 0 : a->move.v;
-	}
+	ft_move4(a);
 }
 
 static void	ft_move2(t_app *a)
@@ -67,46 +89,53 @@ static void	ft_move2(t_app *a)
 	if (a->move.left == 1)
 	{
 		if (a->map[(int)(a->pos.x + a->cam.dir.x * a->move.s)][(int)(a->pos.y)]
-				<= 0)
+				<= 0 || (a->map[(int)(a->pos.x + a->cam.dir.x * a->move.s)]
+					[(int)(a->pos.y)] >= 12 && a->move.v > 1))
 			a->pos.x += a->cam.dir.x * a->move.s;
 		if (a->map[(int)(a->pos.x)][(int)(a->pos.y - a->cam.dir.y * a->move.s)]
-				<= 0)
+				<= 0 || (a->map[(int)(a->pos.x)][(int)(a->pos.y - a->cam.dir.y
+						* a->move.s)] >= 12 && a->move.v > 1))
 			a->pos.y -= a->cam.dir.y * a->move.s;
 	}
 	if (a->move.right == 1)
 	{
 		if (a->map[(int)(a->pos.x - a->cam.dir.x * a->move.s)][(int)(a->pos.y)]
-				<= 0)
+				<= 0 || (a->map[(int)(a->pos.x - a->cam.dir.x * a->move.s)]
+					[(int)(a->pos.y)] >= 12 && a->move.v > 1))
 			a->pos.x -= a->cam.dir.x * a->move.s;
 		if (a->map[(int)(a->pos.x)][(int)(a->pos.y + a->cam.dir.y * a->move.s)]
-				<= 0)
+				<= 0 || (a->map[(int)(a->pos.x)][(int)(a->pos.y + a->cam.dir.y
+						* a->move.s)] >= 12 && a->move.v > 1))
 			a->pos.y += a->cam.dir.y * a->move.s;
 	}
+	ft_move3(a);
 }
 
-int			ft_move(t_app *a)
+void			ft_move(t_app *a)
 {
 	a->move.s = (a->speed == 1) ? 0.12 : 0.09;
 	a->move.s = (a->crouch == 1) ? 0.03 : a->move.s;
 	if (a->move.up == 1)
 	{
 		if (a->map[(int)(a->pos.x + a->cam.dir.y * a->move.s)][(int)(a->pos.y)]
-				<= 0)
+				<= 0 || (a->map[(int)(a->pos.x + a->cam.dir.y * a->move.s)]
+					[(int)(a->pos.y)] >= 12 && a->move.v > 1))
 			a->pos.x += a->cam.dir.y * a->move.s;
 		if (a->map[(int)(a->pos.x)][(int)(a->pos.y + a->cam.dir.x * a->move.s)]
-				<= 0)
+				<= 0 || (a->map[(int)(a->pos.x)][(int)(a->pos.y + a->cam.dir.x
+						* a->move.s)] >= 12 && a->move.v > 1))
 			a->pos.y += a->cam.dir.x * a->move.s;
 	}
 	if (a->move.down == 1)
 	{
 		if (a->map[(int)(a->pos.x - a->cam.dir.y * a->move.s)][(int)(a->pos.y)]
-				<= 0)
+				<= 0 || (a->map[(int)(a->pos.x - a->cam.dir.y * a->move.s)]
+					[(int)(a->pos.y)] >= 12 && a->move.v > 1))
 			a->pos.x -= a->cam.dir.y * a->move.s;
 		if (a->map[(int)(a->pos.x)][(int)(a->pos.y - a->cam.dir.x * a->move.s)]
-				<= 0)
+				<= 0 || (a->map[(int)(a->pos.x)][(int)(a->pos.y - a->cam.dir.x
+						* a->move.s)] >= 12 && a->move.v > 1))
 			a->pos.y -= a->cam.dir.x * a->move.s;
 	}
 	ft_move2(a);
-	ft_move3(a);
-	return (0);
 }
