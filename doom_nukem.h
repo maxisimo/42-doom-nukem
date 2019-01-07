@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/26 17:11:44 by thbernar          #+#    #+#             */
-/*   Updated: 2019/01/07 14:51:18 by maxisimo         ###   ########.fr       */
+/*   Updated: 2019/01/07 17:58:32 by lchappon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@
 # define VDOOR_O -9
 # define DOOR1 7
 # define DOOR2 8
+# define POSTER 2
 
 typedef struct		s_coord
 {
@@ -234,6 +235,7 @@ typedef struct		s_app
 	double			life;
 	double			life2;
 	int				ammo;
+	int				poster;
 }					t_app;
 
 void				ft_app_allocmap(t_app *app);
