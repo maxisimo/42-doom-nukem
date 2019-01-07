@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/16 16:07:26 by lchappon          #+#    #+#             */
-/*   Updated: 2019/01/07 13:20:41 by maxisimo         ###   ########.fr       */
+/*   Updated: 2019/01/07 17:49:14 by lchappon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,8 @@ int			ft_key_press(int key, t_app *app)
 		app->speed = 1;
 	else if (key == 14)
 		ft_doors(app);
+	else if (key == 35)
+		app->poster = app->poster == 0 ? 1 : 0;
 	ft_key_press2(key, app);
 	return (0);
 }
