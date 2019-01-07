@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/26 17:11:44 by thbernar          #+#    #+#             */
-/*   Updated: 2019/01/07 17:58:32 by lchappon         ###   ########.fr       */
+/*   Updated: 2019/01/07 18:38:26 by maxisimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -208,12 +208,16 @@ typedef struct		s_app
 	int				fly;
 	int				crouch;
 	int				size;
+	int				poster;
+	int				ammo;
 	struct s_app	*main_a;
 	double			wallx;
 	double			distplayer;
 	double			loop;
 	double			camx;
 	double			zbuffer[WIN_W];
+	double			life;
+	double			life2;
 	t_bmp			startscreentxt;
 	t_bmp			logo;
 	t_bmp			game_over;
@@ -232,10 +236,6 @@ typedef struct		s_app
 	t_weapon		weapon;
 	t_enemy			*enemies;
 	t_wall			wall;
-	double			life;
-	double			life2;
-	int				ammo;
-	int				poster;
 }					t_app;
 
 void				ft_app_allocmap(t_app *app);
