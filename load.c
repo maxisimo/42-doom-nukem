@@ -6,7 +6,11 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 11:54:23 by thbernar          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2019/01/07 19:32:39 by maxisimo         ###   ########.fr       */
+=======
+/*   Updated: 2019/01/07 19:15:54 by lchappon         ###   ########.fr       */
+>>>>>>> 393666f37354ffd080b1a658f25d989016aad1f9
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +36,16 @@ void	textures_load(t_app *a)
 void	sprites_load(t_app *a)
 {
 	bmp_loadfile(&a->sprites[0], "sprites/zombie1.bmp");
+<<<<<<< HEAD
 	bmp_loadfile(&a->sprites[1], "sprites/chest.bmp");
+=======
+	bmp_loadfile(&a->sprites[1], "sprites/barril.bmp");
+>>>>>>> 393666f37354ffd080b1a658f25d989016aad1f9
 	bmp_loadfile(&a->sprites[2], "sprites/pillar.bmp");
 	bmp_loadfile(&a->sprites[3], "sprites/piece1.bmp");
-	bmp_loadfile(&a->sprites[4], "sprites/piece1.bmp");
+	bmp_loadfile(&a->sprites[4], "sprites/piece2.bmp");
 	bmp_loadfile(&a->sprites[5], "sprites/piece2.bmp");
-	bmp_loadfile(&a->sprites[6], "sprites/piece2.bmp");
+	bmp_loadfile(&a->sprites[6], "sprites/piece1.bmp");
 	bmp_loadfile(&a->weapon.img, "sprites/ak47.bmp");
 	bmp_loadfile(&a->weapon.img2, "sprites/ak47fired.bmp");
 	bmp_loadfile(&a->weapon.scope, "sprites/scope.bmp");
