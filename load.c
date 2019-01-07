@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 11:54:23 by thbernar          #+#    #+#             */
-/*   Updated: 2019/01/06 21:14:22 by maxisimo         ###   ########.fr       */
+/*   Updated: 2019/01/07 14:43:01 by maxisimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void	textures_load(t_app *a)
 {
 	if (a->p_count <= 0)
 		ft_error("Fatal error : invalid file.");
+	bmp_loadfile(&a->game_win, "textures/game_win.bmp");
 	bmp_loadfile(&a->game_over, "textures/game_over.bmp");
 	bmp_loadfile(&a->textures[0], "textures/bigdoor.bmp");
 	bmp_loadfile(&a->textures[1], "textures/dude.bmp");

@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/11 17:30:54 by thbernar          #+#    #+#             */
-/*   Updated: 2019/01/06 20:13:41 by maxisimo         ###   ########.fr       */
+/*   Updated: 2019/01/07 14:53:18 by maxisimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,14 @@ void	story(t_app *a)
 
 void	game_over(t_app *a)
 {
-	ft_put_bmp_to_img(a, a->game_over, 0, 0);
-	mlx_put_image_to_window(a->mlx, a->win, a->img, 0, 0);
+	if (a->life > 0) //&& a->screen_win == 1)
+	{
+		ft_put_bmp_to_img(a, a->game_win, 0, 0);
+		mlx_put_image_to_window(a->mlx, a->win, a->img, 0, 0);
+	}
+	else
+	{
+		ft_put_bmp_to_img(a, a->game_over, 0, 0);
+		mlx_put_image_to_window(a->mlx, a->win, a->img, 0, 0);
+	}
 }

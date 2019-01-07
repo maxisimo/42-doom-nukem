@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/06 21:35:57 by maxisimo          #+#    #+#             */
-/*   Updated: 2019/01/06 21:38:32 by maxisimo         ###   ########.fr       */
+/*   Updated: 2019/01/07 14:46:52 by maxisimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	ft_doors(t_app *a)
 	if ((a->map[(int)a->pos.x][(int)(a->pos.y + a->cam.dir.x)] == 13 ||
 			a->map[(int)(a->pos.x + a->cam.dir.y)][(int)a->pos.y] == 13) &&
 			a->move.v <= 1)
-		game_over(a);
+		a->screen_win = 1;
 }
 
 void	ft_door_side_entry(t_app *a)

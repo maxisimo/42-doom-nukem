@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/26 17:11:44 by thbernar          #+#    #+#             */
-/*   Updated: 2019/01/06 21:35:27 by maxisimo         ###   ########.fr       */
+/*   Updated: 2019/01/07 14:51:18 by maxisimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -194,7 +194,7 @@ typedef struct		s_app
 	int				texx;
 	int				texy;
 	int				startscreen;
-	int				endscreen;
+	int				screen_win;
 	int				texnum;
 	int				current_thread;
 	int				is_weapon;
@@ -216,6 +216,7 @@ typedef struct		s_app
 	t_bmp			startscreentxt;
 	t_bmp			logo;
 	t_bmp			game_over;
+	t_bmp			game_win;
 	t_bmp			textures[10];
 	t_bmp			sprites[10];
 	t_coord			map_size;

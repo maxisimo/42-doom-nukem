@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/16 16:07:10 by lchappon          #+#    #+#             */
-/*   Updated: 2019/01/06 21:40:54 by maxisimo         ###   ########.fr       */
+/*   Updated: 2019/01/07 14:50:46 by maxisimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,7 @@ int				ft_draw(t_app *a)
 	a->img_data = mlx_get_data_addr(a->img, &a->n[0], &a->n[1], &a->n[2]);
 	if (a->startscreen == 0)
 	{
-		if (a->life > 0)
+		if (a->life > 0 && a->screen_win == 0)
 		{
 			ft_pthread(a);
 			a->life2 = a->life;

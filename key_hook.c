@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/16 16:07:26 by lchappon          #+#    #+#             */
-/*   Updated: 2019/01/06 21:22:54 by maxisimo         ###   ########.fr       */
+/*   Updated: 2019/01/07 13:20:41 by maxisimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,6 @@ int			ft_key_press2(int key, t_app *app)
 int			ft_key_press(int key, t_app *app)
 {
 	app->startscreen = (app->startscreen == 1) ? 2 : 0;
-	app->endscreen = (app->endscreen == 1) ? 2 : 0;
 	ft_motion(key, app, 1);
 	if (key == 12)
 	{
