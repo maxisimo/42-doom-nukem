@@ -22,32 +22,6 @@ void		put_px_to_img(t_map *map, int x, int y, int color)
 	}
 }
 
-void		ft_put_bmp(t_map *map, t_bmp bmp, int x, int y)
-{
-	int		clr;
-	t_coord p;
-	t_color	c;
-	t_coord tmp;
-
-	p.x = 0;
-	p.y = 0;
-	while (p.y < bmp.size * bmp.scale)
-	{
-		p.x = 0;
-		while (p.x < bmp.size * bmp.scale)
-		{
-			c = get_pixel_color(&bmp, p.x / bmp.scale, p.y / bmp.scale);
-			tmp.x = x + p.x;
-			tmp.y = y + p.y;
-			if ((clr = ft_rgb_to_hex(c)) != 0xB80087 && tmp.x > 0 &&
-					tmp.y < map->size)
-				put_px_to_img(map, tmp.x, tmp.y, clr);
-			p.x++;
-		}
-		p.y++;
-	}
-}
-
 void		draw_lines(t_map *map)
 {
 	int		x;
@@ -101,7 +75,6 @@ int		draw(t_map *map)
 {
 	draw_map(map);
 	draw_lines(map);
-	ft_put_bmp(map, map->textures[5], 0, 0);
 	mlx_put_image_to_window(map->mlx, map->win, map->img, 0, 0);
 	infos(map);
 	return (0);
