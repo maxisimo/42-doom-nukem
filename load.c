@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 11:54:23 by thbernar          #+#    #+#             */
-/*   Updated: 2019/01/07 16:55:17 by maxisimo         ###   ########.fr       */
+/*   Updated: 2019/01/07 18:30:59 by maxisimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,12 @@ void	textures_load(t_app *a)
 		ft_error("Fatal error : invalid file.");
 	bmp_loadfile(&a->game_win, "textures/game_win.bmp");
 	bmp_loadfile(&a->game_over, "textures/game_over.bmp");
-	bmp_loadfile(&a->textures[0], "textures/bigdoor.bmp");
-	bmp_loadfile(&a->textures[1], "textures/dude.bmp");
-	bmp_loadfile(&a->textures[2], "textures/floor.bmp");
-	bmp_loadfile(&a->textures[3], "textures/skulwall.bmp");
-	bmp_loadfile(&a->textures[4], "textures/marbface.bmp");
-	bmp_loadfile(&a->textures[5], "textures/skulwall2.bmp");
+	bmp_loadfile(&a->textures[0], "textures/colorstone.bmp");
+	bmp_loadfile(&a->textures[1], "textures/greystone.bmp");
+	bmp_loadfile(&a->textures[2], "textures/wood.bmp");
+	bmp_loadfile(&a->textures[3], "textures/redbrick.bmp");
+	bmp_loadfile(&a->textures[4], "textures/purplestone.bmp");
+	bmp_loadfile(&a->textures[5], "textures/mossy.bmp");
 	bmp_loadfile(&a->textures[6], "textures/window.bmp");
 	bmp_loadfile(&a->textures[7], "textures/door1.bmp");
 	bmp_loadfile(&a->textures[8], "textures/door2.bmp");
