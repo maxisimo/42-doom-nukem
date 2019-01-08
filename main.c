@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 11:54:23 by thbernar          #+#    #+#             */
-/*   Updated: 2019/01/03 20:33:25 by lchappon         ###   ########.fr       */
+/*   Updated: 2019/01/08 14:01:37 by maxisimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ int			main(int ac, char **av)
 		ft_app_init(&app);
 		sprites_load(&app);
 		bmp_loadfile(&app.logo, "sprites/doomnukemlogo.bmp");
+		system("\\afplay -q 1 ./songs/halloween.mp3&");
 		mlx_win_init(&app);
 	}
 	else

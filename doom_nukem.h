@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/26 17:11:44 by thbernar          #+#    #+#             */
-/*   Updated: 2019/01/07 20:23:35 by lchappon         ###   ########.fr       */
+/*   Updated: 2019/01/08 14:28:59 by maxisimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -301,5 +301,7 @@ void				game_over(t_app *a);
 
 void				enemies_init(t_app *a);
 void				enemies_draw(t_app *a);
+
+void				ft_poster(t_app *a);
 
 #endif
