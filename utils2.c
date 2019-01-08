@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/16 16:09:25 by lchappon          #+#    #+#             */
-/*   Updated: 2019/01/08 14:06:47 by maxisimo         ###   ########.fr       */
+/*   Updated: 2019/01/08 16:15:36 by maxisimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,10 +86,10 @@ void	ft_info(t_app *a)
 			a->map[(int)(a->pos.x + a->cam.dir.y)][(int)a->pos.y] == 13) &&
 			a->move.v <= 1)
 		mlx_string_put(a->mlx, a->win, WIN_WD, WIN_HD, 0xFFFFFF, END);
-	mlx_string_put(a->mlx, a->win, 10, WIN_H - 30, 0xFFFFFF,
+	/*mlx_string_put(a->mlx, a->win, 10, WIN_H - 30, 0xFFFFFF,
 			ft_strjoin(ft_itoa(a->life), " HEALTH POINTS"));
 	mlx_string_put(a->mlx, a->win, 10, WIN_H - 50, 0xFFFFFF,
 			ft_strjoin(ft_itoa(a->ammo), " AMMUNITIONS"));
 	mlx_string_put(a->mlx, a->win, 10, WIN_H - 70, 0xFFFFFF,
-			ft_strjoin(ft_itoa(a->enemies_count2), " ENEMIES"));
+			ft_strjoin(ft_itoa(a->enemies_count2), " ENEMIES"));*/
 }

@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 11:54:23 by thbernar          #+#    #+#             */
-/*   Updated: 2019/01/08 14:01:37 by maxisimo         ###   ########.fr       */
+/*   Updated: 2019/01/08 17:37:51 by maxisimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,15 @@
 static int	is_extension_valid(char *fname)
 {
 	if (ft_strncmp(ft_strrev(fname), "d3w.", 4) == 0)
+	{
+		free(fname);
 		return (1);
+	}
 	else
+	{
+		free(fname);
 		return (0);
+	}
 }
 
 void		mlx_win_init(t_app *app)
