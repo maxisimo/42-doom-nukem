@@ -14,7 +14,7 @@
 
 void		put_px_to_img(t_map *map, int x, int y, int color)
 {
-	if (x < map->size && y < map->size && x >= 0 && y >= 0)
+	if (x < 1920 && y < map->size && x >= 0 && y >= 0)
 	{
 		color = mlx_get_color_value(map->mlx, color);
 		ft_memcpy(map->img_ptr + 4 * (map->size + 700) * y + x * 4,
@@ -64,7 +64,7 @@ void		draw_map(t_map *map)
 			else if (map->map[y / map->bloc][x / map->bloc] == 0)
 				put_px_to_img(map, x, y, 0x000000);
 			else if (map->map[y / map->bloc][x / map->bloc] > 0)
-				put_px_to_img(map, x, y, ft_rgb_to_hex(get_pixel_color(&map->textures[map->map[tmp.y][tmp.x]], x % 32, y % 32)));
+				put_px_to_img(map, x, y, ft_rgb_to_hex(get_pixel_color(&map->textures[map->map[tmp.y][tmp.x]], (x % 64) * 2, (y % 64) * 2)));
 			y++;
 		}
 		x++;
@@ -73,9 +73,17 @@ void		draw_map(t_map *map)
 
 int		draw(t_map *map)
 {
+	int	p[3];
+
+	map->img = mlx_new_image(map->mlx, 1980, 1280);
+	map->img_ptr = mlx_get_data_addr(map->img, &p[0], &p[1], &p[2]);
 	draw_map(map);
 	draw_lines(map);
+	map->textures[map->i].scale = 2;
+	ft_put_bmp(map, map->textures[map->i], WIN_W, 0);
 	mlx_put_image_to_window(map->mlx, map->win, map->img, 0, 0);
 	infos(map);
+	mlx_destroy_image(map->mlx, map->img);
+	mlx_do_sync(map->mlx);
 	return (0);
 }

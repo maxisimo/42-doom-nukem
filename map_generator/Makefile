@@ -24,7 +24,8 @@ SRC = main.c \
 	  ../minimap.c \
 	  ../shades.c \
 	  ../doors.c \
-	  ../startscreen.c \
+	  ../screens.c \
+	  ../posters.c \
 	  editor.c
 
 OBJ = $(SRC:.c=.o)
