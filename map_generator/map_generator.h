@@ -29,7 +29,6 @@ typedef struct	s_map
 	void		*img_ptr;
 	char		*name;
 	int			**map;
-	int			m[3];
 	int			size;
 	int			bloc;
 	int			x;

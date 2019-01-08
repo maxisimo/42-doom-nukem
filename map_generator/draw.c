@@ -57,13 +57,13 @@ void		draw_map(t_map *map)
 		y = 0;
 		while (y < map->size)
 		{
-			tmp.y = y / map->bloc;
+			tmp.y = (y - 1) / map->bloc;
 			tmp.x = x / map->bloc;
-			if (map->map[y / map->bloc][x / map->bloc] == -1)
+			if (map->map[tmp.y][tmp.x] == -1)
 				put_px_to_img(map, x, y, 0xFF4242);
-			else if (map->map[y / map->bloc][x / map->bloc] == 0)
+			else if (map->map[tmp.y][tmp.x] == 0)
 				put_px_to_img(map, x, y, 0x000000);
-			else if (map->map[y / map->bloc][x / map->bloc] > 0)
+			else if (map->map[tmp.y][tmp.x] > 0)
 				put_px_to_img(map, x, y, ft_rgb_to_hex(get_pixel_color(&map->textures[map->map[tmp.y][tmp.x]], (x % 64) * 2, (y % 64) * 2)));
 			y++;
 		}
