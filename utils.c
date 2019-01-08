@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/16 16:09:00 by lchappon          #+#    #+#             */
-/*   Updated: 2019/01/07 18:25:17 by lchappon         ###   ########.fr       */
+/*   Updated: 2019/01/08 13:44:31 by maxisimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,21 +70,6 @@ void	ft_put_bmp_to_img(t_app *a, t_bmp bmp, int x, int y)
 		}
 		p.y++;
 	}
-}
-
-void	ft_poster(t_app *a)
-{
-	if (a->texx >= 12 && a->texx <= 52 && a->texy >= 8 && a->texy <= 56 &&
-			a->map[a->mapy][a->mapx] < WINDOW && a->texy >= 0 &&
-			((a->side == 0 && a->ray.dir.x < 0 &&
-			a->map[a->mapy][a->mapx + 1] >= 0) ||
-			(a->side == 0 && a->ray.dir.x > 0 &&
-			a->map[a->mapy][a->mapx - 1] >= 0) ||
-			(a->side == 1 && a->ray.dir.y < 0 &&
-			a->map[a->mapy + 1][a->mapx] >= 0) ||
-			(a->side == 1 && a->ray.dir.y > 0 &&
-			a->map[a->mapy - 1][a->mapx] >= 0)))
-		a->texnum = POSTER;
 }
 
 void	ft_choose_color(int x, int start, t_app *a)

@@ -6,7 +6,7 @@
 #    By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/01 00:25:16 by thbernar          #+#    #+#              #
-#    Updated: 2019/01/07 20:27:25 by maxisimo         ###   ########.fr        #
+#    Updated: 2019/01/08 13:44:48 by maxisimo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,8 @@ SRC = main.c \
 	  sprites.c \
 	  load.c \
 	  shades.c \
-	  startscreen.c \
+	  screens.c \
+	  posters.c \
 	  enemies.c \
 	  enemies_init.c \
 	  bmp_parser.c
