@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/29 19:40:45 by maxisimo          #+#    #+#             */
-/*   Updated: 2019/01/06 22:01:22 by maxisimo         ###   ########.fr       */
+/*   Updated: 2019/01/08 12:59:03 by maxisimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include "../doom_nukem.h"
 
 # define TIP1 "Press 'tab' to change texture"
-# define TIP2 "Press 'esc' or 's' to save and quit"
+# define TIP2 "Press 's' to save and 'esc' to quit"
 # define TIP3 "Press 'P' to activate/desactivate the player position"
 # define TIP4 "Press the left mouse button to put a wall / player position"
 # define TIP5 "Press the right mouse button to take off wall / player position"
@@ -45,7 +45,7 @@ typedef struct	s_map
 	int			temp2y;
 	int			n;
 	t_coord		p;
-	t_bmp		textures[10];
+	t_bmp		textures[13];
 }				t_map;
 
 void			error(void);

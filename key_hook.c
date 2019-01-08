@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/16 16:07:26 by lchappon          #+#    #+#             */
-/*   Updated: 2019/01/07 22:04:19 by lchappon         ###   ########.fr       */
+/*   Updated: 2019/01/08 11:03:52 by maxisimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,8 @@ int			ft_key_press2(int key, t_app *app)
 			app->move.v <= 0) || (app->map[(int)app->pos.x][(int)app->pos.y]
 				>= 12 && app->move.v <= 2.4)))
 	{
-			app->jump = 1;
-			app->jumping = 1;
+		app->jump = 1;
+		app->jumping = 1;
 	}
 	else if (key == 3)
 		app->fly = app->fly == 0 ? 1 : 0;

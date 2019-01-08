@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/05 11:54:43 by maxisimo          #+#    #+#             */
-/*   Updated: 2019/01/07 18:14:43 by maxisimo         ###   ########.fr       */
+/*   Updated: 2019/01/08 12:01:39 by maxisimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,19 @@
 
 static void	texture_load(t_map *map)
 {
-	bmp_loadfile(&map->textures[0], "textures/bigdoor.bmp");
-	bmp_loadfile(&map->textures[1], "textures/dude.bmp");
-	bmp_loadfile(&map->textures[2], "textures/metal.bmp");
-	bmp_loadfile(&map->textures[3], "textures/floor.bmp");
-	bmp_loadfile(&map->textures[4], "textures/skulwall.bmp");
-	bmp_loadfile(&map->textures[5], "textures/marbface.bmp");
-	bmp_loadfile(&map->textures[6], "textures/skulwall2.bmp");
+	bmp_loadfile(&map->textures[0], "../textures/colorstone.bmp");
+	bmp_loadfile(&map->textures[1], "../textures/greystone.bmp");
+	bmp_loadfile(&map->textures[2], "../textures/wood.bmp");
+	bmp_loadfile(&map->textures[3], "../textures/redbrick.bmp");
+	bmp_loadfile(&map->textures[4], "../textures/purplestone.bmp");
+	bmp_loadfile(&map->textures[5], "../textures/mossy.bmp");
+	bmp_loadfile(&map->textures[6], "../textures/window.bmp");
+	bmp_loadfile(&map->textures[7], "../textures/door1.bmp");
+	bmp_loadfile(&map->textures[8], "../textures/door2.bmp");
+	bmp_loadfile(&map->textures[9], "../sprites/zombie1.bmp");
+	bmp_loadfile(&map->textures[10], "../sprites/barril.bmp");
+	bmp_loadfile(&map->textures[11], "../sprites/pillar.bmp");
+	bmp_loadfile(&map->textures[12], "../sprites/piece1.bmp");
 }
 
 void		error(void)

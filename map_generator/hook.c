@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/05 12:14:38 by maxisimo          #+#    #+#             */
-/*   Updated: 2019/01/07 18:14:10 by maxisimo         ###   ########.fr       */
+/*   Updated: 2019/01/08 12:57:04 by maxisimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int			key_hook(int keycode, t_map *map)
 			map->player = 1;
 	}
 	else if (keycode == 48)
-		map->i = (map->i < 1 || map->i > 5) ? 1 : map->i + 1;
+		map->i = (map->i < 1 || map->i > 11) ? 1 : map->i + 1;
 	else if (keycode == 53)
 		exit(0);
 	else if (keycode == 1)

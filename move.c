@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/16 16:08:17 by lchappon          #+#    #+#             */
-/*   Updated: 2019/01/07 21:34:19 by lchappon         ###   ########.fr       */
+/*   Updated: 2019/01/08 11:10:18 by maxisimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ static void	ft_move2(t_app *a)
 	ft_move3(a);
 }
 
-void			ft_move(t_app *a)
+void		ft_move(t_app *a)
 {
 	a->move.s = (a->speed == 1) ? 0.12 : 0.09;
 	a->move.s = (a->crouch == 1) ? 0.03 : a->move.s;
