@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/29 19:39:00 by maxisimo          #+#    #+#             */
-/*   Updated: 2019/01/07 18:24:36 by maxisimo         ###   ########.fr       */
+/*   Updated: 2019/01/09 16:16:59 by maxisimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int			main(int ac, char **av)
 		mlx_loop_hook(map.mlx, &draw, &map);
 		mlx_loop(map.mlx);
 	}
-	else 
+	else
 		error();
 	return (0);
 }

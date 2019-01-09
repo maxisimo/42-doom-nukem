@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/05 12:16:44 by maxisimo          #+#    #+#             */
-/*   Updated: 2019/01/07 18:13:28 by maxisimo         ###   ########.fr       */
+/*   Updated: 2019/01/09 16:41:44 by maxisimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void		put_px_to_img(t_map *map, int x, int y, int color)
 	}
 }
 
-void		draw_lines(t_map *map)
+static void	draw_lines(t_map *map)
 {
 	int		x;
 	int		y;
@@ -43,12 +43,22 @@ void		draw_lines(t_map *map)
 	}
 }
 
-void		draw_map(t_map *map)
+static void	choose_color(int x, int y, int color, t_map *map)
+{
+	if (map->map[map->tmp.y][map->tmp.x] == -1)
+		put_px_to_img(map, x, y, 0xFF4242);
+	else if (map->map[map->tmp.y][map->tmp.x] == 0)
+		put_px_to_img(map, x, y, 0x000000);
+	else if (map->map[map->tmp.y][map->tmp.x] > 0)
+		put_px_to_img(map, x, y, color);
+}
+
+static void	draw_map(t_map *map)
 {
 	int		color;
 	int		x;
 	int		y;
-	t_coord	tmp;
+	t_color	c1;
 
 	x = 0;
 	color = 0xFFFFFF;
@@ -57,21 +67,19 @@ void		draw_map(t_map *map)
 		y = 0;
 		while (y < map->size)
 		{
-			tmp.y = (y - 1) / map->bloc;
-			tmp.x = x / map->bloc;
-			if (map->map[tmp.y][tmp.x] == -1)
-				put_px_to_img(map, x, y, 0xFF4242);
-			else if (map->map[tmp.y][tmp.x] == 0)
-				put_px_to_img(map, x, y, 0x000000);
-			else if (map->map[tmp.y][tmp.x] > 0)
-				put_px_to_img(map, x, y, ft_rgb_to_hex(get_pixel_color(&map->textures[map->map[tmp.y][tmp.x]], (x % 64) * 2, (y % 64) * 2)));
+			c1 = get_pixel_color(&map->textures[map->map[map->tmp.y]
+				[map->tmp.x]], (x % 64) * 2, (y % 64) * 2);
+			color = ft_rgb_to_hex(c1);
+			map->tmp.y = (y - 1) / map->bloc;
+			map->tmp.x = x / map->bloc;
+			choose_color(x, y, color, map);
 			y++;
 		}
 		x++;
 	}
 }
 
-int		draw(t_map *map)
+int			draw(t_map *map)
 {
 	int	p[3];
 
@@ -80,7 +88,7 @@ int		draw(t_map *map)
 	draw_map(map);
 	draw_lines(map);
 	map->textures[map->i].scale = 2;
-	ft_put_bmp(map, map->textures[map->i], WIN_W, 0);
+	ft_put_bmp(map, map->textures[map->i], 1500, 900);
 	mlx_put_image_to_window(map->mlx, map->win, map->img, 0, 0);
 	infos(map);
 	mlx_destroy_image(map->mlx, map->img);

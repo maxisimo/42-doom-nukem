@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/02 11:41:56 by maxisimo          #+#    #+#             */
-/*   Updated: 2019/01/04 13:54:13 by maxisimo         ###   ########.fr       */
+/*   Updated: 2019/01/09 15:36:14 by maxisimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static void	countmap(t_map *map)
 		free_strsplit(array);
 		count[0]++;
 	}
-	free(s);
+	count[2] > 0 ? free(s) : 0;
 	if (count[2] != 40 || count[0] != 40)
 		ft_error("Error : File size must be 40x40");
 	map->size = count[0];

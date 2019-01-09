@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/16 16:06:47 by lchappon          #+#    #+#             */
-/*   Updated: 2019/01/08 18:42:09 by maxisimo         ###   ########.fr       */
+/*   Updated: 2019/01/09 14:57:58 by maxisimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,7 @@ static void	ft_app_countmap(t_app *app)
 		if (count[0] > 100 || count[2] > 100)
 			ft_error("Fatal error : invalid file.");
 	}
-	if (count[3] < 0)
-		free(s);
+	count[2] > 0 ? free(s) : 0;
 	app->map_size.x = count[2] + 2;
 	app->map_size.y = count[0] + 2;
 }
@@ -90,8 +89,7 @@ void		ft_app_writemap(t_app *app)
 		ft_free_strsplit(arr);
 		p.y++;
 	}
-	if (fd < 0)
-		free(s);
+	free(s);
 }
 
 static void	ft_app_calcplayerpos(t_app *app)

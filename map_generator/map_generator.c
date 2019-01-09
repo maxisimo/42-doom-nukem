@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/29 20:27:34 by maxisimo          #+#    #+#             */
-/*   Updated: 2019/01/04 13:43:26 by maxisimo         ###   ########.fr       */
+/*   Updated: 2019/01/09 15:41:20 by maxisimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void		map_save(t_map *map)
 	char	s[map->size];
 
 	i = 0;
-	if (((fd = open(map->name, O_CREAT | O_WRONLY, 446)) < 0))
+	if (((fd = open(map->name, O_CREAT | O_WRONLY, 0644)) < 0))
 		ft_error("Error : File not create correctly");
 	while (i < map->size / map->bloc)
 	{
