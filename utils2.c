@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/16 16:09:25 by lchappon          #+#    #+#             */
-/*   Updated: 2019/01/08 19:23:28 by maxisimo         ###   ########.fr       */
+/*   Updated: 2019/01/09 18:15:17 by lchappon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,30 @@ void	ft_init_tex_fc(t_app *a)
 		a->end = WIN_H;
 }
 
+void	ft_info2(t_app *a)
+{
+	char	*txt;
+	char	*life;
+	char	*ammo;
+	char	*enemies;
+
+	life = ft_itoa(a->life);
+	txt = ft_strjoin(life, " HEALTH POINTS");
+	mlx_string_put(a->mlx, a->win, 10, WIN_H - 30, 0xFFFFFF, txt);
+	free(life);
+	free(txt);
+	ammo = ft_itoa(a->ammo);
+	txt = ft_strjoin(ammo, " AMMUNITIONS");
+	mlx_string_put(a->mlx, a->win, 10, WIN_H - 50, 0xFFFFFF, txt);
+	free(ammo);
+	free(txt);
+	enemies = ft_itoa(a->enemies_count2);
+	txt = ft_strjoin(enemies, " ENEMIES");
+	mlx_string_put(a->mlx, a->win, 10, WIN_H - 70, 0xFFFFFF, txt);
+	free(enemies);
+	free(txt);
+}
+
 void	ft_info(t_app *a)
 {
 	if (((a->map[(int)a->pos.x][(int)(a->pos.y + a->cam.dir.x)] == HDOOR &&
@@ -86,10 +110,5 @@ void	ft_info(t_app *a)
 			a->map[(int)(a->pos.x + a->cam.dir.y)][(int)a->pos.y] == 13) &&
 			a->move.v <= 1)
 		mlx_string_put(a->mlx, a->win, WIN_WD, WIN_HD, 0xFFFFFF, END);
-	mlx_string_put(a->mlx, a->win, 10, WIN_H - 30, 0xFFFFFF,
-			ft_strjoin(ft_itoa(a->life), " HEALTH POINTS"));
-	mlx_string_put(a->mlx, a->win, 10, WIN_H - 50, 0xFFFFFF,
-			ft_strjoin(ft_itoa(a->ammo), " AMMUNITIONS"));
-	mlx_string_put(a->mlx, a->win, 10, WIN_H - 70, 0xFFFFFF,
-			ft_strjoin(ft_itoa(a->enemies_count2), " ENEMIES"));
+	ft_info2(a);
 }
