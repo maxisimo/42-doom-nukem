@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/16 16:07:10 by lchappon          #+#    #+#             */
-/*   Updated: 2019/01/08 19:25:29 by maxisimo         ###   ########.fr       */
+/*   Updated: 2019/01/09 17:51:09 by lchappon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,6 +124,7 @@ int				ft_draw(t_app *a)
 		if (a->life > 0 && a->screen_win == 0)
 		{
 			ft_pthread(a);
+			a->life2 = a->life;
 			enemies_draw(a);
 			draw_minimap(a);
 			draw_player(a);
