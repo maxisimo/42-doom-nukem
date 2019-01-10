@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 11:54:23 by thbernar          #+#    #+#             */
-/*   Updated: 2019/01/08 17:37:51 by maxisimo         ###   ########.fr       */
+/*   Updated: 2019/01/10 16:37:18 by lchappon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,6 @@ int			main(int ac, char **av)
 		mlx_win_init(&app);
 	}
 	else
-		ft_putstr("usage: ./doom-nukem maps/*.w3d\n");
+		ft_putstr("usage: ./doom-nukem *.w3d\n");
 	return (0);
 }
