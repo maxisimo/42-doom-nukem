@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 11:54:23 by thbernar          #+#    #+#             */
-/*   Updated: 2019/01/06 20:26:27 by maxisimo         ###   ########.fr       */
+/*   Updated: 2019/01/10 18:23:20 by lchappon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ void	sprites_img(t_app *a, t_spr *s, int type)
 	{
 		if (s->spr_x <= 0 && s->spr_y <= 0)
 			s->img = &a->sprites[3];
-		if (s->spr_x <= 0 && s->spr_y >= 0)
-			s->img = &a->sprites[4];
 		if (s->spr_x >= 0 && s->spr_y <= 0)
+			s->img = &a->sprites[4];
+		if (s->spr_x <= 0 && s->spr_y >= 0)
 			s->img = &a->sprites[5];
 		if (s->spr_x >= 0 && s->spr_y >= 0)
 			s->img = &a->sprites[6];
