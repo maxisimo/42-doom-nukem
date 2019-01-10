@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/16 16:06:47 by lchappon          #+#    #+#             */
-/*   Updated: 2019/01/09 14:57:58 by maxisimo         ###   ########.fr       */
+/*   Updated: 2019/01/10 19:04:46 by maxisimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ void		ft_app_writemap(t_app *app)
 		ft_free_strsplit(arr);
 		p.y++;
 	}
-	free(s);
+	p.x > 1 ? free(s) : 0;
 }
 
 static void	ft_app_calcplayerpos(t_app *app)
