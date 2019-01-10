@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 18:12:53 by maxisimo          #+#    #+#             */
-/*   Updated: 2019/01/10 20:32:10 by lchappon         ###   ########.fr       */
+/*   Updated: 2019/01/10 20:51:09 by lchappon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ void		enemies_ai(t_app *a, t_enemy *e)
 		e->pos.y -= 0.02;
 	if (e->sprite.dist <= 1 && a->move.v <= 1)
 		a->life -= 1;
+	e->step++;
+	e->step > 20 ? e->step = 0 : 0;
 }
 
 void		enemies_sort(t_app *a)

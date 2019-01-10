@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/26 17:11:44 by thbernar          #+#    #+#             */
-/*   Updated: 2019/01/10 19:54:02 by maxisimo         ###   ########.fr       */
+/*   Updated: 2019/01/10 20:50:16 by lchappon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,6 +143,7 @@ typedef struct		s_enemy
 {
 	t_spr			sprite;
 	t_coord_d		pos;
+	int				step;
 	int				life;
 	int				type;
 }					t_enemy;

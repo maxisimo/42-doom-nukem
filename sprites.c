@@ -6,21 +6,31 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 11:54:23 by thbernar          #+#    #+#             */
-/*   Updated: 2019/01/10 18:23:20 by lchappon         ###   ########.fr       */
+/*   Updated: 2019/01/10 20:54:45 by lchappon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "doom_nukem.h"
 
-void	sprites_img(t_app *a, t_spr *s, int type)
+void	sprites_img(t_app *a, t_enemy *e, t_spr *s)
 {
-	if (type == 0)
+	if (e->type == 0 && e->step % 20 < 5)
 		s->img = &a->sprites[0];
-	if (type == 1)
+	else if (e->type == 0 && e->step % 20 >= 5 && e->step % 20 < 10)
 		s->img = &a->sprites[1];
-	if (type == 2)
+	else if (e->type == 0 && e->step % 20 >= 10 && e->step % 20 < 15)
 		s->img = &a->sprites[2];
-	if (type == 3)
+	else if (e->type == 0 && e->step % 20 >= 15 && e->step % 20 < 20)
+		s->img = &a->sprites[3];
+	if (e->type == 0 && e->step % 20 < 5)
+		s->img = &a->sprites[0];
+	if (e->type == 0 && e->step % 20 < 5)
+		s->img = &a->sprites[0];
+	if (e->type == 1)
+		s->img = &a->sprites[1];
+	if (e->type == 2)
+		s->img = &a->sprites[2];
+	if (e->type == 3)
 	{
 		if (s->spr_x <= 0 && s->spr_y <= 0)
 			s->img = &a->sprites[3];
@@ -105,7 +115,7 @@ void	put_sprite(t_app *a, t_spr *s)
 
 void	sprites_draw(t_app *a, t_enemy *e)
 {
-	sprites_img(a, &e->sprite, e->type);
+	sprites_img(a, e, &e->sprite);
 	sprites_init(a, &e->sprite);
 	if (a->is_weapon == 1 && a->weapon.is_fired == 1 && a->ammo > 0 &&
 			WIN_W / 2 >= e->sprite.start_x && WIN_W / 2 <= e->sprite.end_x &&
