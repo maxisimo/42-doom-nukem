@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/26 17:11:44 by thbernar          #+#    #+#             */
-/*   Updated: 2019/01/10 19:12:52 by lchappon         ###   ########.fr       */
+/*   Updated: 2019/01/10 19:54:02 by maxisimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@
 # define SENTENCE3 "not having to answer for his many crimes. Many followers"
 # define SENTENCE4 "continued for years to venerate him like a god. In the year"
 # define SENTENCE5 "2032, some would have discovered a treasure, a piece of"
-# define SENTENCE6 "inestimable value however during this discovery a virus was"
-# define SENTENCE7 "released transforming all the people present in the jail in"
-# define SENTENCE8 "zombie ... Find the piece but becareful to the nun."
+# define SENTENCE6 "inestimable value. However during this discovery a"
+# define SENTENCE7 "malediction transforme all the people present in the"
+# define SENTENCE8 "jail in zombie. Find the skull to stop the maledicition."
 # define OPEN "Press 'E' to open"
 # define CLOSE "Press 'E' to close"
 # define END "Press 'E' to end"
