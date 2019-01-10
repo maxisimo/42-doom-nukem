@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 11:54:23 by thbernar          #+#    #+#             */
-/*   Updated: 2019/01/10 18:20:57 by lchappon         ###   ########.fr       */
+/*   Updated: 2019/01/10 19:12:43 by lchappon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	textures_load(t_app *a)
 	bmp_loadfile(&a->textures[6], "textures/window.bmp");
 	bmp_loadfile(&a->textures[7], "textures/door1.bmp");
 	bmp_loadfile(&a->textures[8], "textures/door2.bmp");
+	bmp_loadfile(&a->textures[9], "textures/poster.bmp");
 }
 
 void	sprites_load(t_app *a)
