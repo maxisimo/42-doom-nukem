@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 11:54:23 by thbernar          #+#    #+#             */
-/*   Updated: 2019/01/10 20:54:45 by lchappon         ###   ########.fr       */
+/*   Updated: 2019/01/10 21:00:12 by lchappon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,17 @@
 
 void	sprites_img(t_app *a, t_enemy *e, t_spr *s)
 {
-	if (e->type == 0 && e->step % 20 < 5)
-		s->img = &a->sprites[0];
-	else if (e->type == 0 && e->step % 20 >= 5 && e->step % 20 < 10)
-		s->img = &a->sprites[1];
-	else if (e->type == 0 && e->step % 20 >= 10 && e->step % 20 < 15)
-		s->img = &a->sprites[2];
-	else if (e->type == 0 && e->step % 20 >= 15 && e->step % 20 < 20)
-		s->img = &a->sprites[3];
-	if (e->type == 0 && e->step % 20 < 5)
-		s->img = &a->sprites[0];
-	if (e->type == 0 && e->step % 20 < 5)
-		s->img = &a->sprites[0];
+	if (e->type == 0)
+	{
+		if (e->step % 20 < 5)
+			s->img = &a->sprites[3];
+		else if (e->step % 20 >= 5 && e->step % 20 < 10)
+			s->img = &a->sprites[4];
+		else if (e->step % 20 >= 10 && e->step % 20 < 15)
+			s->img = &a->sprites[5];
+		else if (e->step % 20 >= 15 && e->step % 20 < 20)
+			s->img = &a->sprites[6];
+	}
 	if (e->type == 1)
 		s->img = &a->sprites[1];
 	if (e->type == 2)
@@ -34,11 +33,11 @@ void	sprites_img(t_app *a, t_enemy *e, t_spr *s)
 	{
 		if (s->spr_x <= 0 && s->spr_y <= 0)
 			s->img = &a->sprites[3];
-		if (s->spr_x >= 0 && s->spr_y <= 0)
+		else if (s->spr_x >= 0 && s->spr_y <= 0)
 			s->img = &a->sprites[4];
-		if (s->spr_x <= 0 && s->spr_y >= 0)
+		else if (s->spr_x <= 0 && s->spr_y >= 0)
 			s->img = &a->sprites[5];
-		if (s->spr_x >= 0 && s->spr_y >= 0)
+		else if (s->spr_x >= 0 && s->spr_y >= 0)
 			s->img = &a->sprites[6];
 	}
 }
