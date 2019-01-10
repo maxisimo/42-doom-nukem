@@ -6,7 +6,7 @@
 #    By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/01 00:25:16 by thbernar          #+#    #+#              #
-#    Updated: 2019/01/08 18:34:55 by maxisimo         ###   ########.fr        #
+#    Updated: 2019/01/10 16:35:08 by lchappon         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,6 +15,7 @@ NAME = doom-nukem
 SRC = main.c \
 	  utils.c \
 	  utils2.c \
+	  info.c \
 	  raycasting.c \
 	  app.c \
 	  minimap.c \
