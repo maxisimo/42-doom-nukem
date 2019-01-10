@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/29 20:27:34 by maxisimo          #+#    #+#             */
-/*   Updated: 2019/01/09 15:41:20 by maxisimo         ###   ########.fr       */
+/*   Updated: 2019/01/10 13:46:13 by maxisimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ void		map_save(t_map *map)
 	int		i;
 	int		j;
 	int		fd;
-	char	s[map->size];
 
 	i = 0;
 	if (((fd = open(map->name, O_CREAT | O_WRONLY, 0644)) < 0))
@@ -49,10 +48,7 @@ void		map_save(t_map *map)
 		j = -1;
 		while (++j < map->size / map->bloc)
 		{
-			s[j] = (abs(map->map[i][j] % 10) + 48);
-			if (map->map[i][j] < 0)
-				ft_putchar_fd('-', fd);
-			ft_putchar_fd(s[j], fd);
+			ft_putnbr_fd(abs(map->map[i][j]), fd);
 			ft_putchar_fd(' ', fd);
 		}
 		if (i + 1 != map->size / map->bloc)
