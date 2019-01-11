@@ -42,3 +42,49 @@ int			mouse_hook(int mousecode, int x, int y, t_map *map)
 	map->map[y / map->bloc][x / map->bloc] = map->i;
 	return (0);
 }
+
+void		init_tab(t_map *map)
+{
+	int		i;
+
+	i = 0;
+	if (!(map->map = (int**)malloc(sizeof(int*) * map->size / map->bloc)))
+	{
+		ft_error("Error : Fail to malloc");
+		exit(-1);
+	}
+	while (i < map->size / map->bloc)
+	{
+		if (!(map->map[i] = (int*)malloc(sizeof(int) * map->size / map->bloc)))
+		{
+			ft_error("Error : Fail to malloc");
+			exit(-1);
+		}
+		ft_bzero(map->map[i], sizeof(int) * (map->size / map->bloc));
+		i++;
+	}
+}
+
+void		map_save(t_map *map)
+{
+	int		i;
+	int		j;
+	int		fd;
+
+	i = 0;
+	if (((fd = open(map->name, O_CREAT | O_WRONLY, 0644)) < 0))
+		ft_error("Error : File not create correctly");
+	while (i < map->size / map->bloc)
+	{
+		j = -1;
+		while (++j < map->size / map->bloc)
+		{
+			ft_putnbr_fd(abs(map->map[i][j]), fd);
+			ft_putchar_fd(' ', fd);
+		}
+		if (i + 1 != map->size / map->bloc)
+			ft_putchar_fd('\n', fd);
+		i++;
+	}
+	close(fd);
+}
