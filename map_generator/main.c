@@ -26,7 +26,6 @@ static void	texture_load(t_map *map)
 	bmp_loadfile(&map->textures[9], "../sprites/zombie1.bmp");
 	bmp_loadfile(&map->textures[10], "../sprites/barril.bmp");
 	bmp_loadfile(&map->textures[11], "../sprites/pillar.bmp");
-	bmp_loadfile(&map->textures[12], "../sprites/piece1.bmp");
 }
 
 static int	check(char *fname)

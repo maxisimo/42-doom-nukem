@@ -43,22 +43,28 @@ static void	draw_lines(t_map *map)
 	}
 }
 
-static void	choose_color(int x, int y, int color, t_map *map)
+static void	choose_color(t_map *map, int v, int x, int y)
 {
-	if (map->map[map->tmp.y][map->tmp.x] == -1)
-		put_px_to_img(map, x, y, 0xFF4242);
-	else if (map->map[map->tmp.y][map->tmp.x] == 0)
-		put_px_to_img(map, x, y, 0x000000);
-	else if (map->map[map->tmp.y][map->tmp.x] > 0)
-		put_px_to_img(map, x, y, color);
+	int c;
+
+	c = 0;
+	if (v == -1)
+		c = 0xFF4242;
+	else if (v == 0)
+		c = 0x000000;
+	else if (v > 0)
+	{
+		c = ft_rgb_to_hex(get_pixel_color(&map->textures[v],
+			((x * 2) % 64), (y * 2) % 64));
+	}
+	put_px_to_img(map, x, y, c);
 }
 
 static void	draw_map(t_map *map)
 {
-	int		color;
 	int		x;
 	int		y;
-	t_color	c1;
+	int		v;
 
 	x = 0;
 	while (x < map->size)
@@ -66,12 +72,8 @@ static void	draw_map(t_map *map)
 		y = 0;
 		while (y < map->size)
 		{
-			map->tmp.x = x / map->bloc;
-			map->tmp.y = y / map->bloc;
-			c1 = get_pixel_color(&map->textures[map->map[map->tmp.y]
-				[map->tmp.x]], (x % 64) * 2, (y % 64) * 2);
-			color = ft_rgb_to_hex(c1);
-			choose_color(x, y, color, map);
+			v = map->map[(y - 1) / map->bloc][(x - 1) / map->bloc];
+			choose_color(map, v, x, y);
 			y++;
 		}
 		x++;
