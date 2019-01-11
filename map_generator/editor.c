@@ -25,33 +25,21 @@ static void	free_strsplit(char **array)
 	free(array);
 }
 
-static void	countmap(t_map *map)
+static void	cleanmap(t_map *map)
 {
-	int		fd;
-	int		count[3];
-	char	*s;
-	char	**array;
+	t_coord p;
 
-	count[2] = 0;
-	count[0] = 0;
-	if (((fd = open(map->name, O_RDONLY)) < 0))
-		ft_error("Error : Fail to read file");
-	while ((get_next_line(fd, &s)) > 0)
+	p.x = 0;
+	while (p.x < 40)
 	{
-		array = ft_strsplit(s, ' ');
-		free(s);
-		count[1] = 0;
-		while (array[count[1]])
-			count[1]++;
-		if (count[1] > count[2])
-			count[2] = count[1];
-		free_strsplit(array);
-		count[0]++;
+		p.y = 0;
+		while (p.y < 40)
+		{
+			map->map[p.x][p.y] = 0;
+			p.y++;
+		}
+		p.x++;
 	}
-	count[2] > 0 ? free(s) : 0;
-	if (count[2] != 40 || count[0] != 40)
-		ft_error("Error : File size must be 40x40");
-	map->size = count[0];
 }
 
 static void	allocmap(t_map *map)
@@ -59,14 +47,14 @@ static void	allocmap(t_map *map)
 	int		i;
 
 	i = 0;
-	if (!(map->map = (int**)malloc(sizeof(int*) * map->size / map->bloc)))
+	if (!(map->map = (int**)malloc(sizeof(int*) * 40)))
 	{
 		ft_error("Error : Fail to malloc tab");
 		exit(-1);
 	}
-	while (i < map->size / map->bloc)
+	while (i < 40)
 	{
-		if (!(map->map[i] = (int*)malloc(sizeof(int) * map->size / map->bloc)))
+		if (!(map->map[i] = (int*)malloc(sizeof(int) * 40)))
 		{
 			ft_error("Error : Fail to malloc tab");
 			exit(-1);
@@ -81,20 +69,18 @@ static void	writemap(t_map *map)
 	char	**array;
 	char	*s;
 
-	map->p.y = 0;
 	if (((fd = open(map->name, O_RDONLY)) < 0))
-		ft_error("Error : invalid file.");
+		return ;
+	map->p.y = 0;
 	while ((get_next_line(fd, &s)) > 0 && map->p.y < map->size / map->bloc)
 	{
 		map->p.x = 0;
 		array = ft_strsplit(s, ' ');
 		free(s);
-		while (map->p.x < map->size / map->bloc)
+		while (map->p.x < 40 && array[map->p.x])
 		{
 			if (array[map->p.x])
 				map->map[map->p.y][map->p.x] = ft_atoi(array[map->p.x]);
-			else
-				map->map[map->p.y][map->p.x] = 0;
 			map->p.x++;
 		}
 		free_strsplit(array);
@@ -106,9 +92,11 @@ static void	writemap(t_map *map)
 
 void		init(t_map *map)
 {
-	countmap(map);
-	map->bloc = 1280 / map->size;
-	map->size *= map->bloc;
+	map->bloc = 32;
+	map->size = 1280;
+	map->i = 1;
+	map->player = 0;
 	allocmap(map);
+	cleanmap(map);
 	writemap(map);
 }

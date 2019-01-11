@@ -14,38 +14,17 @@
 
 void	error(void)
 {
-	ft_putendl("usage: ./map_generator newfile.w3d create");
-	ft_putendl("                 or                   ");
-	ft_putendl("usage: ./map_generator filename.w3d edit");
+	ft_putendl("usage: ./map_generator *.w3d");
 }
 
-void	is_edit(char *s, t_map *map)
+void	put_px_to_img(t_map *map, int x, int y, int color)
 {
-	map->edit = 1;
-	map->name = s;
-	map->i = 1;
-	map->player = 0;
-	init(map);
-}
-
-void	is_create(char *s, t_map *map)
-{
-	map->size = 40;
-	map->bloc = 1280 / map->size;
-	map->size *= map->bloc;
-	map->name = s;
-	map->i = 1;
-	map->player = 0;
-	init_tab(map);
-}
-
-void	infos(t_map *map)
-{
-	mlx_string_put(map->mlx, map->win, 1310, 500, 0xFFFFFF, TIP1);
-	mlx_string_put(map->mlx, map->win, 1310, 550, 0xFFFFFF, TIP2);
-	mlx_string_put(map->mlx, map->win, 1310, 600, 0xFFFFFF, TIP3);
-	mlx_string_put(map->mlx, map->win, 1310, 650, 0xFFFFFF, TIP4);
-	mlx_string_put(map->mlx, map->win, 1310, 700, 0xFFFFFF, TIP5);
+	if (x < 1920 && y < map->size && x >= 0 && y >= 0)
+	{
+		color = mlx_get_color_value(map->mlx, color);
+		ft_memcpy(map->img_ptr + 4 * (map->size + 700) * y + x * 4,
+				&color, sizeof(int));
+	}
 }
 
 void	ft_put_bmp(t_map *a, t_bmp bmp, int x, int y)

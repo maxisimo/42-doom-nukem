@@ -13,7 +13,6 @@
 NAME = map_generator
 
 SRC = main.c \
-	  map_generator.c \
 	  utils.c \
 	  draw.c \
 	  hook.c \

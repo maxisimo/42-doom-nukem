@@ -43,28 +43,6 @@ int			mouse_hook(int mousecode, int x, int y, t_map *map)
 	return (0);
 }
 
-void		init_tab(t_map *map)
-{
-	int		i;
-
-	i = 0;
-	if (!(map->map = (int**)malloc(sizeof(int*) * map->size / map->bloc)))
-	{
-		ft_error("Error : Fail to malloc");
-		exit(-1);
-	}
-	while (i < map->size / map->bloc)
-	{
-		if (!(map->map[i] = (int*)malloc(sizeof(int) * map->size / map->bloc)))
-		{
-			ft_error("Error : Fail to malloc");
-			exit(-1);
-		}
-		ft_bzero(map->map[i], sizeof(int) * (map->size / map->bloc));
-		i++;
-	}
-}
-
 void		map_save(t_map *map)
 {
 	int		i;

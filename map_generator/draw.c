@@ -12,35 +12,13 @@
 
 #include "map_generator.h"
 
-void		put_px_to_img(t_map *map, int x, int y, int color)
+static void	draw_infos(t_map *map)
 {
-	if (x < 1920 && y < map->size && x >= 0 && y >= 0)
-	{
-		color = mlx_get_color_value(map->mlx, color);
-		ft_memcpy(map->img_ptr + 4 * (map->size + 700) * y + x * 4,
-				&color, sizeof(int));
-	}
-}
-
-static void	draw_lines(t_map *map)
-{
-	int		x;
-	int		y;
-
-	x = 0;
-	while (x < map->size)
-	{
-		y = 0;
-		while (y < map->size)
-		{
-			if (x == 0 || y == 0)
-				put_px_to_img(map, x, y, 0xFFFFFF);
-			if ((x + 1) % map->bloc == 0 || (y + 1) % map->bloc == 0)
-				put_px_to_img(map, x, y, 0xFFFFFF);
-			y++;
-		}
-		x++;
-	}
+	mlx_string_put(map->mlx, map->win, 1310, 500, 0xFFFFFF, TIP1);
+	mlx_string_put(map->mlx, map->win, 1310, 550, 0xFFFFFF, TIP2);
+	mlx_string_put(map->mlx, map->win, 1310, 600, 0xFFFFFF, TIP3);
+	mlx_string_put(map->mlx, map->win, 1310, 650, 0xFFFFFF, TIP4);
+	mlx_string_put(map->mlx, map->win, 1310, 700, 0xFFFFFF, TIP5);
 }
 
 static void	choose_color(t_map *map, int v, int x, int y)
@@ -80,6 +58,27 @@ static void	draw_map(t_map *map)
 	}
 }
 
+static void	draw_lines(t_map *map)
+{
+	int		x;
+	int		y;
+
+	x = 0;
+	while (x < map->size)
+	{
+		y = 0;
+		while (y < map->size)
+		{
+			if (x == 0 || y == 0)
+				put_px_to_img(map, x, y, 0xFFFFFF);
+			if ((x + 1) % map->bloc == 0 || (y + 1) % map->bloc == 0)
+				put_px_to_img(map, x, y, 0xFFFFFF);
+			y++;
+		}
+		x++;
+	}
+}
+
 int			draw(t_map *map)
 {
 	int	p[3];
@@ -91,7 +90,7 @@ int			draw(t_map *map)
 	map->textures[map->i].scale = 2;
 	map->i > 0 ? ft_put_bmp(map, map->textures[map->i], 1500, 900) : 0;
 	mlx_put_image_to_window(map->mlx, map->win, map->img, 0, 0);
-	infos(map);
+	draw_infos(map);
 	mlx_destroy_image(map->mlx, map->img);
 	mlx_do_sync(map->mlx);
 	return (0);

@@ -28,43 +28,23 @@ static void	texture_load(t_map *map)
 	bmp_loadfile(&map->textures[11], "../sprites/pillar.bmp");
 }
 
-static int	check(char *fname)
-{
-	if (ft_strncmp(ft_strrev(fname), "d3w.", 4) == 0)
-		return (1);
-	else if (ft_strncmp(ft_strrev(fname), "edit", 4) == 0)
-		return (2);
-	else if (ft_strncmp(ft_strrev(fname), "etaerc", 6) == 0)
-		return (3);
-	else
-		return (0);
-}
-
 int			main(int ac, char **av)
 {
 	t_map	map;
 
-	if (ac == 3 && check(ft_strdup(av[1])) == 1)
+	if (ac == 2)
 	{
-		ft_bzero(&map, sizeof(t_map));
-		if (check(ft_strdup(av[2])) == 2)
-			is_edit(av[1], &map);
-		else if (check(ft_strdup(av[2])) == 3)
-			is_create(av[1], &map);
-		else
-		{
-			error();
-			return (0);
-		}
+		map.name = av[1];
+		init(&map);
+		texture_load(&map);
 		map.mlx = mlx_init();
 		map.win = mlx_new_window(map.mlx, 1980, 1280, map.name);
-		texture_load(&map);
 		mlx_key_hook(map.win, key_hook, &map);
 		mlx_mouse_hook(map.win, mouse_hook, &map);
 		mlx_loop_hook(map.mlx, &draw, &map);
 		mlx_loop(map.mlx);
 	}
 	else
-		error();
+		ft_putendl("usage: ./map_generator *.w3d");
 	return (0);
 }
