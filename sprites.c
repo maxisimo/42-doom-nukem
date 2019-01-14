@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 11:54:23 by thbernar          #+#    #+#             */
-/*   Updated: 2019/01/14 14:46:18 by lchappon         ###   ########.fr       */
+/*   Updated: 2019/01/14 16:05:13 by maxisimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,8 @@ void	sprites_img(t_app *a, t_enemy *e, t_spr *s)
 		else if (e->step % 20 >= 15 && e->step % 20 < 20)
 			s->img = &a->sprites[3];
 	}
-	if (e->type == 1)
-		s->img = &a->sprites[4];
-	if (e->type == 2)
-		s->img = &a->sprites[5];
+	e->type == 1 ? s->img = &a->sprites[4] : 0;
+	e->type == 2 ? s->img = &a->sprites[5] : 0;
 	if (e->type == 3)
 	{
 		if (s->spr_x <= 0 && s->spr_y <= 0)
