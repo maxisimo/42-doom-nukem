@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/26 17:11:44 by thbernar          #+#    #+#             */
-/*   Updated: 2019/01/10 20:50:16 by lchappon         ###   ########.fr       */
+/*   Updated: 2019/01/14 16:00:09 by lchappon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -223,7 +223,7 @@ typedef struct		s_app
 	t_bmp			logo;
 	t_bmp			game_over;
 	t_bmp			game_win;
-	t_bmp			textures[10];
+	t_bmp			textures[11];
 	t_bmp			sprites[10];
 	t_coord			map_size;
 	t_coord			p;
