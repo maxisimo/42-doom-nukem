@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/05 12:16:44 by maxisimo          #+#    #+#             */
-/*   Updated: 2019/01/10 18:31:45 by maxisimo         ###   ########.fr       */
+/*   Updated: 2019/01/14 17:44:10 by maxisimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static void	choose_color(t_map *map, int v, int x, int y)
 		c = 0x000000;
 	else if (v > 0)
 	{
-		c = ft_rgb_to_hex(get_pixel_color(&map->textures[v],
+		c = ft_rgb_to_hex(get_pixel_color(&map->textures[v - 1],
 			((x * 2) % 64), (y * 2) % 64));
 	}
 	put_px_to_img(map, x, y, c);
@@ -87,8 +87,8 @@ int			draw(t_map *map)
 	map->img_ptr = mlx_get_data_addr(map->img, &p[0], &p[1], &p[2]);
 	draw_map(map);
 	draw_lines(map);
-	map->textures[map->i].scale = 2;
-	map->i > 0 ? ft_put_bmp(map, map->textures[map->i], 1500, 900) : 0;
+	map->i > 0 ? map->textures[map->i - 1].scale = 2 : 0;
+	map->i > 0 ? ft_put_bmp(map, map->textures[map->i - 1], 1500, 900) : 0;
 	mlx_put_image_to_window(map->mlx, map->win, map->img, 0, 0);
 	draw_infos(map);
 	mlx_destroy_image(map->mlx, map->img);
