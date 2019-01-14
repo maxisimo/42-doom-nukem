@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/26 17:11:44 by thbernar          #+#    #+#             */
-/*   Updated: 2019/01/14 16:00:09 by lchappon         ###   ########.fr       */
+/*   Updated: 2019/01/14 20:45:17 by lchappon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,6 +146,7 @@ typedef struct		s_enemy
 	int				step;
 	int				life;
 	int				type;
+	int				dying;
 }					t_enemy;
 
 typedef struct		s_dir
@@ -224,7 +225,7 @@ typedef struct		s_app
 	t_bmp			game_over;
 	t_bmp			game_win;
 	t_bmp			textures[11];
-	t_bmp			sprites[10];
+	t_bmp			sprites[16];
 	t_coord			map_size;
 	t_coord			p;
 	t_coord_d		pos;
@@ -301,6 +302,7 @@ void				story(t_app *a);
 void				game_over(t_app *a);
 
 void				enemies_init(t_app *a);
+void				enemies_dying(t_app *a, t_enemy *e, t_spr *s);
 void				enemies_draw(t_app *a);
 
 void				ft_poster(t_app *a);

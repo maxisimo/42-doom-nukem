@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 11:54:23 by thbernar          #+#    #+#             */
-/*   Updated: 2019/01/14 16:42:03 by lchappon         ###   ########.fr       */
+/*   Updated: 2019/01/14 20:26:10 by lchappon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,12 @@ void	sprites_load(t_app *a)
 	bmp_loadfile(&a->sprites[7], "sprites/skull2.bmp");
 	bmp_loadfile(&a->sprites[8], "sprites/skull3.bmp");
 	bmp_loadfile(&a->sprites[9], "sprites/skull4.bmp");
+	bmp_loadfile(&a->sprites[10], "sprites/dying1.bmp");
+	bmp_loadfile(&a->sprites[11], "sprites/dying2.bmp");
+	bmp_loadfile(&a->sprites[12], "sprites/dying3.bmp");
+	bmp_loadfile(&a->sprites[13], "sprites/dying4.bmp");
+	bmp_loadfile(&a->sprites[14], "sprites/dying5.bmp");
+	bmp_loadfile(&a->sprites[15], "sprites/dying6.bmp");
 	bmp_loadfile(&a->weapon.img, "sprites/ak47.bmp");
 	bmp_loadfile(&a->weapon.img2, "sprites/ak47fired.bmp");
 	bmp_loadfile(&a->weapon.scope, "sprites/scope.bmp");

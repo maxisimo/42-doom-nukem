@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 18:12:53 by maxisimo          #+#    #+#             */
-/*   Updated: 2019/01/14 18:25:01 by lchappon         ###   ########.fr       */
+/*   Updated: 2019/01/14 20:47:10 by lchappon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,11 @@ void		enemies_sort(t_app *a)
 	i = 0;
 	while (i < a->enemies_count)
 	{
+		a->enemies[i].sprite.spr_x = a->enemies[i].pos.x - a->pos.x;
+		a->enemies[i].sprite.spr_y = a->enemies[i].pos.y - a->pos.y;
+		a->enemies[i].sprite.dist =
+			a->enemies[i].sprite.spr_x * a->enemies[i].sprite.spr_x +
+			a->enemies[i].sprite.spr_y * a->enemies[i].sprite.spr_y;
 		if (a->enemies[i].sprite.dist < a->enemies[i + 1].sprite.dist)
 		{
 			tmp = a->enemies[i];
@@ -71,29 +76,41 @@ void		enemies_pick(t_app *a, t_enemy *e)
 	}
 }
 
+void		enemies_dying(t_app *a, t_enemy *e, t_spr *s)
+{
+	if (e->type == 0 && e->life == 0)
+	{
+		if (e->dying % 13 < 3)
+			s->img = &a->sprites[15];
+		else if (e->dying % 13 >= 3 && e->dying % 13 < 6)
+			s->img = &a->sprites[14];
+		else if (e->dying % 13 >= 6 && e->dying % 13 < 9)
+			s->img = &a->sprites[13];
+		else if (e->dying % 13 >= 9 && e->dying % 13 < 11)
+			s->img = &a->sprites[12];
+		else if (e->dying % 13 == 11)
+			s->img = &a->sprites[11];
+		else if (e->dying % 13 == 12)
+			s->img = &a->sprites[10];
+		e->dying--;
+	}
+}
+
 void		enemies_draw(t_app *a)
 {
 	int i;
 
-	i = 0;
-	while (i < a->enemies_count)
-	{
-		a->enemies[i].sprite.spr_x = a->enemies[i].pos.x - a->pos.x;
-		a->enemies[i].sprite.spr_y = a->enemies[i].pos.y - a->pos.y;
-		a->enemies[i].sprite.dist =
-			a->enemies[i].sprite.spr_x * a->enemies[i].sprite.spr_x +
-			a->enemies[i].sprite.spr_y * a->enemies[i].sprite.spr_y;
-		i++;
-	}
 	enemies_sort(a);
 	i = 0;
 	while (i < a->enemies_count)
 	{
-		if (a->enemies[i].life > 0)
+		if (a->enemies[i].life > 0 || a->enemies[i].dying > 0)
 		{
 			enemies_pick(a, &a->enemies[i]);
-			if (a->enemies[i].type == 0 && a->enemies[i].sprite.dist < 20)
+			if (a->enemies[i].type == 0 && a->enemies[i].sprite.dist < 20 &&
+					a->enemies[i].life > 0)
 				enemies_ai(a, &a->enemies[i]);
+			enemies_dying(a, &a->enemies[i], &a->enemies[i].sprite);
 			sprites_draw(a, &a->enemies[i]);
 		}
 		i++;
