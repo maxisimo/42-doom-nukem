@@ -6,7 +6,7 @@
 #    By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/01 00:25:16 by thbernar          #+#    #+#              #
-#    Updated: 2019/01/14 15:52:23 by maxisimo         ###   ########.fr        #
+#    Updated: 2019/01/14 19:06:15 by maxisimo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -66,7 +66,9 @@ LMLX := minilibx/libmlx.a
 
 FRAMEWORK := -framework OpenGL -framework Appkit
 
-all: $(NAME)
+.PHONY: all clean fclean doom_clean map_clean doom_fclean map_fclean doom_re map_re
+
+all: $(NAME) $(NAME_MAP)
 
 $(NAME) : $(OBJ) $(LFT) $(LMLX)
 	$(CC) $(CFLAGS) $(LIBMLX) $(LIBFT) $(FRAMEWORK) $(OBJ) -o $(NAME)
@@ -80,13 +82,35 @@ libft/libft.a:
 minilibx/libmlx.a:
 	make -C minilibx
 
+doom_clean:
+	make clean -C libft
+	make clean -C minilibx
+	rm -rf $(OBJ)
+
+map_clean:
+	make clean -C libft
+	make clean -C minilibx
+	rm -rf $(OBJ_MAP)
+
 clean:
 	make clean -C libft
 	make clean -C minilibx
 	rm -rf $(OBJ) $(OBJ_MAP)
 
+doom_fclean: clean
+	make fclean -C libft
+	rm -rf $(NAME)
+
+map_fclean: clean
+	make fclean -C libft
+	rm -rf $(NAME_MAP)
+
 fclean: clean
 	make fclean -C libft
 	rm -rf $(NAME) $(NAME_MAP)
+
+doom_re : doom_fclean $(NAME)
+
+map_re : map_fclean $(NAME_MAP)
 
 re : fclean all
