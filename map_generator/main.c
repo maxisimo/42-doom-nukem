@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/29 19:39:00 by maxisimo          #+#    #+#             */
-/*   Updated: 2019/01/14 15:53:24 by maxisimo         ###   ########.fr       */
+/*   Updated: 2019/01/14 17:51:59 by maxisimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ static void	texture_load(t_map *map)
 	bmp_loadfile(&map->textures[4], "textures/purplestone.bmp");
 	bmp_loadfile(&map->textures[5], "textures/mossy.bmp");
 	bmp_loadfile(&map->textures[6], "textures/window.bmp");
-	bmp_loadfile(&map->textures[7], "textures/door1.bmp");
-	bmp_loadfile(&map->textures[8], "textures/door2.bmp");
+	bmp_loadfile(&map->textures[7], "textures/door1-5.bmp");
+	bmp_loadfile(&map->textures[8], "textures/door1.bmp");
 	bmp_loadfile(&map->textures[9], "sprites/zombie1.bmp");
 	bmp_loadfile(&map->textures[10], "sprites/barril.bmp");
 	bmp_loadfile(&map->textures[11], "sprites/pillar.bmp");

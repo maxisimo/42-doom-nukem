@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/05 12:16:44 by maxisimo          #+#    #+#             */
-/*   Updated: 2019/01/14 17:44:10 by maxisimo         ###   ########.fr       */
+/*   Updated: 2019/01/14 17:56:42 by maxisimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,8 @@ static void	draw_lines(t_map *map)
 			if (x == 0 || y == 0)
 				put_px_to_img(map, x, y, 0xFFFFFF);
 			if ((x + 1) % map->bloc == 0 || (y + 1) % map->bloc == 0)
+				put_px_to_img(map, x + 1, y + 1, 0xFFFFFF);
+			if (y == 1280 - 1)
 				put_px_to_img(map, x, y, 0xFFFFFF);
 			y++;
 		}
