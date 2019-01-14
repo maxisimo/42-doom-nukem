@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 18:12:53 by maxisimo          #+#    #+#             */
-/*   Updated: 2019/01/10 20:51:09 by lchappon         ###   ########.fr       */
+/*   Updated: 2019/01/14 15:02:29 by lchappon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,16 @@
 
 void		enemies_ai(t_app *a, t_enemy *e)
 {
-	if (a->pos.x + 0.5 > e->pos.x && a->pos.x - e->pos.x < 6 &&
+	if (a->pos.x + 0.5 > e->pos.x &&
 			a->map[(int)(e->pos.x + 0.25)][(int)(e->pos.y)] <= 0)
 		e->pos.x += 0.02;
-	if (a->pos.x - 0.5 < e->pos.x && a->pos.x - e->pos.x > -6 &&
+	if (a->pos.x - 0.5 < e->pos.x &&
 			a->map[(int)(e->pos.x - 0.25)][(int)(e->pos.y)] <= 0)
 		e->pos.x -= 0.02;
-	if (a->pos.y + 0.5 > e->pos.y && a->pos.y - e->pos.y < 6 &&
+	if (a->pos.y + 0.5 > e->pos.y &&
 			a->map[(int)(e->pos.x)][(int)(e->pos.y + 0.25)] <= 0)
 		e->pos.y += 0.02;
-	if (a->pos.y - 0.5 < e->pos.y && a->pos.y - e->pos.y > -6 &&
+	if (a->pos.y - 0.5 < e->pos.y &&
 			a->map[(int)(e->pos.x)][(int)(e->pos.y - 0.25)] <= 0)
 		e->pos.y -= 0.02;
 	if (e->sprite.dist <= 1 && a->move.v <= 1)
@@ -90,7 +90,7 @@ void		enemies_draw(t_app *a)
 		if (a->enemies[i].life > 0)
 		{
 			enemies_pick(a, &a->enemies[i]);
-			if (a->enemies[i].type == 0)
+			if (a->enemies[i].type == 0 && a->enemies[i].sprite.dist < 20)
 				enemies_ai(a, &a->enemies[i]);
 			sprites_draw(a, &a->enemies[i]);
 		}
