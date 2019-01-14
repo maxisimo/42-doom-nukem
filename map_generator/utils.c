@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/05 11:54:43 by maxisimo          #+#    #+#             */
-/*   Updated: 2019/01/09 16:16:05 by maxisimo         ###   ########.fr       */
+/*   Updated: 2019/01/14 15:56:21 by maxisimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	error(void)
 {
-	ft_putendl("usage: ./map_generator *.w3d");
+	ft_putendl("usage: ./map-generator <file.w3d>");
 }
 
 void	put_px_to_img(t_map *map, int x, int y, int color)

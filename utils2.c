@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/16 16:09:25 by lchappon          #+#    #+#             */
-/*   Updated: 2019/01/10 16:34:55 by lchappon         ###   ########.fr       */
+/*   Updated: 2019/01/14 15:58:17 by maxisimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int		ft_close(t_app *app)
 {
 	free(app->map);
-	system("killall afplay 2&>/dev/null >/dev/null");
+	system("/usr/bin/killall afplay 2&>/dev/null >/dev/null");
 	exit(0);
 	return (0);
 }
@@ -23,7 +23,7 @@ int		ft_close(t_app *app)
 void	ft_error(char *s)
 {
 	ft_putstr(s);
-	system("killall afplay 2&>/dev/null >/dev/null");
+	system("/usr/bin/killall afplay 2&>/dev/null >/dev/null");
 	exit(-1);
 }
 

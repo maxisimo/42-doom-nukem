@@ -6,7 +6,7 @@
 #    By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/01 00:25:16 by thbernar          #+#    #+#              #
-#    Updated: 2019/01/14 14:55:22 by maxisimo         ###   ########.fr        #
+#    Updated: 2019/01/14 15:52:23 by maxisimo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,9 +50,9 @@ SRC_MAP = map_generator/main.c \
 	  screens.c \
 	  posters.c
 
-OBJ = $(SRC:.c=.o)
+OBJ = $(SRC:%.c=%.o)
 
-OBJ_MAP = $(SRC_MAP:.c=.o)
+OBJ_MAP = $(SRC_MAP:%.c=%.o)
 
 CC = gcc
 
@@ -69,10 +69,10 @@ FRAMEWORK := -framework OpenGL -framework Appkit
 all: $(NAME)
 
 $(NAME) : $(OBJ) $(LFT) $(LMLX)
-	$(CC) $(CFLAGS) $(LIBMLX) $(LIBFT) $(FRAMEWORK) $(OBJ) -o $@
+	$(CC) $(CFLAGS) $(LIBMLX) $(LIBFT) $(FRAMEWORK) $(OBJ) -o $(NAME)
 
 $(NAME_MAP) : $(OBJ_MAP) $(LFT) $(LMLX)
-	$(CC) $(CFLAGS) $(LIBMLX) $(LIBFT) $(FRAMEWORK) $(OBJ_MAP) -o $@
+	$(CC) $(CFLAGS) $(LIBMLX) $(LIBFT) $(FRAMEWORK) $(OBJ_MAP) -o $(NAME_MAP)
 
 libft/libft.a:
 	make -C libft

@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/16 16:07:26 by lchappon          #+#    #+#             */
-/*   Updated: 2019/01/08 14:06:15 by maxisimo         ###   ########.fr       */
+/*   Updated: 2019/01/14 15:58:17 by maxisimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int			ft_key_press2(int key, t_app *app)
 		app->size--;
 	else if (key == 53)
 	{
-		system("killall afplay 2&>/dev/null >/dev/null");
+		system("/usr/bin/killall afplay 2&>/dev/null >/dev/null");
 		exit(0);
 	}
 	return (0);

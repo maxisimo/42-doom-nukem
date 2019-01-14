@@ -6,34 +6,48 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/29 19:39:00 by maxisimo          #+#    #+#             */
-/*   Updated: 2019/01/14 14:52:05 by maxisimo         ###   ########.fr       */
+/*   Updated: 2019/01/14 15:53:24 by maxisimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "map_generator.h"
 
+static int	is_extension_valid(char *fname)
+{
+	if (ft_strncmp(ft_strrev(fname), "d3w.", 4) == 0)
+	{
+		free(fname);
+		return (1);
+	}
+	else
+	{
+		free(fname);
+		return (0);
+	}
+}
+
 static void	texture_load(t_map *map)
 {
-	bmp_loadfile(&map->textures[0], "../textures/colorstone.bmp");
-	bmp_loadfile(&map->textures[1], "../textures/greystone.bmp");
-	bmp_loadfile(&map->textures[2], "../textures/wood.bmp");
-	bmp_loadfile(&map->textures[3], "../textures/redbrick.bmp");
-	bmp_loadfile(&map->textures[4], "../textures/purplestone.bmp");
-	bmp_loadfile(&map->textures[5], "../textures/mossy.bmp");
-	bmp_loadfile(&map->textures[6], "../textures/window.bmp");
-	bmp_loadfile(&map->textures[7], "../textures/door1.bmp");
-	bmp_loadfile(&map->textures[8], "../textures/door2.bmp");
-	bmp_loadfile(&map->textures[9], "../sprites/zombie1.bmp");
-	bmp_loadfile(&map->textures[10], "../sprites/barril.bmp");
-	bmp_loadfile(&map->textures[11], "../sprites/pillar.bmp");
-	bmp_loadfile(&map->textures[12], "../sprites/skull1.bmp");
+	bmp_loadfile(&map->textures[0], "textures/colorstone.bmp");
+	bmp_loadfile(&map->textures[1], "textures/greystone.bmp");
+	bmp_loadfile(&map->textures[2], "textures/wood.bmp");
+	bmp_loadfile(&map->textures[3], "textures/redbrick.bmp");
+	bmp_loadfile(&map->textures[4], "textures/purplestone.bmp");
+	bmp_loadfile(&map->textures[5], "textures/mossy.bmp");
+	bmp_loadfile(&map->textures[6], "textures/window.bmp");
+	bmp_loadfile(&map->textures[7], "textures/door1.bmp");
+	bmp_loadfile(&map->textures[8], "textures/door2.bmp");
+	bmp_loadfile(&map->textures[9], "sprites/zombie1.bmp");
+	bmp_loadfile(&map->textures[10], "sprites/barril.bmp");
+	bmp_loadfile(&map->textures[11], "sprites/pillar.bmp");
+	bmp_loadfile(&map->textures[12], "sprites/skull1.bmp");
 }
 
 int			main(int ac, char **av)
 {
 	t_map	map;
 
-	if (ac == 2)
+	if (ac == 2 && is_extension_valid(ft_strdup(av[1])) == 1)
 	{
 		map.name = av[1];
 		init(&map);
@@ -46,6 +60,6 @@ int			main(int ac, char **av)
 		mlx_loop(map.mlx);
 	}
 	else
-		ft_putendl("usage: ./map-generator <file>");
+		ft_putendl("usage: ./map-generator <file.w3d>");
 	return (0);
 }
