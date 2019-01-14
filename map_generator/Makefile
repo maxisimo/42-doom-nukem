@@ -6,7 +6,7 @@
 #    By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/29 22:26:16 by maxisimo          #+#    #+#              #
-#    Updated: 2019/01/09 16:16:24 by maxisimo         ###   ########.fr        #
+#    Updated: 2019/01/14 14:39:49 by maxisimo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,10 +30,10 @@ OBJ = $(SRC:.c=.o)
 
 CC = gcc
 
-CFLAGS = -Wall -Wextra -Werror -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror
 
-LIBMLX := -Lminilibx -lmlx
-LIBFT := -Llibft -lft
+LIBMLX := -L ../minilibx -lmlx
+LIBFT := -L ../libft -lft
 
 LFT := libft/libft.a
 
@@ -45,18 +45,18 @@ $(NAME) : $(OBJ) libft/libft.a minilibx/libmlx.a
 	$(CC) $(CFLAGS) $(LIBMLX) $(LIBFT) $(FRAMEWORK) $(OBJ) -o $(NAME)
 
 libft/libft.a:
-	make -C libft
+	make -C ../libft
 
 minilibx/libmlx.a:
-	make -C minilibx
+	make -C ../minilibx
 
 clean:
-	make clean -C libft
-	make clean -C minilibx
+	make clean -C ../libft
+	make clean -C ../minilibx
 	rm -rf $(OBJ)
 
 fclean: clean
-	make fclean -C libft
+	make fclean -C ../libft
 	rm -rf $(NAME)
 
 re : fclean all

@@ -6,11 +6,13 @@
 #    By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/01 00:25:16 by thbernar          #+#    #+#              #
-#    Updated: 2019/01/10 19:23:56 by maxisimo         ###   ########.fr        #
+#    Updated: 2019/01/14 14:55:22 by maxisimo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = doom-nukem
+
+NAME_MAP = map-generator
 
 SRC = main.c \
 	  utils.c \
@@ -34,7 +36,23 @@ SRC = main.c \
 	  enemies_init.c \
 	  bmp_parser.c
 
+SRC_MAP = map_generator/main.c \
+	  map_generator/utils.c \
+	  map_generator/draw.c \
+	  map_generator/hook.c \
+	  map_generator/editor.c \
+	  bmp_parser.c \
+	  utils.c \
+	  utils2.c \
+	  minimap.c \
+	  shades.c \
+	  doors.c \
+	  screens.c \
+	  posters.c
+
 OBJ = $(SRC:.c=.o)
+
+OBJ_MAP = $(SRC_MAP:.c=.o)
 
 CC = gcc
 
@@ -44,13 +62,17 @@ LIBMLX := -Lminilibx -lmlx
 LIBFT := -Llibft -lft
 
 LFT := libft/libft.a
+LMLX := minilibx/libmlx.a
 
 FRAMEWORK := -framework OpenGL -framework Appkit
 
 all: $(NAME)
 
-$(NAME) : $(OBJ) libft/libft.a minilibx/libmlx.a
-	$(CC) $(CFLAGS) $(LIBMLX) $(LIBFT) $(FRAMEWORK) $(OBJ) -o $(NAME)
+$(NAME) : $(OBJ) $(LFT) $(LMLX)
+	$(CC) $(CFLAGS) $(LIBMLX) $(LIBFT) $(FRAMEWORK) $(OBJ) -o $@
+
+$(NAME_MAP) : $(OBJ_MAP) $(LFT) $(LMLX)
+	$(CC) $(CFLAGS) $(LIBMLX) $(LIBFT) $(FRAMEWORK) $(OBJ_MAP) -o $@
 
 libft/libft.a:
 	make -C libft
@@ -61,10 +83,10 @@ minilibx/libmlx.a:
 clean:
 	make clean -C libft
 	make clean -C minilibx
-	rm -rf $(OBJ)
+	rm -rf $(OBJ) $(OBJ_MAP)
 
 fclean: clean
 	make fclean -C libft
-	rm -rf $(NAME)
+	rm -rf $(NAME) $(NAME_MAP)
 
 re : fclean all
