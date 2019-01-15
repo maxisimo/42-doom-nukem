@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/05 12:16:44 by maxisimo          #+#    #+#             */
-/*   Updated: 2019/01/14 17:56:42 by maxisimo         ###   ########.fr       */
+/*   Updated: 2019/01/15 19:12:09 by maxisimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,8 @@ static void	choose_color(t_map *map, int v, int x, int y)
 	else if (v == 0)
 		c = 0x000000;
 	else if (v > 0)
-	{
-		c = ft_rgb_to_hex(get_pixel_color(&t, (x * 2) % t.width, (y * 2) % t.height));
-	}
+		c = ft_rgb_to_hex(get_pixel_color(&t, (x * 2) % t.width,
+			(y * 2) % t.height));
 	put_px_to_img(map, x, y, c);
 }
 
