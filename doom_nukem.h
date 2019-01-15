@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/26 17:11:44 by thbernar          #+#    #+#             */
-/*   Updated: 2019/01/14 20:45:17 by lchappon         ###   ########.fr       */
+/*   Updated: 2019/01/15 18:12:56 by lchappon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,17 +23,17 @@
 # define WIN_W 1280
 # define WIN_H 720
 # define START "PRESS ANY KEY TO START"
-# define SENTENCE1 "October, 10th 2042"
-# define SENTENCE2 "after the II world war, adolf hitler commits suicide for"
-# define SENTENCE3 "not having to answer for his many crimes. Many followers"
-# define SENTENCE4 "continued for years to venerate him like a god. In the year"
-# define SENTENCE5 "2032, some would have discovered a treasure, a piece of"
-# define SENTENCE6 "inestimable value. However during this discovery a"
-# define SENTENCE7 "malediction transforme all the people present in the"
-# define SENTENCE8 "jail in zombie. Find the skull to stop the maledicition."
+# define SENTENCE1 "THE FUHRER IS DEAD. HOWEVER, A STRANGE MALEDICTION HAS"
+# define SENTENCE2 "OCCURED SINCE THEN, RISING THE DEAD FROM THE GRAVE. IT IS"
+# define SENTENCE3 "BELIEVED THAT THE CURSE ORIGINATED FROM THE WOLFENSTEIN"
+# define SENTENCE4 "CASTLE WHERE THE NAZIS HID A PIECE OF INESTIMABLE VALUE :"
+# define SENTENCE5 "THE SKULL OF DOOM. KILL THE UNDEAD AND RETRIEVE THAT SKULL"
+# define SENTENCE6 "TO HOPEFULLY END THE CURSE. YOU KNOW THAT CASTLE VERY WELL"
+# define SENTENCE7 "THAT IS WHY YOU ARE OUR BEST HOPE."
+# define SENTENCE8 "GODSPEED, AGENT BLAZKOWICZ."
 # define OPEN "Press 'E' to open"
 # define CLOSE "Press 'E' to close"
-# define END "Press 'E' to end"
+# define END "Press 'E' to end the curse"
 # define HFOV_RAD 30 * 2 * M_PI / 360
 # define FOV_RAD 60 * 2 * M_PI / 360
 # define WIN_HS WIN_H / 2 + 250
