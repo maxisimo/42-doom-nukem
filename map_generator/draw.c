@@ -23,17 +23,18 @@ static void	draw_infos(t_map *map)
 
 static void	choose_color(t_map *map, int v, int x, int y)
 {
-	int c;
+	int			c;
+	t_bmp		t;
 
 	c = 0;
+	t = map->textures[v - 1];
 	if (v == -1)
 		c = 0xFF4242;
 	else if (v == 0)
 		c = 0x000000;
 	else if (v > 0)
 	{
-		c = ft_rgb_to_hex(get_pixel_color(&map->textures[v - 1],
-			((x * 2) % 64), (y * 2) % 64));
+		c = ft_rgb_to_hex(get_pixel_color(&t, (x * 2) % t.width, (y * 2) % t.height));
 	}
 	put_px_to_img(map, x, y, c);
 }
