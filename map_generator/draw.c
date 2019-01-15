@@ -33,8 +33,15 @@ static void	choose_color(t_map *map, int v, int x, int y)
 	else if (v == 0)
 		c = 0x000000;
 	else if (v > 0)
+<<<<<<< HEAD
 		c = ft_rgb_to_hex(get_pixel_color(&t, (x * 2) % t.width,
 			(y * 2) % t.height));
+=======
+	{
+		c = ft_rgb_to_hex(get_pixel_color(&t, (x * 2) % t.width,
+		(y * 2) % t.height));
+	}
+>>>>>>> 37462980048725c1608faeeeb3aeb6cfb28c0968
 	put_px_to_img(map, x, y, c);
 }
 
