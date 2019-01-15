@@ -55,7 +55,7 @@ void		map_save(t_map *map)
 	int		fd;
 
 	i = 0;
-	if (((fd = open(map->name, O_CREAT | O_WRONLY, 0644)) < 0))
+	if (((fd = open(map->name, O_CREAT | O_WRONLY | O_TRUNC, 0644)) < 0))
 		ft_error("Error : File not create correctly");
 	while (i < map->size / map->bloc)
 	{
