@@ -6,7 +6,7 @@
 /*   By: lchappon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/10 16:34:23 by lchappon          #+#    #+#             */
-/*   Updated: 2019/01/15 18:23:51 by lchappon         ###   ########.fr       */
+/*   Updated: 2019/01/15 19:06:38 by lchappon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,10 @@ void	ft_info(t_app *a)
 			a->map[(int)a->pos.x][(int)a->pos.y] != VDOOR_O)) &&
 			a->move.v <= 1)
 		mlx_string_put(a->mlx, a->win, WIN_WD, WIN_HD, 0xFFFFFF, CLOSE);
-	if ((a->map[(int)a->pos.x][(int)(a->pos.y + a->cam.dir.x)] == 13 ||
-			a->map[(int)(a->pos.x + a->cam.dir.y)][(int)a->pos.y] == 13) &&
+	if (((a->map[(int)a->pos.x][(int)(a->pos.y + a->cam.dir.x)] == 13 &&
+			fabs(a->cam.dir.x) > fabs(a->cam.dir.y)) ||
+			(a->map[(int)(a->pos.x + a->cam.dir.y)][(int)a->pos.y] == 13 &&
+			fabs(a->cam.dir.x) < fabs(a->cam.dir.y))) &&
 			a->move.v <= 1)
 		mlx_string_put(a->mlx, a->win, WIN_WD - 40, WIN_HD, 0xFFFFFF, END);
 	ft_info2(a);

@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/06 21:35:57 by maxisimo          #+#    #+#             */
-/*   Updated: 2019/01/07 14:46:52 by maxisimo         ###   ########.fr       */
+/*   Updated: 2019/01/15 19:08:22 by lchappon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	ft_doors(t_app *a)
 				a->move.v <= 1)
 			a->map[(int)a->pos.x][(int)(a->pos.y + a->cam.dir.x)] = HDOOR;
 	}
-	else
+	else if (fabs(a->cam.dir.x) < fabs(a->cam.dir.y))
 	{
 		if (a->map[(int)(a->pos.x + a->cam.dir.y)][(int)a->pos.y] == VDOOR &&
 				a->move.v <= 1)
@@ -34,9 +34,10 @@ void	ft_doors(t_app *a)
 				a->move.v <= 1)
 			a->map[(int)(a->pos.x + a->cam.dir.y)][(int)a->pos.y] = VDOOR;
 	}
-	if ((a->map[(int)a->pos.x][(int)(a->pos.y + a->cam.dir.x)] == 13 ||
-			a->map[(int)(a->pos.x + a->cam.dir.y)][(int)a->pos.y] == 13) &&
-			a->move.v <= 1)
+	if (((a->map[(int)a->pos.x][(int)(a->pos.y + a->cam.dir.x)] == 13 &&
+			fabs(a->cam.dir.x) > fabs(a->cam.dir.y)) ||
+			(a->map[(int)(a->pos.x + a->cam.dir.y)][(int)a->pos.y] == 13 &&
+			fabs(a->cam.dir.x) < fabs(a->cam.dir.y))) && a->move.v <= 1)
 		a->screen_win = 1;
 }
 
