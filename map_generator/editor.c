@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/02 11:41:56 by maxisimo          #+#    #+#             */
-/*   Updated: 2019/01/09 15:36:14 by maxisimo         ###   ########.fr       */
+/*   Updated: 2019/01/16 14:10:34 by maxisimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,13 +80,13 @@ static void	writemap(t_map *map)
 		while (map->p.x < 40 && array[map->p.x])
 		{
 			if (array[map->p.x])
-				map->map[map->p.y][map->p.x] = ft_atoi(array[map->p.x]);
+				map->map[map->p.y][map->p.x] = ft_atoi(array[map->p.x]) % 14;
 			map->p.x++;
 		}
 		free_strsplit(array);
 		map->p.y++;
 	}
-	free(s);
+	map->p.x > 1 ? free(s) : 0;
 	close(fd);
 }
 

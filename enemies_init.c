@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/07 19:26:34 by maxisimo          #+#    #+#             */
-/*   Updated: 2019/01/07 19:27:11 by maxisimo         ###   ########.fr       */
+/*   Updated: 2019/01/16 12:45:08 by maxisimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,6 @@ static void	enemies_get_type(t_app *a, t_coord p, int i)
 	a->map[p.x][p.y] == 13 ? a->enemies[i].type = 3 : 0;
 	if (a->map[p.x][p.y] < 12)
 		a->map[p.x][p.y] = 0;
-	if (a->enemies[i].type == 0)
-		printf("-> %f %f\n", a->enemies[i].pos.x, a->enemies[i].pos.y);
 }
 
 static void	enemies_get_pos(t_app *a)

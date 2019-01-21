@@ -6,12 +6,11 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/05 12:14:38 by maxisimo          #+#    #+#             */
-/*   Updated: 2019/01/14 17:46:39 by maxisimo         ###   ########.fr       */
+/*   Updated: 2019/01/16 16:55:38 by maxisimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "map_generator.h"
-#include <stdio.h>
 
 int			key_hook(int keycode, t_map *map)
 {
@@ -39,11 +38,15 @@ int			key_hook(int keycode, t_map *map)
 
 int			mouse_hook(int mousecode, int x, int y, t_map *map)
 {
+	int		tmp;
+
+	tmp = map->i;
 	if (mousecode == 1)
 		map->i = (map->player == 1) ? -1 : map->i;
 	else if (mousecode == 2)
 		map->i = 0;
 	map->map[y / map->bloc][x / map->bloc] = map->i;
+	map->i = tmp;
 	draw(map);
 	return (0);
 }

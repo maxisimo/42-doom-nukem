@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/16 16:09:00 by lchappon          #+#    #+#             */
-/*   Updated: 2019/01/08 18:10:49 by maxisimo         ###   ########.fr       */
+/*   Updated: 2019/01/16 17:04:40 by maxisimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,6 @@ void	ft_choose_color(int x, int start, t_app *a)
 {
 	t_color c1;
 
-	a->texnum = a->map[a->mapy][a->mapx] - 1;
 	if (a->texnum >= DOOR2)
 		a->texnum = DOOR1;
 	if (a->texy < 0 && a->texnum == DOOR1)
@@ -88,7 +87,7 @@ void	ft_choose_color(int x, int start, t_app *a)
 	if (a->poster == 1)
 		ft_poster(a);
 	if (a->texy < 0)
-		a->texy += TEXSIZE;
+		a->texy += a->textures[a->texnum].height;
 	c1 = get_pixel_color(&a->textures[a->texnum], a->texx, a->texy);
 	if (a->c == 0)
 		ft_apply_shadow_to_color(&c1, a->wall.clr_intensity);

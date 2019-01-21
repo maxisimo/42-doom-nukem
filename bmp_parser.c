@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/26 15:11:51 by thbernar          #+#    #+#             */
-/*   Updated: 2019/01/08 18:29:41 by maxisimo         ###   ########.fr       */
+/*   Updated: 2019/01/16 17:37:42 by maxisimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static void	bmp_getfile_data(t_bmp *bmp, int fd, int i, int b_r)
 	}
 }
 
-static void	bmp_readfile(t_bmp *bmp, int fd)
+static void	bmp_readfile(t_bmp *bmp, int fd, int w, int h)
 {
 	int				i;
 	int				j;
@@ -66,6 +66,8 @@ static void	bmp_readfile(t_bmp *bmp, int fd)
 	j = 0;
 	bytes_read = 1;
 	bmp_getfile_size(bmp, fd);
+	if (bmp->width != w || bmp->height != h)
+		ft_error("Oops, something went wrong !");
 	i = i + 8;
 	bmp->data = (int *)malloc(sizeof(int) * bmp->width * bmp->height * 3);
 	if (!bmp->data)
@@ -77,7 +79,7 @@ static void	bmp_readfile(t_bmp *bmp, int fd)
 	bmp_getfile_data(bmp, fd, i, bytes_read);
 }
 
-void		bmp_loadfile(t_bmp *bmp, char *fname)
+void		bmp_loadfile(t_bmp *bmp, char *fname, int w, int h)
 {
 	int fd;
 
@@ -86,7 +88,7 @@ void		bmp_loadfile(t_bmp *bmp, char *fname)
 		ft_putstr("Fatal error : invalid file.");
 		exit(-1);
 	}
-	bmp_readfile(bmp, fd);
+	bmp_readfile(bmp, fd, w, h);
 	bmp->scale = 1.0;
 	ft_putstr(fname);
 	ft_putstr(" loaded.\n");

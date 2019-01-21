@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/29 19:40:45 by maxisimo          #+#    #+#             */
-/*   Updated: 2019/01/09 16:41:36 by maxisimo         ###   ########.fr       */
+/*   Updated: 2019/01/16 14:26:00 by maxisimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ typedef struct	s_map
 	t_bmp		textures[13];
 }				t_map;
 
-void			error(void);
 void			is_edit(char *s, t_map *map);
 void			is_create(char *s, t_map *map);
 void			start(t_map *map);

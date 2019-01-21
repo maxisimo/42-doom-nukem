@@ -6,7 +6,7 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/16 16:07:10 by lchappon          #+#    #+#             */
-/*   Updated: 2019/01/10 19:14:05 by lchappon         ###   ########.fr       */
+/*   Updated: 2019/01/16 17:12:18 by maxisimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,10 @@ static void		ft_ceiling(int x, int y, t_app *a)
 			(1.0 - a->floor.weight) * a->pos.y;
 		a->floor.curfloor.y = a->floor.weight * a->floor.y +
 			(1.0 - a->floor.weight) * a->pos.x;
-		a->floor.tex.x = (int)(a->floor.curfloor.x * TEXSIZE) % TEXSIZE;
-		a->floor.tex.y = (int)(a->floor.curfloor.y * TEXSIZE) % TEXSIZE;
+		a->floor.tex.x = (int)(a->floor.curfloor.x *
+			a->textures[a->texnum].width) % a->textures[a->texnum].width;
+		a->floor.tex.y = (int)(a->floor.curfloor.y *
+			a->textures[a->texnum].height) % a->textures[a->texnum].height;
 		c1 = get_pixel_color(&a->textures[2], a->floor.tex.x, a->floor.tex.y);
 		if (a->c == 0)
 			ft_apply_shadow_to_cf(&c1, y - WIN_H - a->rot.v);
@@ -80,12 +82,15 @@ static void		ft_floor(int x, int y, t_app *a)
 			(1.0 - a->floor.weight) * a->pos.y;
 		a->floor.curfloor.y = a->floor.weight * a->floor.y +
 			(1.0 - a->floor.weight) * a->pos.x;
-		a->floor.tex.x = (int)(a->floor.curfloor.x * TEXSIZE) % TEXSIZE;
-		a->floor.tex.y = (int)(a->floor.curfloor.y * TEXSIZE) % TEXSIZE;
+		a->floor.tex.x = (int)(a->floor.curfloor.x *
+			a->textures[a->texnum].width) % a->textures[a->texnum].width;
+		a->floor.tex.y = (int)(a->floor.curfloor.y *
+			a->textures[a->texnum].height) % a->textures[a->texnum].height;
 		a->floor.tex.y = abs(a->floor.tex.y);
 		c1 = get_pixel_color(&a->textures[5], a->floor.tex.x, a->floor.tex.y);
 		if (a->c == 0)
-			ft_apply_shadow_to_cf(&c1, y - a->rot.v - a->move.v * TEXSIZE);
+			ft_apply_shadow_to_cf(&c1, y - a->rot.v - a->move.v *
+				a->textures[a->texnum].width);
 		ft_put_pxl_to_img(a, c1, x, y);
 		y++;
 	}
@@ -93,13 +98,14 @@ static void		ft_floor(int x, int y, t_app *a)
 
 void			draw_wall(int x, int start, int end, t_app *a)
 {
+	a->texnum = a->map[a->mapy][a->mapx] - 1;
 	if (a->side == 0)
 		a->wallx = a->pos.x + a->wall.dist * a->ray.dir.y;
 	else
 		a->wallx = a->pos.y + a->wall.dist * a->ray.dir.x;
 	a->wallx -= floor(a->wallx);
-	a->texx = (int)(a->wallx * TEXSIZE);
-	a->texx = TEXSIZE - a->texx - 1;
+	a->texx = (int)(a->wallx * a->textures[a->texnum].width);
+	a->texx = a->textures[a->texnum].width - a->texx - 1;
 	if (a->c == 0)
 		ft_ceiling(x, start, a);
 	else if (a->c == 1)
@@ -108,8 +114,9 @@ void			draw_wall(int x, int start, int end, t_app *a)
 	while (start <= end - 1)
 	{
 		a->texy = (start - WIN_H / 2 + (a->lineheight / 2)
-				* (-a->move.v + 1) - a->rot.v) * TEXSIZE / a->lineheight;
-		a->texy %= TEXSIZE;
+					* (-a->move.v + 1) - a->rot.v) *
+						a->textures[a->texnum].height / a->lineheight;
+		a->texy %= a->textures[a->texnum].height;
 		ft_choose_color(x, start, a);
 		start++;
 	}

@@ -6,14 +6,13 @@
 /*   By: maxisimo <maxisimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/26 17:11:44 by thbernar          #+#    #+#             */
-/*   Updated: 2019/01/15 18:12:56 by lchappon         ###   ########.fr       */
+/*   Updated: 2019/01/16 17:36:34 by lchappon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef DOOM_NUKEM_H
 # define DOOM_NUKEM_H
 
-# include <stdio.h>
 # include <stdlib.h>
 # include <math.h>
 # include <pthread.h>
@@ -28,8 +27,8 @@
 # define SENTENCE3 "BELIEVED THAT THE CURSE ORIGINATED FROM THE WOLFENSTEIN"
 # define SENTENCE4 "CASTLE WHERE THE NAZIS HID A PIECE OF INESTIMABLE VALUE :"
 # define SENTENCE5 "THE SKULL OF DOOM. KILL THE UNDEAD AND RETRIEVE THAT SKULL"
-# define SENTENCE6 "TO HOPEFULLY END THE CURSE. YOU KNOW THAT CASTLE VERY WELL"
-# define SENTENCE7 "THAT IS WHY YOU ARE OUR BEST HOPE."
+# define SENTENCE6 "TO HOPEFULLY END THE CURSE. YOU KNOW THAT CASTLE BETTER"
+# define SENTENCE7 "THAN ANYONE ELSE WHICH IS WHY YOU ARE OUR BEST HOPE."
 # define SENTENCE8 "GODSPEED, AGENT BLAZKOWICZ."
 # define OPEN "Press 'E' to open"
 # define CLOSE "Press 'E' to close"
@@ -40,7 +39,6 @@
 # define WIN_WS WIN_W / 2 - 120
 # define WIN_HD WIN_H / 2
 # define WIN_WD WIN_W / 2 - 90
-# define TEXSIZE 64
 # define WINDOW 7
 # define HDOOR 8
 # define VDOOR 9
@@ -212,6 +210,7 @@ typedef struct		s_app
 	int				size;
 	int				poster;
 	int				ammo;
+	int				click;
 	struct s_app	*main_a;
 	double			wallx;
 	double			distplayer;
@@ -285,7 +284,7 @@ void				ft_free_strsplit(char **array);
 void				ft_init_tex_fc(t_app *a);
 void				ft_info(t_app *a);
 
-void				bmp_loadfile(t_bmp *bmp, char *fname);
+void				bmp_loadfile(t_bmp *bmp, char *fname, int w, int h);
 t_color				get_pixel_color(t_bmp *img, int x, int y);
 
 void				weapons_draw_weapon(t_app *a);
