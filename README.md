@@ -14,7 +14,9 @@ for your Wolf3D. The bonus part then is now a core element of the project.
 
 # Run project
 make
-./doom-nukem <file.w3d>
-./map-generator <file.w3d>
+
+./doom-nukem <file.w3d> 
+
+./map-generator <file.w3d> 
 
 # Rate : 100/100
