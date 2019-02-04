@@ -10,7 +10,7 @@ for your Wolf3D. The bonus part then is now a core element of the project.
 ![alt tag]()
 
 # map-generator
-![alt tag]()
+![alt tag](https://user-images.githubusercontent.com/34480775/52216499-a29e4e80-2896-11e9-9cac-cb610fa34f51.png)
 
 # Run project
 make
