@@ -7,7 +7,7 @@ for your Wolf3D. The bonus part then is now a core element of the project.
 
 ![alt tag](https://user-images.githubusercontent.com/34480775/52217940-d169f400-2899-11e9-8641-344249669b02.png)
 ![alt tag](https://user-images.githubusercontent.com/34480775/52216949-be562480-2897-11e9-8e2c-45304c04b301.png)
-![alt tag]()
+![alt tag](https://user-images.githubusercontent.com/34480775/52217407-a9c65c00-2898-11e9-91df-dd7b022df345.png)
 
 # map-generator
 ![alt tag](https://user-images.githubusercontent.com/34480775/52216499-a29e4e80-2896-11e9-9cac-cb610fa34f51.png)
