@@ -6,7 +6,7 @@ You’ll still be using the raycasting technique, but you will need a lot more w
 for your Wolf3D. The bonus part then is now a core element of the project.
 
 ![alt tag](https://user-images.githubusercontent.com/34480775/52217940-d169f400-2899-11e9-8641-344249669b02.png)
-![alt tag]()
+![alt tag](https://user-images.githubusercontent.com/34480775/52216949-be562480-2897-11e9-8e2c-45304c04b301.png)
 ![alt tag]()
 
 # map-generator
