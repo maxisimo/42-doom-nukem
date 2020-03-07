@@ -1,7 +1,7 @@
 <a href="https://www.42.fr/">
     <p><img src="https://www.universfreebox.com/UserFiles/image/site_logo.gif" alt="42 logo" title="42" align="right" /></p>
 </a>
-<p align="center"><img src="https://user-images.githubusercontent.com/34480775/76144727-764d9680-6083-11ea-8b73-aceb9f877175.jpg" /></p>
+<p align="center"><img src="https://user-images.githubusercontent.com/34480775/76144854-7ef29c80-6084-11ea-8cde-6f79b232f147.jpg" /></p>
 
 
 <p align="center">
