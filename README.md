@@ -5,9 +5,9 @@
 
 
 <p align="center">
-    <img src="https://img.shields.io/badge/Skill%201-Algorithm&AI-9cf">
-    <img src="https://img.shields.io/badge/Skill%202-DB%20%26%20Data-blue">
-    <img src="https://img.shields.io/badge/Objectives-Machine%20Learning-brightgreen">
+    <img src="https://img.shields.io/badge/Skills%201-Graphics-blueviolet">
+    <img src="https://img.shields.io/badge/Skills%202-Group%20%26%20interpersonal-yellown">
+    <img src="https://img.shields.io/badge/Skills%203-Adaptation%20%26%20creativity-important">
 </p>
 
 We will ask you to create a mix of Doom and Duke Nukem 3D. Many basic functional elements are identical. However, they were not implemented in the same way by the designers of the two games. It’s up to you to find the one that you prefer and that will make it possible to implement both the requested features and the ones you can’t wait to invent. You’ll still be using the raycasting technique, but you will need a lot more work than for your Wolf3D. The bonus part then is now a core element of the project.
